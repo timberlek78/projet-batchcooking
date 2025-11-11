@@ -1,18 +1,20 @@
 import express from "express";
 import cors from "cors";
 import dotenv from "dotenv";
+import dbRoutes from "./routes/dbRoutes.js";
+import apiRoutes from "./routes/apiRoutes.js";
 
 dotenv.config();
-const app = express();
 
+const app = express();
 app.use(cors());
 app.use(express.json());
 
-// Exemple de route test
-app.get("/api", (req, res) => {
-  res.json({ message: "API BatchCooking opérationnelle 🔥" });
-});
+// === Routes ===
+app.use("/db", dbRoutes);
 
-// Port depuis .env ou 5000 par défaut
+app.use("/api",apiRoutes);
+
+// === Serveur ===
 const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => console.log(`✅ Serveur lancé sur le port ${PORT}`));
+app.listen(PORT, () => console.log(`✅ Serveur Express lancé sur http://localhost:${PORT}`));

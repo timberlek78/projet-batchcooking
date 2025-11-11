@@ -1,0 +1,23 @@
+{
+  "name": "miaminou",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "concurrently -n BACKEND,FRONTEND -c magenta,cyan \"npm run dev --prefix backend\" \"npm run dev --prefix frontend\""
+  },
+  "devDependencies": {
+    "concurrently": "^9.2.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/timberlek78/projet-batchcooking.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/timberlek78/projet-batchcooking/issues"
+  },
+  "homepage": "https://github.com/timberlek78/projet-batchcooking#readme"
+}
