@@ -5,10 +5,61 @@
 // Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
 
 datasource db {
-  provider = "mysql"
-  url      = env("DATABASE_URL")
+	provider = "mysql"
+	url      = env("DATABASE_URL")
 }
 
 generator client {
-  provider = "prisma-client-js"
+	provider = "prisma-client-js"
+}
+
+model Users {
+	user_id Int @id @default(autoincrement())
+	username String @unique @db.VarChar(255)
+	password String 
+	email    String @unique
+}
+
+model Recipes{
+	recipe_id Int @id @default(autoincrement())
+	recipe_name String
+	recipe_difficult Int 
+	recipe_like_number Int
+	recipe_preparation_time Int
+	recipe_cooking_time Int
+
+	stapes Stape[]
+	
+	RecipesIngredient RecipesIngredient[]
+}
+
+model Stape{
+	stape_id Int @id @default(autoincrement())
+	stape_number Int 
+	stape_desc String @db.LongText
+
+	recipe_id Int
+
+	recipe Recipes @relation(fields: [recipe_id],references: [recipe_id])
+}
+
+model Ingredient{
+	ingredient_id Int @id @default(autoincrement())
+	ingredient_name String @db.VarChar(255)
+	ingredient_unit String @db.VarChar(5)
+
+	RecipesIngredient RecipesIngredient[]
+}
+
+model RecipesIngredient{
+	recipe_id Int 
+	ingredient_id Int 
+	quantity Int 
+
+	ingredient Ingredient @relation(fields: [ingredient_id], references: [ingredient_id])
+
+	recipe Recipes @relation(fields: [recipe_id],references: [recipe_id])
+
+	//Clé primaire 
+	@@id([recipe_id,ingredient_id])
 }

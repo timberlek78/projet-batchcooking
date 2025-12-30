@@ -7,7 +7,10 @@
     "dev": "concurrently -n BACKEND,FRONTEND -c magenta,cyan \"npm run dev --prefix backend\" \"npm run dev --prefix frontend\""
   },
   "devDependencies": {
-    "concurrently": "^9.2.1"
+    "concurrently": "^9.2.1",
+    "eslint": "^9.39.1",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-prettier": "^5.5.4"
   },
   "repository": {
     "type": "git",
@@ -19,5 +22,8 @@
   "bugs": {
     "url": "https://github.com/timberlek78/projet-batchcooking/issues"
   },
-  "homepage": "https://github.com/timberlek78/projet-batchcooking#readme"
+  "homepage": "https://github.com/timberlek78/projet-batchcooking#readme",
+  "dependencies": {
+    "helmet": "^8.1.0"
+  }
 }
