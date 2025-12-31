@@ -1,6 +1,0 @@
-// Exemple : fonction à tester
-function add(a, b) {
-	return a + b;
-}
-
-export default add;
