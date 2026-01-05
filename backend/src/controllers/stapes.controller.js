@@ -7,7 +7,7 @@ class StapesController {
 			const response = await StapesModels.getAll();
 			return res.status(200).json(response);
 		} catch (error) {
-			return res.status(400).json(error.message);
+			return next(error);
 		}
 	}
 
@@ -15,7 +15,7 @@ class StapesController {
 		try {
 			const id = Number(req.params.id);
 			if (!id) {
-				return res.status(400).json({ error: 'Id invalide' });
+				throw new Error('Id Invalide');
 			}
 
 			const response = await StapesModels.getByRecipe(id);
@@ -27,7 +27,7 @@ class StapesController {
 
 			return res.status(200).json(response);
 		} catch (error) {
-			return res.status(500).json({ error: error.message });
+			return next(error);
 		}
 	}
 
@@ -38,7 +38,7 @@ class StapesController {
 			const result = await StapesServices.create(newStape);
 			return res.status(201).json(result);
 		} catch (error) {
-			return res.status(400).json(error.message);
+			return next(error);
 		}
 	}
 
@@ -52,7 +52,7 @@ class StapesController {
 			const result = await StapesServices.update(id, req.body);
 			return res.status(200).json(result);
 		} catch (error) {
-			return res.status(400).json(error.message);
+			return next(error);
 		}
 	}
 
@@ -66,7 +66,7 @@ class StapesController {
 			const isDeleting = await StapesModels.delete(id);
 			return res.status(200).json(isDeleting);
 		} catch (error) {
-			return res.status(400).json(error.message);
+			return next(error);
 		}
 	}
 }

@@ -69,6 +69,8 @@ model Week{
 	week_start DateTime 
 	week_end DateTime
 	user_id Int
+	recipe_id Int
 
 	user Users @relation(fields : [user_id], references: [user_id])
+	recipe Recipes @relation(fields: [recipe_id], references: [recipe_id])
 }

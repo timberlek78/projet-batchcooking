@@ -7,7 +7,7 @@ export class UsersConstroller {
 			const response = await UserModels.getAll();
 			res.status(200).json(response);
 		} catch (error) {
-			res.status(400).json({ error: error.message });
+			return next(error);
 		}
 	}
 
@@ -30,8 +30,7 @@ export class UsersConstroller {
 
 			return res.status(200).json(safeUser);
 		} catch (error) {
-			console.error(error.message);
-			return res.status(400).json({ error: 'Erreur serveur' });
+			return next(error);
 		}
 	}
 
@@ -48,7 +47,7 @@ export class UsersConstroller {
 
 			res.status(201).json(user);
 		} catch (error) {
-			res.status(400).json({ error: error.message });
+			return next(error);
 		}
 	}
 
@@ -66,8 +65,7 @@ export class UsersConstroller {
 			const { password, ...safeUser } = updatedUser;
 			return res.status(200).json(safeUser);
 		} catch (error) {
-			console.log(error);
-			return res.status(400).json({ error: error.message });
+			return next(error);
 		}
 	}
 
@@ -82,7 +80,7 @@ export class UsersConstroller {
 			const isDeleting = await UserModels.delete(id);
 			res.status(200).json(isDeleting);
 		} catch (error) {
-			res.status(404).json({ error: error.message });
+			return next(error);
 		}
 	}
 }

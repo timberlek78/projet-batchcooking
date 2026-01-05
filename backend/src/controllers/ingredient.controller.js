@@ -7,7 +7,7 @@ class IngredientController {
 			const response = await IngredientModels.getAll();
 			res.status(200).json(response);
 		} catch (error) {
-			res.status(400).json(error.message);
+			return next(error);
 		}
 	}
 
@@ -22,7 +22,7 @@ class IngredientController {
 			if (response) res.status(200).json(response);
 			else throw new Error('ID introuvable');
 		} catch (error) {
-			res.status(404).json(error.message);
+			return next(error);
 		}
 	}
 
@@ -32,7 +32,7 @@ class IngredientController {
 			const result = await IngredientServices.create(newIngredient);
 			res.status(201).json(result);
 		} catch (error) {
-			res.status(400).json(error.message);
+			return next(error);
 		}
 	}
 
@@ -44,7 +44,7 @@ class IngredientController {
 			const result = await IngredientServices.update(id, req.body);
 			res.status(200).json(result);
 		} catch (error) {
-			res.status(400).json(error.message);
+			return next(error);
 		}
 	}
 
@@ -56,7 +56,7 @@ class IngredientController {
 			const isDeleting = IngredientModels.delete(id);
 			res.status(200).json(isDeleting);
 		} catch (error) {
-			res.status(400).json(error.message);
+			return next(error);
 		}
 	}
 }
