@@ -33,7 +33,6 @@ class IngredientServices {
 				cleanData.ingredient_name.trim().length === 0 ||
 				cleanData.ingredient_name.length > 255)
 		) {
-			console.log(cleanData.ingredient_name);
 			throw new Error('ingredient_name doit être une chaîne non vide (max 255).');
 		}
 

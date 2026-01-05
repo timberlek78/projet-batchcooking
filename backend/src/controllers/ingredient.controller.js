@@ -18,7 +18,7 @@ class IngredientController {
 				throw new Error('Id invalide');
 			}
 			const response = await IngredientModels.getById(id);
-
+			console.log(response);
 			if (response) res.status(200).json(response);
 			else throw new Error('ID introuvable');
 		} catch (error) {

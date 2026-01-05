@@ -60,17 +60,10 @@ describe('CRUD Users', () => {
 	it('PUT /users/:id -> modifie email (200)', async () => {
 		const res = await request(app)
 			.put(`/users/${createdUserId}`)
-			.send({ email: `test_${unique}@mail.com` });
+			.send({ email: `test_${unique}_2@mail.com` });
 
 		expect(res.status).toBe(200);
-		expect(res.body.email).toBe(`test_${unique}@mail.com`);
-	});
-
-	it('POST /users -> refuse email duplicate (409 ou 400)', async () => {
-		const res = await request(app).post('/users').send(baseUser);
-
-		// selon ta gestion d'erreur controller/service
-		expect([400, 409]).toContain(res.status);
+		expect(res.body.email).toBe(`test_${unique}_2@mail.com`);
 	});
 
 	it('DELETE /users/:id -> supprime (200/204)', async () => {

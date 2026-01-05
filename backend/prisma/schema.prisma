@@ -63,3 +63,12 @@ model RecipesIngredient{
 	//Clé primaire 
 	@@id([recipe_id,ingredient_id])
 }
+
+model Week{
+	week_id Int @id
+	week_start DateTime 
+	week_end DateTime
+	user_id Int
+
+	user Users @relation(fields : [user_id], references: [user_id])
+}
