@@ -1,5 +1,5 @@
 import express from 'express';
-import StapesController from '../controllers/stapes.controller';
+import StapesController from '../controllers/stapes.controller.js';
 
 const router = express.Router();
 

@@ -1,5 +1,5 @@
 import express from 'express';
-import WeekController from '../controllers/WeekController.js';
+import WeekController from '../controllers/week.controller.js';
 
 const router = express.Router();
 

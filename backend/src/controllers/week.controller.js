@@ -1,7 +1,6 @@
 // src/controllers/WeekController.js
-// Rôle : gérer HTTP (req/res) et déléguer au Service
 
-import WeekService from '../services/WeekService.js';
+import WeekService from '../services/week.services.js';
 
 export default class WeekController {
 	// GET /api/weeks

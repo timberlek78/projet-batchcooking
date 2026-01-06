@@ -1,7 +1,7 @@
 // src/services/WeekService.js
 // Rôle : logique métier + validations + appels aux Models
 
-import WeekModels from '../models/WeekModels.js';
+import WeekModels from '../models/week.models.js';
 
 export default class WeekService {
 	// Récupère toutes les entrées Week

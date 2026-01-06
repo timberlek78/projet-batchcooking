@@ -2,7 +2,16 @@ import express from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
 import helmet from 'helmet';
-import errorHandler from './middleware/errorHandler';
+import errorHandler from './middleware/errorHandler.js';
+import notFound from './middleware/notFound.js';
+
+//Importation des routes
+import ingredientRoutes from './routes/ingredient.routes.js';
+import recipeRoutes from './routes/recipes.routes.js';
+import stapesRoutes from './routes/stapes.routes.js';
+import usersRoutes from './routes/users.routes.js';
+import weekRoutes from './routes/week.routes.js';
+import dbRoutes from './routes/db.routes.js';
 
 dotenv.config();
 
@@ -16,8 +25,18 @@ app.use(
 app.use(helmet());
 app.use(express.json());
 
-app.use(errorHandler());
+app.use('/db', dbRoutes);
+app.use('/ingredients', ingredientRoutes);
+app.use('/recipes', recipeRoutes);
+app.use('/stapes', stapesRoutes);
+app.use('/users', usersRoutes);
+app.use('/week', weekRoutes);
+
+app.use(notFound);
+app.use(errorHandler);
 
 // === Serveur ===
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`✅ Serveur Express lancé sur http://localhost:${PORT}`));
+
+export default app;

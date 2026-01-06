@@ -1,4 +1,4 @@
-import IngredientModels from '../models/ingredient.models';
+import IngredientModels from '../models/ingredient.models.js';
 
 class IngredientServices {
 	static async update(ingredient_id, data) {

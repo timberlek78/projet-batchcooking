@@ -1,5 +1,5 @@
 import bcrypt from 'bcrypt';
-import UsersModels from '../models/users.models';
+import UsersModels from '../models/users.models.js';
 
 export class UsersService {
 	static async register(username, email, password) {

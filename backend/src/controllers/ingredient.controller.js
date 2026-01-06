@@ -1,5 +1,5 @@
-import IngredientModels from '../models/ingredient.models';
-import IngredientServices from '../services/ingredient.service';
+import IngredientModels from '../models/ingredient.models.js';
+import IngredientServices from '../services/ingredient.service.js';
 
 class IngredientController {
 	static async getAll(req, res) {

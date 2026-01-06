@@ -1,7 +1,7 @@
 import express from 'express';
 import RecipeController from '../controllers/recipes.controller.js';
 
-router = express.Router();
+const router = express.Router();
 
 //CRUD Recipes
 router.get('/', RecipeController.getAll);
