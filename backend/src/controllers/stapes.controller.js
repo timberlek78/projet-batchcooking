@@ -38,6 +38,7 @@ class StapesController {
 			const result = await StapesServices.create(newStape);
 			return res.status(201).json(result);
 		} catch (error) {
+			error.status = 400;
 			return next(error);
 		}
 	}

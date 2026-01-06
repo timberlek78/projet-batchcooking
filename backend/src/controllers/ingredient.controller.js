@@ -7,6 +7,7 @@ class IngredientController {
 			const response = await IngredientModels.getAll();
 			res.status(200).json(response);
 		} catch (error) {
+			error.status = 400;
 			return next(error);
 		}
 	}
@@ -22,6 +23,7 @@ class IngredientController {
 			if (response) res.status(200).json(response);
 			else throw new Error('ID introuvable');
 		} catch (error) {
+			error.status = 400;
 			return next(error);
 		}
 	}
@@ -32,6 +34,7 @@ class IngredientController {
 			const result = await IngredientServices.create(newIngredient);
 			res.status(201).json(result);
 		} catch (error) {
+			error.status = 400;
 			return next(error);
 		}
 	}

@@ -24,6 +24,7 @@
   },
   "homepage": "https://github.com/timberlek78/projet-batchcooking#readme",
   "dependencies": {
-    "helmet": "^8.1.0"
+    "helmet": "^8.1.0",
+    "react-router-dom": "^7.11.0"
   }
 }
