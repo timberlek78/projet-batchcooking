@@ -2,18 +2,18 @@ import { Routes, Route } from 'react-router-dom';
 import Home from './pages/Home.jsx';
 import Recipe from './pages/Recipe.jsx';
 import Users from './pages/Users.jsx';
-import Navbar from './components/NavBar/NavBar.jsx';
+import './App.css';
+import Layout from './components/Layout/Layout';
 
 function App() {
 	return (
-		<>
-			<Navbar />
-			<Routes>
+		<Routes>
+			<Route element={<Layout />}>
 				<Route path="/" element={<Home />} />
 				<Route path="/recipes" element={<Recipe />} />
 				<Route path="/users" element={<Users />} />
-			</Routes>
-		</>
+			</Route>
+		</Routes>
 	);
 }
 
