@@ -43,11 +43,7 @@ const HOME = {
 			5: 'Gestion centralisée des erreurs et des chaînes de caractères',
 		},
 
-		Auteur: {
-			Nom: 'Projet réalisé dans un cadre pédagogique',
-			Description:
-				'Ce projet met l’accent sur l’application des bonnes pratiques de développement web moderne, notamment en termes d’architecture, de maintenabilité et de lisibilité du code.',
-		},
+		Auteur: 'Thomas BOUDEELE',
 	},
 };
 
