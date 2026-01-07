@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
-import styles from './Home.module.css';
+import styles from './styles/Test_BD.module.css';
 
-function Home() {
+function Test_BD() {
 	const [message, setMessage] = useState('Chargement...');
 
 	useEffect(() => {
@@ -20,4 +20,4 @@ function Home() {
 	);
 }
 
-export default Home;
+export default Test_BD;

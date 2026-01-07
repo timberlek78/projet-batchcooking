@@ -1,21 +1,18 @@
 import { useEffect, useState } from 'react';
+import { getUsers } from '../services/user.service';
 
 function Users() {
 	const [users, setUsers] = useState([]);
+	const [error, setError] = useState([]);
 
 	useEffect(() => {
 		const fetchUsers = async () => {
 			try {
-				let response = await fetch('http://localhost:5000/users');
-
-				if (!response.ok) {
-					throw new Error(`HTTP ${response.status}`);
-				}
-
-				let users = await response.json();
-				setUsers(users);
+				const response = await getUsers();
+				setUsers(response.data);
 			} catch (error) {
-				throw new Error(error.message);
+				setError(error);
+				console.log(error);
 			}
 		};
 

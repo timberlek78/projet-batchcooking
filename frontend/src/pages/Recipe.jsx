@@ -1,27 +1,19 @@
 import { useEffect, useState } from 'react';
+import { getRecipe } from '../services/recipe.service.js';
 
 function Recipe() {
-	// State : on stocke un tableau de recettes
+	// State : tableau de recettes
 	const [recipes, setRecipes] = useState([]);
+	const [error, setError] = useState(null);
 
 	useEffect(() => {
-		/**
-		 * Récupère les recettes au chargement du composant
-		 */
 		const fetchRecipes = async () => {
 			try {
-				const response = await fetch('http://localhost:5000/recipes');
-
-				if (!response.ok) {
-					throw new Error(`HTTP ${response.status}`);
-				}
-
-				const data = await response.json();
-
-				// Met à jour le state -> déclenche un re-render -> affichage
-				setRecipes(data);
-			} catch (error) {
-				console.error('Erreur lors de la récupération des recettes :', error);
+				const response = await getRecipe();
+				setRecipes(response.data);
+			} catch (err) {
+				setError(err.message);
+				console.error(err);
 			}
 		};
 
@@ -33,9 +25,11 @@ function Recipe() {
 			<h1>Recettes</h1>
 			<p>Liste de toutes les recettes enregistrées</p>
 
+			{error && <p style={{ color: 'red' }}>{error}</p>}
+
 			<ul>
 				{recipes.map((recipe) => (
-					<li key={recipe.recipe_id ?? recipe.id}>{recipe.recipe_name ?? recipe.name}</li>
+					<li key={recipe.recipe_id}>{recipe.recipe_name}</li>
 				))}
 			</ul>
 		</div>
