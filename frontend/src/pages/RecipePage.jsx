@@ -1,5 +1,7 @@
 import { useState, useEffect } from 'react';
-import api from '../api/api.js';
+import { RecipeService as services } from '../services/recipe.service.js';
+import RecipeCard from '../components/RecipeCard/RecipeCard.jsx';
+import style from './styles/recipePage.module.css';
 
 function RecipePage() {
 	const [recipes, setRecipes] = useState([]);
@@ -8,7 +10,7 @@ function RecipePage() {
 	useEffect(() => {
 		const fetchRecipes = async () => {
 			try {
-				const response = await api.getRecipes();
+				const response = await services.getRecipe();
 				setRecipes(response.data);
 			} catch (error) {
 				console.error(error);
@@ -20,10 +22,13 @@ function RecipePage() {
 	}, []);
 
 	return (
-		<div>
+		<div className={style.page}>
 			<div>
+				<p> RECHERCHE </p>
+			</div>
+			<div className={style.container}>
 				{recipes.map((recipe) => {
-					<RecipeCard recipe={recipe} />;
+					return <RecipeCard key={recipe.recipe_id} recipe={recipe} />;
 				})}
 			</div>
 		</div>
