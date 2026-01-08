@@ -1,6 +1,12 @@
 import RecipesModels from '../models/recipes.models.js';
 
 class RecipesServices {
+	static async getIngredient(idRecipe) {
+		const idsIngredient = await RecipesModels.getIdIngredient(idRecipe);
+
+		const ingredient = await IngredientModels.getIngredientNameById(idsIngredient);
+	}
+
 	static async create(data) {
 		if (data.recipe_difficult < 1 || data.recipe_difficult > 5)
 			throw new Error('Difficult level invalide');

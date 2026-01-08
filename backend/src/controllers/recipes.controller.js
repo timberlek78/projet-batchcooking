@@ -27,6 +27,21 @@ class RecipeController {
 		}
 	}
 
+	static async getIngredients(req, res) {
+		try {
+			const id = req.params.id;
+			if (!id) {
+				throw new Error('Id invalide');
+			}
+
+			const response = await RecipesServices.getIngredients(id);
+			if (response) res.status(200).json(response);
+			else throw new Error('ID introuvable');
+		} catch (error) {
+			return next(error);
+		}
+	}
+
 	static async create(req, res) {
 		try {
 			const newRecipes = req.body;
