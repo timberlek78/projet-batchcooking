@@ -9,6 +9,7 @@ import BatchIcon from '../assets/icons/home/batchcooking.svg?react';
 import ObjectifIcon from '../assets/icons/home/target.svg?react';
 import ArchiIcon from '../assets/icons/home/archi.svg?react';
 import AutorIcon from '../assets/icons/home/autor.svg?react';
+import TechnoIcon from '../assets/icons/home/techno.svg?react';
 
 function HomePage() {
 	return (
@@ -44,7 +45,7 @@ function HomePage() {
 					titre={HOME.Titre.Techno}
 					lists={HOME.Contenu.Techno}
 					taille={style.trio}
-					icon={<ArchiIcon />}
+					icon={<TechnoIcon />}
 				/>
 
 				{/*Auteur */}
