@@ -6,7 +6,7 @@ const router = express.Router();
 //CRUD Recipes
 router.get('/', RecipeController.getAll);
 router.get('/:id', RecipeController.getById);
-router.get('/ingredient/:id', RecipeController.getIngredients());
+router.get('/ingredient/:id', RecipeController.getIngredients);
 
 router.post('/', RecipeController.create);
 

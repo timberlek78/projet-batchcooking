@@ -9,6 +9,10 @@ export class RecipeService {
 		return api.get(`/recipes/${id}`);
 	}
 
+	static async getIngredients(recipe_id) {
+		return api.get(`/recipes/ingredient/${recipe_id}`);
+	}
+
 	static async create(data) {
 		return api.post(`/recipe`, data);
 	}

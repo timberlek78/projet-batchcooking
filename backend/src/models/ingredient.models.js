@@ -11,7 +11,7 @@ class IngredientModels {
 
 	static async getIngredientNameById(data_id) {
 		return prisma.ingredient.findMany({
-			select: { ingredient_name },
+			select: { ingredient_name: true },
 			where: { ingredient_id: { in: data_id } },
 		});
 	}

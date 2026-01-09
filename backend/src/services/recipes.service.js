@@ -1,10 +1,17 @@
 import RecipesModels from '../models/recipes.models.js';
+import IngredientModels from '../models/ingredient.models.js';
 
 class RecipesServices {
-	static async getIngredient(idRecipe) {
-		const idsIngredient = await RecipesModels.getIdIngredient(idRecipe);
+	static async getIngredients(idRecipe) {
+		const idsIngredientObjects = await RecipesModels.getIdIngredient(idRecipe);
+
+		const idsIngredient = idsIngredientObjects.map((row) => row.ingredient_id);
 
 		const ingredient = await IngredientModels.getIngredientNameById(idsIngredient);
+
+		if (ingredient && ingredient.length > 0) return ingredient;
+
+		throw new Error("Pas d'ingrédient pour cette recette");
 	}
 
 	static async create(data) {

@@ -11,7 +11,7 @@ class RecipeController {
 		}
 	}
 
-	static async getById(req, res) {
+	static async getById(req, res, next) {
 		try {
 			const id = Number(req.params.id);
 
@@ -27,9 +27,9 @@ class RecipeController {
 		}
 	}
 
-	static async getIngredients(req, res) {
+	static async getIngredients(req, res, next) {
 		try {
-			const id = req.params.id;
+			const id = Number(req.params.id);
 			if (!id) {
 				throw new Error('Id invalide');
 			}
@@ -42,7 +42,7 @@ class RecipeController {
 		}
 	}
 
-	static async create(req, res) {
+	static async create(req, res, next) {
 		try {
 			const newRecipes = req.body;
 			const result = await RecipesServices.create(newRecipes);
@@ -53,7 +53,7 @@ class RecipeController {
 		}
 	}
 
-	static async update(req, res) {
+	static async update(req, res, next) {
 		try {
 			const id = Number(req.params.id);
 			if (!id) {
@@ -67,7 +67,7 @@ class RecipeController {
 		}
 	}
 
-	static async delete(req, res) {
+	static async delete(req, res, next) {
 		try {
 			const id = Number(req.params.id);
 			if (!id) {

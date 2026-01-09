@@ -21,6 +21,13 @@ function RecipePage() {
 		fetchRecipes();
 	}, []);
 
+	recipes.map(async (recipes) => {
+		const ingredients = await services.getIngredients(recipes.recipe_id);
+		recipes.ingredients = [ingredients.data];
+	});
+
+	console.log(recipes);
+
 	return (
 		<div className={style.page}>
 			<div>
