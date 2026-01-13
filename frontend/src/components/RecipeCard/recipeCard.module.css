@@ -11,6 +11,45 @@
 		box-shadow 0.2s ease;
 }
 
+.ing {
+	display: table-column;
+	padding: 1rem;
+}
+
+.difficulte {
+	display: inline-flex;
+	white-space: nowrap;
+}
+
+.preparation {
+	display: inline-flex;
+	white-space: nowrap;
+}
+
+.info {
+	display: flex;
+	gap: 0.4rem;
+	flex-direction: row;
+	align-items: flex-end;
+	justify-content: space-between;
+}
+
+.title {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.complementaire {
+	display: flex;
+	flex-direction: row;
+	gap: 5rem;
+	align-items: flex-start;
+	width: fit-content;
+	margin-right: 1rem;
+}
+
 .card:hover {
 	/* état survolé */
 	transform: translateY(-6px);

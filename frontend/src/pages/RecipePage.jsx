@@ -2,41 +2,54 @@ import { useState, useEffect } from 'react';
 import { RecipeService as services } from '../services/recipe.service.js';
 import RecipeCard from '../components/RecipeCard/RecipeCard.jsx';
 import style from './styles/recipePage.module.css';
+import RechercheField from '../components/Recherche/RechercheField.jsx';
 
 function RecipePage() {
 	const [recipes, setRecipes] = useState([]);
-	const [error, setError] = useState([]);
+	const [error, setError] = useState(null);
 
 	useEffect(() => {
 		const fetchRecipes = async () => {
 			try {
+				// 1) Récupérer toutes les recettes
 				const response = await services.getRecipe();
-				setRecipes(response.data);
-			} catch (error) {
-				console.error(error);
-				setError(error);
+				const baseRecipes = response.data;
+
+				// 2) Pour chaque recette, récupérer ses ingrédients
+				const recipesWithIngredients = await Promise.all(
+					baseRecipes.map(async (recipe) => {
+						const ingRes = await services.getIngredients(recipe.recipe_id);
+
+						return {
+							...recipe,
+							ingredients: ingRes.data, // ✅ ici c’est DIRECTEMENT un array
+						};
+					})
+				);
+
+				// 3) Mettre à jour le state une seule fois
+				setRecipes(recipesWithIngredients);
+			} catch (err) {
+				console.error(err);
+				setError(err);
 			}
 		};
 
 		fetchRecipes();
 	}, []);
 
-	recipes.map(async (recipes) => {
-		const ingredients = await services.getIngredients(recipes.recipe_id);
-		recipes.ingredients = [ingredients.data];
-	});
-
-	console.log(recipes);
-
 	return (
 		<div className={style.page}>
 			<div>
-				<p> RECHERCHE </p>
+				<RechercheField />
 			</div>
+
+			{error && <p>Erreur : {error.message}</p>}
+
 			<div className={style.container}>
-				{recipes.map((recipe) => {
-					return <RecipeCard key={recipe.recipe_id} recipe={recipe} />;
-				})}
+				{recipes.map((recipe) => (
+					<RecipeCard key={recipe.recipe_id} recipe={recipe} />
+				))}
 			</div>
 		</div>
 	);
