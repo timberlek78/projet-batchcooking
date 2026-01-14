@@ -1,0 +1,37 @@
+.bulle {
+	display: flex;
+	align-items: center;        /* centre vertical */
+	justify-content: center;    /* centre horizontal */
+
+	height: fit-content;
+	min-width: 5rem;
+
+	border: 1px solid green;
+	border-radius: 25px;
+
+	
+	cursor: pointer;
+}
+
+.icon {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.icon svg {
+	width: 24px;   /* 🔥 taille icône */
+	height: 24px;
+}
+
+.btn
+{
+	border: none;
+	background: transparent;
+}
+
+.text
+{
+	height: fit-content;
+	min-height: 2rem;
+}

@@ -44,6 +44,22 @@
 	border: thin solid black;
 }
 
+.listIng {
+	display: grid;
+
+	/* 5 lignes fixes */
+	grid-template-rows: repeat(5, auto);
+
+	/* Remplir colonne par colonne */
+	grid-auto-flow: column;
+
+	/* Largeur des colonnes générées automatiquement */
+	grid-auto-columns: max-content;
+
+	gap: 0.4rem 1rem; /* (ligne, colonne) */
+}
+
+
 
 .infoGene
 {

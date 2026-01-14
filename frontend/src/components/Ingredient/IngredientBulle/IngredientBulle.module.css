@@ -1,0 +1,23 @@
+.bulle{
+    display:flex;
+    flex-direction: row;
+    justify-content: space-between;
+    height: fit-content;
+    min-width: 5rem;
+    border: 1px solid green;
+    border-radius: 25px;
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+
+.btn
+{
+    border: none;
+    background: transparent;
+}
+
+.text
+{
+    height: fit-content;
+    min-height: 2rem;
+}
