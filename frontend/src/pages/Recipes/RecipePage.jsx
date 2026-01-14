@@ -24,7 +24,7 @@ function RecipePage() {
 
 						return {
 							...recipe,
-							ingredients: ingRes.data, // ✅ ici c’est DIRECTEMENT un array
+							ingredients: ingRes.data, 
 						};
 					})
 				);
@@ -47,12 +47,10 @@ function RecipePage() {
 	return (
 		<div className={style.page}>
 			<div className={style.top}>
-			<div className={style.topContent}>
 				<div className={style.searchWrap}>
 					<RechercheField onSearch={setSearch}/>
 				</div>
 				<AddButton routes='/recipes/add' />
-			</div>
 		</div>
 
 

@@ -5,7 +5,6 @@ function RechercheField({onSearch}) {
 
 	const handleChange = (e) =>{
 		e.stopPropagation();
-		console.log("je suis la", e.target.value)
 		onSearch(e.target.value);
 	}
 
@@ -23,9 +22,5 @@ function RechercheField({onSearch}) {
 	);
 }
 
-function search()
-{
-	console.log('aaa');
-}
 
 export default RechercheField;

@@ -13,12 +13,30 @@ import { useState } from 'react';
 
 function AddRecipePage()
 {
+	const [ingredients,setIngredients] = useState([]);
 	const [show,setShow] = useState(false);
-	console.log(show)
 
+	const addIngredient = (ingredient,checked)=>
+	{
+		ingredient.checked = true;
+		setIngredients((prev) => {
+		if (checked) {
+			// éviter les doublons
+			if (prev.some((i) => i.ingredient_id === ingredient.ingredient_id)) {
+				return prev;
+			}
+			return [...prev, ingredient];
+		} else {
+			// retirer si décoché
+			return prev.filter((i) => i.ingredient_id !== ingredient.ingredient_id);
+		}
+	});
+	}
+
+	console.log(ingredients);
 	return(
 		<div className={style.page}>
-			<IngredientPopUp show={show} onClose={() => setShow(false)} />
+			<IngredientPopUp show={show} onClose={() => setShow(false)} addIng={addIngredient} />
 
 			<div  className={style.haut}>
 				<div id="photo" className={style.photo}> {/**Conteneur photo */}
@@ -31,11 +49,10 @@ function AddRecipePage()
 					<div className={style.row}>
 						<div className={style.ingredient}>
 							<p>Liste Ingredient</p>
-							<div className={style.listIng}>
-								<IngredientBulle ingredientName="aaaa"/>
-								<IngredientBulle ingredientName="aaaa"/>
-								<IngredientBulle ingredientName="aaaa"/>
-								<IngredientBulle ingredientName="aaaa"/>
+							<div id="listIng" className={style.listIng}>
+								{ingredients.map((ing) =>(
+									<IngredientBulle ingredientName={ing.ingredient_name} />
+								))}
 								<AddIngredientBulle onClick={() => setShow(true)}/>
 							</div>
 						</div>
@@ -67,8 +84,4 @@ function AddRecipePage()
 }
 
 
-function addIngredient()
-{
-	console.log("je suis la ")
-}
 export default AddRecipePage
