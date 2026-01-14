@@ -1,14 +1,17 @@
-import style from './popup.module.css'
+import style from './popup.module.css';
 
-function IngredientPopUp({show})
-{
-    if(!show) {return null};
+function IngredientPopUp({ show, onClose }) {
+	if (!show) return null;
 
-    return(
-        <div className={style.PopUp}>
-            <p>Ceci est un popUp test</p>
-        </div>
-    )
+	const stop = (e) => e.stopPropagation();
+
+	return (
+		<div className={style.overlay} onClick={onClose}>
+			<div className={style.PopUp} onClick={stop}>
+				<p>Ceci est un popUp test</p>
+			</div>
+		</div>
+	);
 }
 
 export default IngredientPopUp;

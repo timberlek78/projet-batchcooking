@@ -18,7 +18,7 @@ function AddRecipePage()
 
 	return(
 		<div className={style.page}>
-			<IngredientPopUp show={show} />
+			<IngredientPopUp show={show} onClose={() => setShow(false)} />
 
 			<div  className={style.haut}>
 				<div id="photo" className={style.photo}> {/**Conteneur photo */}
