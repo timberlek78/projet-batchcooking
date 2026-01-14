@@ -7,13 +7,12 @@ function RecipeCard({ recipe }) {
 		? recipe.ingredients
 		: Object.values(recipe.ingredients ?? {});
 
-	console.log(recipe);
-
 	const onRecipeClick = () => {
 		navigate(`/recipes/${recipe.recipe_id}`);
 	};
 
-	const onLike = () => {
+	const onLike = (event) => {
+		event.stopPropagation();
 		console.log('Like');
 	};
 
@@ -21,7 +20,7 @@ function RecipeCard({ recipe }) {
 		<div className={style.card} onClick={onRecipeClick}>
 			<div className={style.title}>
 				<h2>{recipe.recipe_name}</h2>
-				<div className={style.like}>Like</div>
+				<div className={style.like} onClick={onLike}>Like</div>
 			</div>
 
 			<div className={style.info}>

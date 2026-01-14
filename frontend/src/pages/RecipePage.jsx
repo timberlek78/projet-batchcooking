@@ -7,6 +7,7 @@ import RechercheField from '../components/Recherche/RechercheField.jsx';
 function RecipePage() {
 	const [recipes, setRecipes] = useState([]);
 	const [error, setError] = useState(null);
+	const [search, setSearch] = useState('');
 
 	useEffect(() => {
 		const fetchRecipes = async () => {
@@ -38,11 +39,18 @@ function RecipePage() {
 		fetchRecipes();
 	}, []);
 
+	const filteredRecipes = recipes.filter((recipe) =>
+		recipe.recipe_name.toLowerCase().includes(search.toLowerCase())
+	);
+
 	return (
 		<div className={style.page}>
-			<div>
-				<RechercheField />
+			<div className={style.top}>
+			<div className={style.searchWrap}>
+				<RechercheField onSearch={setSearch}/>
 			</div>
+		</div>
+
 
 			{error && <p>Erreur : {error.message}</p>}
 
