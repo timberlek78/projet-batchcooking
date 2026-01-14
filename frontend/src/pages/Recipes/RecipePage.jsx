@@ -1,8 +1,9 @@
 import { useState, useEffect } from 'react';
-import { RecipeService as services } from '../services/recipe.service.js';
-import RecipeCard from '../components/RecipeCard/RecipeCard.jsx';
-import style from './styles/recipePage.module.css';
-import RechercheField from '../components/Recherche/RechercheField.jsx';
+import { RecipeService as services } from '../../services/recipe.service.js';
+import RecipeCard from '../../components/RecipeCard/RecipeCard.jsx';
+import style from './style/recipePage.module.css';
+import RechercheField from '../../components/Recherche/RechercheField.jsx';
+import AddButton from '../../components/Button/AddButton/AddButton.jsx';
 
 function RecipePage() {
 	const [recipes, setRecipes] = useState([]);
@@ -46,8 +47,11 @@ function RecipePage() {
 	return (
 		<div className={style.page}>
 			<div className={style.top}>
-			<div className={style.searchWrap}>
-				<RechercheField onSearch={setSearch}/>
+			<div className={style.topContent}>
+				<div className={style.searchWrap}>
+					<RechercheField onSearch={setSearch}/>
+				</div>
+				<AddButton routes='/recipes/add' />
 			</div>
 		</div>
 
@@ -55,9 +59,9 @@ function RecipePage() {
 			{error && <p>Erreur : {error.message}</p>}
 
 			<div className={style.container}>
-				{recipes.map((recipe) => (
+				{filteredRecipes.length > 0 ? filteredRecipes.map((recipe) => (
 					<RecipeCard key={recipe.recipe_id} recipe={recipe} />
-				))}
+				)) : <p>Aucune recette trouvée</p>}
 			</div>
 		</div>
 	);

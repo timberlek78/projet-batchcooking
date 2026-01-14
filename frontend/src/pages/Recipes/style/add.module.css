@@ -1,0 +1,49 @@
+.page{
+	display: grid;
+	gap: 2rem;
+}
+
+.haut{
+	margin-top: 2rem;
+	display: grid;
+	grid-template-columns: minmax(200px, 1fr) minmax(0, 3fr);
+	gap:1rem;
+}
+
+.row
+{
+	display: flex;
+	flex-direction: row;
+	gap: 1rem;
+	justify-content: space-between;
+}
+
+.ingredient
+{
+	flex:7;
+}
+
+.photo
+{
+	border: thin solid black;
+}
+
+.recipe
+{
+	border: thin solid black;
+}
+
+.stape
+{
+	border: thin solid black;
+}
+
+
+.infoGene
+{
+	display:flex ;
+	flex-direction: column;
+	align-items: center;
+	gap:0.5rem;
+	flex:3;
+}

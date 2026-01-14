@@ -4,7 +4,8 @@ import Users from './pages/Users.jsx';
 import './App.css';
 import Layout from './components/Layout/Layout';
 import HomePage from './pages/HomePage.jsx';
-import RecipePage from './pages/RecipePage.jsx';
+import RecipePage from './pages/Recipes/RecipePage.jsx';
+import AddRecipePage from './pages/Recipes/AddRecipePage.jsx';
 
 function App() {
 	return (
@@ -13,6 +14,7 @@ function App() {
 				<Route path="/home" element={<HomePage />}></Route>
 				<Route path="/test_db" element={<Test_BD />} />
 				<Route path="/recipes" element={<RecipePage />} />
+				<Route path="/recipes/add" element={<AddRecipePage />} />
 				<Route path="/users" element={<Users />} />
 			</Route>
 		</Routes>
