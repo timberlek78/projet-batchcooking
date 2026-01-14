@@ -1,4 +1,11 @@
+import TextFieldSecondaire from '../../components/TextField/Secondaire/TextFieldSecondaire.jsx'
+import TextFieldPrincipal from '../../components/TextField/Principale/TextFieldPrincipal.jsx'
 import style from './style/add.module.css'
+import CookTimeIcon from '../../assets/icons/recipes/add/cook-time.svg?react';
+import CookingTimeIcon from '../../assets/icons/recipes/add/baker.svg?react';
+import DifficultIcon from '../../assets/icons/recipes/add/dumbbell.svg?react';
+import PeopleIcon from '../../assets/icons/recipes/add/people.svg?react';
+import Recipe from '../../constants/pages/recipes/AddRecipe.js'
 
 function AddRecipePage()
 {
@@ -10,7 +17,7 @@ function AddRecipePage()
 				</div>
 				<div className={style.recipe}>
 					<div>
-						<input type="text" placeholder="Entrez le nom de la recette"></input>
+						<TextFieldPrincipal placeholder={Recipe.placeholder.name} />
 					</div>
 					<div className={style.row}>
 						<div className={style.ingredient}>
@@ -24,10 +31,13 @@ function AddRecipePage()
 							</ul>
 						</div>
 						<div className={style.infoGene}>
-							<input type="text" placeholder="Entrez le temps de preparation estimé"></input>
-							<input type="text" placeholder="Entrez le temps de cuisson"></input>
-							<input type="number" placeholder="Difficulté de la recette"></input>
-							<input type="number" name="nbPersonne" id= "" />
+							{console.log(Recipe.placeholder.tmpPrep)}
+							<TextFieldSecondaire placeholder={Recipe.placeholder.tmpPrep} icon={<CookTimeIcon />} />
+							<TextFieldSecondaire placeholder={Recipe.placeholder.tmpCooking} icon={<CookingTimeIcon />} />
+							<div className={style.row}>
+								<TextFieldSecondaire placeholder={Recipe.placeholder.difficult} icon={<DifficultIcon />} />
+								<TextFieldSecondaire placeholder={Recipe.placeholder.nbPersonne} icon={<PeopleIcon />} />
+							</div>
 						</div>	
 					</div>
 				</div>

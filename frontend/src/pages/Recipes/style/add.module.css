@@ -10,17 +10,20 @@
 	gap:1rem;
 }
 
-.row
-{
+.row {
 	display: flex;
-	flex-direction: row;
-	gap: 1rem;
-	justify-content: space-between;
+	gap: 1rem;            
+	align-items: center;
+}
+
+.row > * {
+	flex: 1;            
+	min-width: 0;        
 }
 
 .ingredient
 {
-	flex:7;
+	 flex:content;
 }
 
 .photo
@@ -30,7 +33,10 @@
 
 .recipe
 {
-	border: thin solid black;
+	background-color: white;
+	border-radius: 25px;
+	box-shadow:0px 10px 25px 2px rgba(0, 0, 0,0.50);
+	padding: 1rem;
 }
 
 .stape
@@ -43,7 +49,7 @@
 {
 	display:flex ;
 	flex-direction: column;
-	align-items: center;
 	gap:0.5rem;
-	flex:3;
+	flex:content;
+
 }

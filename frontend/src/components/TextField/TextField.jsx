@@ -1,4 +1,0 @@
-function TextField({placeholdler, icon})
-{
-    
-}
