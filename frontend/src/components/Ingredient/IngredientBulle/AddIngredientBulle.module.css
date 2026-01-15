@@ -1,17 +1,12 @@
-.bulle {
-	display: flex;
-	align-items: center;        /* centre vertical */
-	justify-content: center;    /* centre horizontal */
+.addBulle
+{
+	align-items: center;
+	justify-content: center;
 
 	height: fit-content;
-	min-width: 5rem;
-
-	border: 1px solid green;
-	border-radius: 25px;
-
-	
-	cursor: pointer;
+	border: 1px solid #00C2C7;
 }
+
 
 .icon {
 	display: flex;
@@ -20,8 +15,8 @@
 }
 
 .icon svg {
-	width: 24px;   /* 🔥 taille icône */
-	height: 24px;
+	width: 16px;   /* 🔥 taille icône */
+	height: 16px;
 }
 
 .btn

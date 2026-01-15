@@ -1,13 +1,17 @@
 import style from './IngredientBulle.module.css';
+import root from './bulle.module.css';
+import DeleteIcon from '../../../assets/icons/recipes/add/close.svg?react';
 
-function IngredientBulle({ingredientName})
+function IngredientBulle({id,ingredientName,onClick})
 {
-    return(
-        <div className={style.bulle}>
-            <div className={style.text}>{ingredientName}</div>
-            <button className={style.btn}>X</button>
-        </div>
-    )
+	return(
+		<div className={`${root.bulle} ${style.bulleText}`}>
+			<div className={style.text}>{ingredientName}</div>
+			<span onClick={()=>onClick(id)}>
+				{<DeleteIcon />}
+			</span>
+		</div>
+	)
 }
 
 

@@ -3,17 +3,67 @@
 	gap: 2rem;
 }
 
-.haut{
+.haut {
 	margin-top: 2rem;
 	display: grid;
 	grid-template-columns: minmax(200px, 1fr) minmax(0, 3fr);
-	gap:1rem;
+	gap: 1rem;
+}
+
+.addBtn {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+
+	width: 1rem;
+	height: 1rem;
+
+	border-radius: 999px;
+	border: 1px solid green;
+	background: transparent;
+
+	cursor: pointer;
+
+	transition: 
+		background-color 0.2s ease,
+		transform 0.15s ease,
+		box-shadow 0.15s ease;
+}
+
+.addBtn svg {
+	width: 1.2rem;
+	height: 1.2rem;
+}
+
+.addBtn:hover {
+	background-color: rgba(0, 128, 0, 0.08);
+	transform: translateY(-1px);
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.addBtn:active {
+	transform: translateY(0);
+	box-shadow: none;
+}
+
+@media (max-width: 900px) {
+	.haut {
+		grid-template-columns: 1fr; /* ✅ 1 colonne */
+	}
+}
+
+
+.IngredientRow
+{
+	display: flex;
+	gap: 1rem;            
+	align-items: stretch;
 }
 
 .row {
 	display: flex;
 	gap: 1rem;            
-	align-items: center;
+	align-items: stretch;
 }
 
 .row > * {
@@ -21,9 +71,33 @@
 	min-width: 0;        
 }
 
+
+@media (max-width: 900px) {
+	.row {
+		flex-direction: column;
+	}
+}
+
 .ingredient
 {
-	 flex:content;
+	display: flex;
+	flex-direction: column;
+	flex:1;
+
+	align-items: stretch;
+	justify-content: flex-start;
+
+
+	gap: 1rem;
+}
+
+.title
+{
+	height: fit-content;
+	font: 1.2rem sans-serif;
+	font-family: Arial, Helvetica, sans-serif;
+	color: green;
+	
 }
 
 .photo
@@ -46,19 +120,21 @@
 
 .listIng {
 	display: grid;
-
+	flex:1;
 	/* 5 lignes fixes */
-	grid-template-rows: repeat(5, auto);
+	grid-template-rows: repeat(3, auto);
 
 	/* Remplir colonne par colonne */
 	grid-auto-flow: column;
 
-	/* Largeur des colonnes générées automatiquement */
-	grid-auto-columns: max-content;
-
 	gap: 0.4rem 1rem; /* (ligne, colonne) */
 }
 
+@media (max-width: 520px) {
+	.listIng {
+		grid-template-columns: 1fr;
+	}
+}
 
 
 .infoGene
