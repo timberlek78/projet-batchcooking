@@ -9,6 +9,7 @@ function IngredientPopUp({ show, onClose,addIng }) {
 	const [ingredients,setIngredients] = useState([]);
 	const [search,setSearch] = useState('');
 	const [error, setError] = useState();
+	const [checked, setChecked] = useState(false);
 	
 	useEffect(() => {
 		if (!show) return;
@@ -37,6 +38,14 @@ function IngredientPopUp({ show, onClose,addIng }) {
 
 
 	const filteredIngredient = ingredients.filter((ing) => ing.ingredient_name.toLowerCase().startsWith(search.toLowerCase()));
+
+	const handleClick = (ing,e)=>{
+
+		console.log(ing,e)
+		addIng(ing,checked);
+
+		setChecked(false);
+	}
 	return (
 		<div className={style.overlay} onClick={onClose}>
 			<div className={style.PopUp} onClick={stop}>
@@ -46,9 +55,8 @@ function IngredientPopUp({ show, onClose,addIng }) {
 				<div className={style.PopUpContent}>
 				{
 					filteredIngredient.map((ing)=>(
-						<div key={ing.ingredient_id} className={style.ingredient}>
-							<input id={`${ing.ingredient_id}`} type="checkbox" onChange={(e) => addIng(ing,e.target.checked)} />
-							<label htmlFor={`${ing.ingredient_id}`}>{ing.ingredient_name}</label>
+						<div key={ing.ingredient_id} className={style.ingredient} aria-checked={checked} onClick={(e) => handleClick(ing,e)}>
+							<label>{ing.ingredient_name}</label>
 						</div>
 					))
 				}
