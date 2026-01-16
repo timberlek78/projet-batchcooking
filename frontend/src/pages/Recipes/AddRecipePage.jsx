@@ -12,6 +12,7 @@ import Recipe from '../../constants/pages/recipes/AddRecipe.js'
 import IngredientPopUp from '../../components/Ingredient/IngredientPopUp/Select/IngredientPopUp.jsx';
 import IngredientCreatePopUp from '../../components/Ingredient/IngredientPopUp/Create/IngredientCreatePopUp.jsx'
 import { useState } from 'react';
+import ImageField from '../../components/ImageField/ImageField.jsx';
 
 function AddRecipePage()
 {
@@ -82,8 +83,9 @@ function AddRecipePage()
 			/>
 
 			<div  className={style.haut}>
-				<div id="photo" className={style.photo}> {/**Conteneur photo */}
-					<input type="image" />
+				<div className={`${style.recipe} ${style.photo}`}>
+					
+					<ImageField />
 				</div>
 				<div className={style.recipe}>
 

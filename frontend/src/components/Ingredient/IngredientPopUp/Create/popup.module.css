@@ -42,15 +42,7 @@
 	color: #0b1320;
 }
 
-/* Optionnel : sous-titre */
-.subtitle {
-	font-family: Arial, Helvetica, sans-serif;
-	font-size: 0.95rem;
-	margin: 0;
-	color: rgba(11, 19, 32, 0.7);
-}
 
-/* Style icônes (SVG React) */
 .icon {
 	width: 26px;
 	height: 26px;
@@ -71,8 +63,8 @@
 	align-items: center;       
 	justify-content: center;      
 
-	border: none;
-	background-color: green;
+	border: 2px solid green;
+	background-color: white;
 	border-radius: 9999px;
 
 	width: 2.5rem;                
@@ -82,6 +74,14 @@
 	cursor: pointer;
 }
 
+.btn:hover{
+	background-color: green;
+	
+}
+
+.btn:hover svg path{
+	stroke: white;
+}
 
 .btn svg
 {
@@ -89,16 +89,13 @@
 	height: 1.2rem;
 }
 
-.btnPrimary {
-	background: #00c2c7;
-	color: #fff;
+.btn svg path
+{
+	width: 1.2rem;
+	height: 1.2rem;
+	stroke:green;
 }
 
-.btnGhost {
-	background: transparent;
-	color: #0b1320;
-	border: 1px solid rgba(11, 19, 32, 0.18);
-}
 
 
 /* Petite animation d’ouverture */

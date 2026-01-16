@@ -1,4 +1,8 @@
 const Ingredient = {
+    titre : 
+    {
+        create : "Création d'un ingrédient"
+    },
     placeholder : 
     {
         Nom : 'Nom de l\'ingrédients',

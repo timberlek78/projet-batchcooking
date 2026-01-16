@@ -5,6 +5,7 @@ import Ingredient from '../../../../constants/pages/recipes/AddIngredient.js'
 import PenIcon from '../../../../assets/icons/recipes/add/pen.svg?react';
 import RulesIcon from '../../../../assets/icons/recipes/add/rules.svg?react';
 import CheckIcon from '../../../../assets/icons/recipes/add/check.svg?react';
+import {create} from '../../../../services/ingredients.service.js';
 
 import popup from '../popup.module.css';
 import style from './popup.module.css';
@@ -14,7 +15,7 @@ function IngredientCreatePopUp({show,onClose})
 {
 	const [newIngredients, setNewIngredient] = useState();
 
-	const saveIngredient = (attribut, valeur)=>
+	const createIngredient = (attribut, valeur)=>
 	{
 		setNewIngredient((prev) => ({
 			...prev,
@@ -22,25 +23,40 @@ function IngredientCreatePopUp({show,onClose})
 		}))
 	}
 
+	const saveIngredient = async () =>
+	{
+		const response = await create(newIngredients);
+		console.log(response);
+		if(response.ok)
+		{
+			console.log("ok ?");
+			if (onClose) onClose();
+
+		}
+	}
+
 	const stop = (e) => {e.stopPropagation()} 
 	if(!show) return null;
 	return(
 		<div className={popup.overlay} onClick={onClose}>
 			<div className={style.PopUp} onClick={stop} >
+				<div className={style.title}>
+					<h2>{Ingredient.titre.create}</h2>
+				</div>
 				<div className={style.content}>
 					<TextFieldPrincipal 
 						placeholder={Ingredient.placeholder.Nom}
 						icon={<PenIcon className={style.icon}  />}
-						onChange={(value) => (saveIngredient("ingredient_name",value))}
+						onChange={(value) => (createIngredient("ingredient_name",value))}
 					/>
 					<TextFieldSecondaire 
 						placeholder={Ingredient.placeholder.Unite}
 						icon={<RulesIcon  className={style.icon}/>}
-						onChange={(value) => (saveIngredient("ingredient_unit",value))}
+						onChange={(value) => (createIngredient("ingredient_unit",value))}
 					/>
 				</div>
 				<div className={style.footer}>
-					<button className={style.btn}>{<CheckIcon />}</button>
+					<button className={style.btn} onClick={() => saveIngredient()}>{<CheckIcon />}</button>
 				</div>
 			</div>
 		</div>
