@@ -43,7 +43,7 @@ const HOME = {
 			5: 'Gestion centralisée des erreurs et des chaînes de caractères',
 		},
 
-		Auteur: 'Thomas BOUDEELE',
+		Auteur: 'Thomas BOUDEELE aka Thominou',
 	},
 };
 
