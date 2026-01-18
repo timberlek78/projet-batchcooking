@@ -4,7 +4,7 @@ import addIconUrl from '../../../assets/icons/components/add.svg';
 import React from 'react';
 
 
-function AddButton({ routes }) {
+function AddButton({ routes,onClick }) {
 	const navigate = useNavigate();
 
 	const add = (e) => {
@@ -13,7 +13,7 @@ function AddButton({ routes }) {
 	};
 
 	return (
-		<button className={style.button} onClick={add} type="button">
+		<button className={style.button} onClick={routes ? add : onClick} type="button">
 			<img className={style.icon} src={addIconUrl} alt="Ajouter" />
 		</button>
 	);

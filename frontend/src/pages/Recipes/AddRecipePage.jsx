@@ -1,6 +1,7 @@
 import TextFieldSecondaire from '../../components/TextField/Secondaire/TextFieldSecondaire.jsx'
 import TextFieldPrincipal from '../../components/TextField/Principale/TextFieldPrincipal.jsx'
-import IngredientBulle from '../../components/Ingredient/IngredientBulle/IngredientBulle.jsx';
+import IngredientBulle from '../../features/ingredient/components/IngredientBulle/IngredientBulle.jsx'
+import Stepes from '../../features/recipes/Stepes/Stepes.jsx';
 import AddIngredientBulle from '../../components/Ingredient/IngredientBulle/AddIngredientBulle.jsx'
 import style from './style/add.module.css'
 import CookTimeIcon from '../../assets/icons/recipes/add/cook-time.svg?react';
@@ -11,14 +12,29 @@ import AddIcon from '../../assets/icons/components/add.svg?react';
 import Recipe from '../../constants/pages/recipes/AddRecipe.js'
 import IngredientPopUp from '../../components/Ingredient/IngredientPopUp/Select/IngredientPopUp.jsx';
 import IngredientCreatePopUp from '../../components/Ingredient/IngredientPopUp/Create/IngredientCreatePopUp.jsx'
-import { useState } from 'react';
+import { useState,useEffect } from 'react';
 import ImageField from '../../components/ImageField/ImageField.jsx';
+import AddButton from '../../components/Button/AddButton/AddButton.jsx';
 
 function AddRecipePage()
 {
 	const [newRecipe, setRecipe] = useState({ingredients : []});
 	const [show,setShow] = useState(false);
 	const [createShow, setCreateShow] = useState(false);
+	const [stepes, setStepes] = useState([]);
+
+	useEffect(() => {
+		setRecipe(prev => ({
+			...prev,
+			stepes
+		}));
+
+	}, [stepes]);
+
+	useEffect(() => {
+		console.log(newRecipe);
+	}, [newRecipe]);
+
 
 	const addIngredient = (ingredient, checked) => {
 		setRecipe((prev) => {
@@ -57,7 +73,6 @@ function AddRecipePage()
 	};
 
 
-
 	const saveRecipe = (attribut, valeur) => {
 		setRecipe((prev) => ({
 			...prev,
@@ -65,7 +80,35 @@ function AddRecipePage()
 		}));
 
 
-		console.log(newRecipe);
+	};
+
+	const addStepes = () => {
+		setStepes(prev => [
+			...prev,
+			{
+				numero: prev.length + 1,
+				name: "",
+				content: ""
+			}
+		]);
+
+	};
+
+	const updateStepes = (id, attribut, valeur) => {
+		setStepes(prev =>
+			prev.map(step =>
+				step.id === id
+					? { ...step, [attribut]: valeur }
+					: step
+			)
+		);
+	};
+
+
+	const removeStepes = (numero) => {
+		setStepes(prev =>
+			prev.filter(step => step.numero !== numero)
+		);
 	};
 
 	return(
@@ -83,7 +126,7 @@ function AddRecipePage()
 			/>
 
 			<div  className={style.haut}>
-				<div className={`${style.recipe} ${style.photo}`}>
+				<div className={`	${style.photo}`}>
 					
 					<ImageField />
 				</div>
@@ -157,13 +200,17 @@ function AddRecipePage()
 			/************************/}
 
 			<div className={style.stape}>
-				<ul>
-					<li>aaaa</li>
-					<li>aaaa</li>
-					<li>aaaa</li>
-					<li>aaaa</li>
-					<li>aaaa</li>
-				</ul>
+				{stepes.map((stepe, idx) => (
+					<Stepes
+						key={stepe.id}
+						id={stepe.id}
+						numero={idx + 1}
+						placeholder={`Étape ${idx + 1}`}
+						onRemove={removeStepes}
+						onChange={(attribut, valeur) => updateStepes(stepe.id, attribut, valeur)}
+					/>
+				))}
+				<AddButton onClick={() => addStepes()} />
 			</div>
 
 		</div>

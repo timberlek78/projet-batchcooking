@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState } from 'react';
 import style from './popup.module.css';
 import { getIngredients } from '../../../../services/ingredients.service.js';
-import RechercheField from '../../../../features/recherche/components/RechercheField.jsx';
+import RechercheField from '../../../Recherche/RechercheField.jsx';
 
 function IngredientPopUp({show,onClose,addIng,selectedIngredients = []}) {
 	const [ingredients, setIngredients] = useState([]);

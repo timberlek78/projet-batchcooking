@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react';
 import { RecipeService as services } from '../../services/recipe.service.js';
-import RecipeCard from '../../components/RecipeCard/RecipeCard.jsx';
+import RecipeCard from '../../features/recipes/RecipeCard/RecipeCard.jsx';
 import style from './style/recipePage.module.css';
-import RechercheField from '../../components/Recherche/RechercheField.jsx';
+import RechercheField from '../../features/recherche/components/RechercheField.jsx';
 import AddButton from '../../components/Button/AddButton/AddButton.jsx';
 
 function RecipePage() {

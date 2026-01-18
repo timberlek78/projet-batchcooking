@@ -28,8 +28,9 @@ function ImageField() {
 				accept="image/*"
 				onChange={showImage}
 			/>
-
-			{imagePreview ? <img src={imagePreview} alt="Aperçu" /> : <ImageIcon />}
+			<label htmlFor='imageRecette' >
+				{imagePreview ? <img src={imagePreview} alt="Aperçu" /> : <ImageIcon />}
+			</label>
 		</div>
 	);
 }

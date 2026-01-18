@@ -1,9 +1,44 @@
-.cadre   svg{
+.cadre {
+	width: 100%;
+	height: 100%;
+
+	display: flex;
+	align-items: center;
+	justify-content: center;
+
+	cursor: pointer;
+}
+
+
+.cadre label {
+	width: 100%;
+	height: 100%;
+
+	display: flex;
+	align-items: center;
+	justify-content: center;
+
+	cursor: pointer;
+}
+
+
+.cadre img {
+	width: 100%;
+	height: 100%;
+
+	object-fit: cover;       /* 🔥 remplit sans déformer */
+	border-radius: inherit;  /* coins arrondis */
+}
+
+
+.cadre svg{
     width: 12rem;
     height: 12rem;
     fill: green;
 }
 
-.input{
-    display: none;
+
+.input {
+	display: none;
 }
+
