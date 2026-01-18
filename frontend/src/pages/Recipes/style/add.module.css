@@ -8,7 +8,35 @@
 	display: grid;
 	grid-template-columns: minmax(200px, 1fr) minmax(0, 3fr);
 	gap: 1rem;
+
+	height: 20rem;        
+	max-height: 20rem; 
+	align-items: stretch; 
+
+	overflow: hidden;
 }
+
+.btn{
+	width: 3rem;
+	height: 3rem;
+	background-color: transparent;
+	border:none;
+}
+
+.btnBarre
+{
+	border: thin solid black;
+	width: fit-content;
+	border-radius: 25px;
+
+	align-items: end;
+}
+
+.btn svg{
+	width: 32px;
+	height: 32px;
+}
+
 
 .addBtn {
 	display: flex;
@@ -105,7 +133,6 @@
   	flex: 1;
   	min-width: 0;
   
- /* ne dépasse jamais la row */
   	overflow: hidden;
 
   	border-radius: 25px;
@@ -132,18 +159,42 @@
 	padding: 1rem;
 }
 
-.stape
-{
+.stape {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 	background-color: white;
 	max-height: 50rem;
 	border-radius: 25px;
-	box-shadow:0px 10px 25px 2px rgba(0, 0, 0,0.50);
+	box-shadow: 0px 10px 25px 2px rgba(0, 0, 0, 0.50);
 	padding: 1rem;
 
-	overflow-y: scroll;
+	overflow-y: auto;
+
+	/* Firefox */
+	scrollbar-width: none;
+
+	/* IE / Edge legacy */
+	-ms-overflow-style: none;
+}
+
+/* Chrome / Safari / Edge */
+.stape::-webkit-scrollbar {
+	display: none;
+}
+
+.stape:hover {
+	scrollbar-width: thin;
+}
+
+.stape:hover::-webkit-scrollbar {
+	display: block;
+	width: 6px;
+}
+
+.stape:hover::-webkit-scrollbar-thumb {
+	background-color: rgba(0, 0, 0, 0.3);
+	border-radius: 999px;
 }
 
 
@@ -152,7 +203,7 @@
 	display: grid;
 	flex:1;
 	/* 5 lignes fixes */
-	grid-template-rows: repeat(3, auto);
+	grid-template-rows: repeat(5, auto);
 
 	/* Remplir colonne par colonne */
 	grid-auto-flow: column;
