@@ -7,7 +7,7 @@ class RecipeController {
 			const response = await RecipesModels.getAll();
 			res.status(200).json(response);
 		} catch (error) {
-			return next(error);
+			console.log(error);
 		}
 	}
 
@@ -35,23 +35,30 @@ class RecipeController {
 			}
 
 			const response = await RecipesServices.getIngredients(id);
-			if (response) res.status(200).json(response);
-			else throw new Error('ID introuvable');
+			res.status(200).json(response ?? "Pas ingrédient pour cette recette");
+
 		} catch (error) {
+			return next(error);
+		}
+	}
+	
+	static async create(req, res, next) {
+		try {
+			const recipeData = req.body;
+
+			// 📸 Gestion image (ICI)
+			if (req.file) {
+				recipeData.image = `/uploads/recipes/${req.file.filename}`;
+			}
+
+			const result = await RecipesServices.create(recipeData);
+			res.status(201).json(result);
+		}
+		catch (error) {
 			return next(error);
 		}
 	}
 
-	static async create(req, res, next) {
-		try {
-			const newRecipes = req.body;
-			const result = await RecipesServices.create(newRecipes);
-			res.status(201).json(result);
-		} catch (error) {
-			//console.log(error);
-			return next(error);
-		}
-	}
 
 	static async update(req, res, next) {
 		try {

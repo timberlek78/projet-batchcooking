@@ -2,6 +2,8 @@
  * Librairies
  * ====================== */
 import { useEffect, useState } from 'react';
+import { useNavigate } from "react-router-dom";
+
 
 /* ======================
  * Utils
@@ -28,6 +30,7 @@ import Stepes from '../../features/recipes/Stepes/Stepes.jsx';
  * ====================== */
 import IngredientPopUp from '../../components/Ingredient/IngredientPopUp/Select/IngredientPopUp.jsx';
 import IngredientCreatePopUp from '../../components/Ingredient/IngredientPopUp/Create/IngredientCreatePopUp.jsx';
+import WaitingPopUp from '../../components/WaitingPopUp/WaitingPopUp.jsx'; 
 
 /* ======================
  * Assets (icons)
@@ -45,6 +48,7 @@ import SaveIcon from '../../assets/icons/recipes/add/save.svg?react';
  * Constants
  * ====================== */
 import Recipe from '../../constants/pages/recipes/AddRecipe.js';
+import RecipeService from '../../services/recipe.service.js';
 
 /* ======================
  * Styles
@@ -54,24 +58,35 @@ import style from './style/add.module.css';
 
 const STORAGE_KEY = 'miaminou_add_recipe_draft';
 
+const DEFAULT_RECIPE = {
+		ingredients: [],
+		recipe_name: "",
+		recipe_preparation_time: 0,
+		recipe_cooking_time: 0,
+		recipe_difficult: 0,
+		recipe_nb_personne: 0,
+		recipe_like_number : 0
+};
+
+const NUMBER_FIELDS = [
+	"recipe_nb_personne",
+	"recipe_like_number",
+	"recipe_preparation_time",
+	"recipe_cooking_time",
+	"recipe_difficult"
+];
+
 function AddRecipePage() {
 
 	// Charge le brouillon de recette depuis le localStorage (si présent)
 	const [imagePreviewUrl, setImagePreviewUrl] = useState("");
+	const [imageFile, setImageFile] = useState(null);
+
 
 	const [newRecipe, setRecipe] = useState(() => {
 	const saved = localStorage.getItem(STORAGE_KEY);
 
-		return saved
-			? JSON.parse(saved)
-			: {
-				ingredients: [],
-				recipe_name: "",
-				recipe_preparation_time: "",
-				recipe_cooking_time: "",
-				recipe_difficult: "",
-				recipe_nbPersonne: "",
-			};
+		return saved ? {...DEFAULT_RECIPE,...JSON.parse(saved)} : DEFAULT_RECIPE;
 	});
 
 
@@ -87,13 +102,18 @@ function AddRecipePage() {
 
 	// Popups
 	const [show, setShow] = useState(false);
+	const [waitShow, setWaitShow] = useState(false);
 	const [createShow, setCreateShow] = useState(false);
+	const [waitStatus, setWaitStatus] = useState("loading");
+	const [waitMessage, setWaitMessage] = useState("Une erreur est survenu");
+
+	const navigate = useNavigate();
 
 	//sauvegarde automatique
 	useEffect(() => {
 		const draft = {
 			...newRecipe,
-			stepes,
+			stepes : stepes ?? [],
 		};
 
 		localStorage.setItem(STORAGE_KEY, JSON.stringify(draft));
@@ -185,19 +205,90 @@ function AddRecipePage() {
 	const saveRecipe = (attribut, valeur) => {
 		setRecipe((prev) => ({
 			...prev,
-			[attribut]: valeur,
+			[attribut]: NUMBER_FIELDS.includes(attribut)
+				? valeur === "" ? "" : Number(valeur)
+				: valeur,
 		}));
 	};
 
+
+	const createRecipe = async () => 
+	{
+		const payload = {
+			...newRecipe,
+			stepes: stepes ?? [],
+		};
+		
+		// Champs simples
+		Object.entries(payload).forEach(([key, value]) => {
+			if (value !== null && value !== undefined) {
+				formData.append(key, value);
+			}
+		});
+
+		// Tableaux
+		formData.append("stepes", JSON.stringify(stepes ?? []));
+
+		// 📸 Image
+		if (imageFile) {
+			formData.append("image", imageFile);
+		}
+
+		const create = (formData) => {
+			return fetch("/recipes", {
+				method: "POST",
+				body: formData, 
+			});
+		};
+
+		create(formData);
+	}
+	
+	const handleCreateRecipe = async () => {
+		setWaitShow(true);
+		setWaitStatus("loading");
+
+		if (!newRecipe.recipe_name) {
+			setWaitMessage(Recipe.error.RecipeNameMissing);
+			return;
+		}
+
+		if (newRecipe.recipe_difficult !== 0 &&(newRecipe.recipe_difficult < 1 || newRecipe.recipe_difficult > 5)) {
+			setWaitMessage(Recipe.error.difficultInvalid);
+			return;
+		}
+
+		try {
+			await createRecipe();
+			setWaitStatus("success");
+			setWaitMessage(Recipe.message.succes);
+
+		} catch (e) {
+			setWaitStatus("error");
+			setWaitMessage("Une erreur est survenue");
+		}
+	};
+
+	const onWaitClose = () => {
+		// 🔹 Redirection uniquement si succès
+		if (waitStatus === "success") {
+			clearDraft();  
+			navigate("/recipes");
+		}
+		setWaitShow(false); // ferme la pop-up
+	};
+
+	
 
 	// Ajoute une étape vide (avec un id unique => indispensable pour update/suppression)
 	const addStepes = () => {
 		setStepes((prev) => [
 			...prev,
 			{
-				id: crypto.randomUUID(),
-				name: '',
-				content: '',
+				stepes_id: crypto.randomUUID(),
+				stepes_number : stepes.length + 1,
+				stepes_name: '',
+				stepes_desc: '',
 			},
 		]);
 	};
@@ -206,7 +297,7 @@ function AddRecipePage() {
 	const updateStepes = (id, attribut, valeur) => {
 		setStepes((prev) =>
 			prev.map((step) =>
-				step.id === id
+				step.stepes_id === id
 					? { ...step, [attribut]: valeur }
 					: step
 			)
@@ -215,8 +306,9 @@ function AddRecipePage() {
 
 	// Supprime une étape par id
 	const removeStepes = (id) => {
-		setStepes((prev) => prev.filter((step) => step.id !== id));
+		setStepes((prev) => prev.filter((step) => step.stepes_id !== id));
 	};
+
 
 	/**
 	 * =========================
@@ -224,11 +316,11 @@ function AddRecipePage() {
 	 * =========================
 	 * Décommente si tu veux un bouton "vider"
 	 */
-	// const clearDraft = () => {
-	// 	localStorage.removeItem(STORAGE_KEY);
-	// 	setRecipe({ ingredients: [] });
-	// 	setStepes([]);
-	// };
+	const clearDraft = () => {
+		localStorage.removeItem(STORAGE_KEY);
+		setRecipe(DEFAULT_RECIPE);
+		setStepes([]);
+	};
 
 	return (
 		<div className={style.page}>
@@ -246,6 +338,13 @@ function AddRecipePage() {
 				onClose={() => setCreateShow(false)}
 			/>
 
+			{/* Pop Up d'attente */}
+			<WaitingPopUp
+				show={waitShow}
+				status={waitStatus}
+				message={waitMessage}
+				onClose={onWaitClose}
+			/>
 			{/* =========================
 				HAUT DE PAGE : PHOTO + INFOS
 			   ========================= */}
@@ -254,7 +353,7 @@ function AddRecipePage() {
 					<ImageField 
 						imageUrl={imagePreviewUrl}
 						imageId={newRecipe.imageId ?? ""}
-						onChangedImageId={(id) => saveRecipe("imageId",id)}
+						onChange={(file) => setImageFile(file)}
 					 />
 				</div>
 
@@ -274,7 +373,7 @@ function AddRecipePage() {
 							<div className={style.IngredientRow}>
 								<div className={style.title}>Liste Ingredient</div>
 								<div
-									className={style.addBtn}
+									className={`${style.btn} ${style.addBtn}`}
 									onClick={() => setCreateShow(true)}
 								>
 									<AddIcon />
@@ -320,16 +419,16 @@ function AddRecipePage() {
 								/>
 
 								<TextFieldSecondaire
-									placeholder={Recipe.placeholder.nbPersonne}
-									value={newRecipe.recipe_nbPersonne ?? ""}
+									placeholder={newRecipe.recipe_nb_personne == 0 ? Recipe.placeholder.nbPersonne : newRecipe.recipe_nb_personne}
+									value={newRecipe.recipe_nb_personne == 0 ? "" : newRecipe.recipe_nb_personne}
 									icon={<PeopleIcon />}
-									onChange={(value) => saveRecipe('recipe_nbPersonne', value)}
+									onChange={(value) => saveRecipe('recipe_nb_personne', value)}
 								/>
 							</div>
 							<div className={style.btnBarre}>
-								<button className={style.btn}><TrashIcon /></button>
+								<button className={style.btn} onClick={clearDraft}><TrashIcon /></button>
 								<button className={style.btn}><SaveIcon /></button>
-								<button className={style.btn}><PublishIcon /></button>
+								<button className={style.btn} onClick={handleCreateRecipe}><PublishIcon /></button>
 							</div>
 						</div>
 					</div>
@@ -342,14 +441,14 @@ function AddRecipePage() {
 			<div className={style.stape}>
 				{stepes.map((stepe, idx) => (
 					<Stepes
-						key={stepe.id}
-						id={stepe.id}
-						name={stepe.name ?? ""}
-						content={stepe.content ?? ""}
+						key={stepe.stepes_id}
+						id={stepe.stepes_id}
+						name={stepe.stepes_name ?? ""}
+						content={stepe.stepes_desc ?? ""}
 						numero={idx + 1}
 						placeholder={`Étape ${idx + 1}`}
 						onRemove={removeStepes}
-						onChange={(attribut, valeur) => updateStepes(stepe.id, attribut, valeur)}
+						onChange={(attribut, valeur) => updateStepes(stepe.stepes_id, attribut, valeur)}
 					/>
 				))}
 

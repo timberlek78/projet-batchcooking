@@ -29,17 +29,21 @@ model Recipes {
   recipe_like_number      Int
   recipe_preparation_time Int
   recipe_cooking_time     Int
+  recipe_nb_personne      Int
+  recipe_image            String 
 
-  stapes Stape[]
+  stepes Stepes[]
   weeks  Week[]
 
   RecipesIngredient RecipesIngredient[]
 }
 
-model Stape {
-  stape_id     Int    @id @default(autoincrement())
-  stape_number Int
-  stape_desc   String @db.LongText
+
+model Stepes {
+  stepes_id     String  @id
+  stepes_name   String 
+  stepes_number Int
+  stepes_desc   String @db.LongText
 
   recipe_id Int
 

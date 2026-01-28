@@ -11,7 +11,7 @@ function Stepes({ id, numero, name, content,placeholder, onRemove,onChange }) {
 					type="text"
 					value={name}
 					placeholder={placeholder}
-					onChange={(e) => onChange("name", e.target.value)}
+					onChange={(e) => onChange("stepes_name", e.target.value)}
 				/>
 
 				<button
@@ -30,7 +30,7 @@ function Stepes({ id, numero, name, content,placeholder, onRemove,onChange }) {
 					e.target.style.height = "auto";
 					e.target.style.height = `${e.target.scrollHeight}px`;
 				}}
-				onChange={(e) => onChange("content", e.target.value)}
+				onChange={(e) => onChange("stepes_desc", e.target.value)}
 			/>
 
 			<hr />

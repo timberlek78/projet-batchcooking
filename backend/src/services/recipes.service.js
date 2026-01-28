@@ -1,5 +1,8 @@
 import RecipesModels from '../models/recipes.models.js';
 import IngredientModels from '../models/ingredient.models.js';
+import StepesModels from '../models/stepes.models.js';
+
+import prisma from '../db.js';
 
 class RecipesServices {
 	static async getIngredients(idRecipe) {
@@ -11,15 +14,53 @@ class RecipesServices {
 
 		if (ingredient && ingredient.length > 0) return ingredient;
 
-		throw new Error("Pas d'ingrédient pour cette recette");
+		return "";
 	}
 
 	static async create(data) {
-		if (data.recipe_difficult < 1 || data.recipe_difficult > 5)
-			throw new Error('Difficult level invalide');
+		const { ingredients = [], stepes = [], ...recipeData } = data;
+		console.log(data);
+		console.log("stepes ", stepes);
+		return await prisma.$transaction(async (tx) => {
 
-		return RecipesModels.create(data);
+			// 1️⃣ Création de la recette via ta classe
+			const recipe = await RecipesModels.create(recipeData, tx);
+
+			// 2️⃣ Liaison ingrédients
+			await Promise.all(
+				ingredients.map((ing) =>
+					RecipesModels.linkIngredientRecipe(
+						recipe.recipe_id,
+						ing.ingredient_id,
+						ing.qte ?? 0,
+						tx
+					)
+				)
+			);
+
+
+			// 3️⃣ Création des étapes
+			await Promise.all(
+				stepes.map((stepe) =>{
+					console.log("je suis la")
+					const data = {
+						...stepe,
+						recipe: { connect: { recipe_id: recipe.recipe_id } },
+					}
+					return StepesModels.create(data, tx)
+				}
+					
+				)
+			);
+
+			// ✅ Si on arrive ici → commit automatique
+			return recipe;
+		});
 	}
+
+
+
+
 
 	static async update(recipe_id, data) {
 		if (!data || typeof data !== 'object') {

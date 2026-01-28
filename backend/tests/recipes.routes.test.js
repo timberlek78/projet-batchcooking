@@ -15,7 +15,48 @@ describe('CRUD Recipes', () => {
 		recipe_like_number: 35,
 		recipe_preparation_time: 40,
 		recipe_cooking_time: 20,
+
+		ingredients: [
+			{
+				"ingredient_id": 5,
+				"ingredient_name": "Curry",
+				"ingredient_unit": "g"
+			},
+			{
+				"ingredient_id": 1,
+				"ingredient_name": "Pâtes",
+				"ingredient_unit": "g"
+			},
+			{
+				"ingredient_id": 2,
+				"ingredient_name": "Lardons",
+				"ingredient_unit": "g"
+			},
+			{
+				"ingredient_id": 6,
+				"ingredient_name": "Salade",
+				"ingredient_unit": "g"
+			}
+		],
+		stepes: [
+			{
+				"id": "cff71904-6596-43bf-a8c6-0fef5e0f75ee",
+				"name": "",
+				"content": "Bah lors d'abord il faut faire bouillir de l'eau pour faire cuire les pates"
+			},
+			{
+				"id": "15a82726-586a-45f2-96b1-fbd3a2bd6c7e",
+				"name": "",
+				"content": "Eta près tu fais une sauce bolognaise"
+			},
+			{
+				"id": "1057f87b-b745-4bcb-8e12-57f44165e128",
+				"name": "",
+				"content": "Voila bravo !!!!! Bonne appétit !!!!! te tache pas"
+			}
+		],
 	};
+
 
 	// ✅ Création AVANT tous les tests
 	beforeAll(async () => {

@@ -13,8 +13,9 @@ export class RecipeService {
 		return api.get(`/recipes/ingredient/${recipe_id}`);
 	}
 
-	static async create(data) {
-		return api.post(`/recipe`, data);
+	static async create(data) 
+	{
+		return api.post(`/recipes`, data);
 	}
 }
 

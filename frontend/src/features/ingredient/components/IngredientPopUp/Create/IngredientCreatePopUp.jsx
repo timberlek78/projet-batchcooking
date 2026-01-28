@@ -25,15 +25,20 @@ function IngredientCreatePopUp({show,onClose})
 
 	const saveIngredient = async () =>
 	{
-		const response = await create(newIngredients);
-		console.log(response);
-		if(response.ok)
+		try
 		{
-			console.log("ok ?");
-			if (onClose) onClose();
+			console.log("aaalloo");
+			await create(newIngredients);
 
+			// Si aucune erreur, c’est que ça a marché
+			onClose();
 		}
-	}
+		catch (error)
+		{
+			console.error('Erreur lors de la création', error);
+		}
+	};
+
 
 	const stop = (e) => {e.stopPropagation()} 
 	if(!show) return null;

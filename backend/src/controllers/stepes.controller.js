@@ -1,10 +1,10 @@
-import StapesModels from '../models/stapes.models.js';
-import StapesServices from '../services/stapes.service.js';
+import StepesModels from '../models/stepes.models.js';
+import StepesServices from '../services/stepes.service.js';
 
-class StapesController {
+class StepesController {
 	static async getAll(req, res) {
 		try {
-			const response = await StapesModels.getAll();
+			const response = await StepesModels.getAll();
 			return res.status(200).json(response);
 		} catch (error) {
 			return next(error);
@@ -18,7 +18,7 @@ class StapesController {
 				throw new Error('Id Invalide');
 			}
 
-			const response = await StapesModels.getByRecipe(id);
+			const response = await StepesModels.getByRecipe(id);
 
 			// ✅ tableau vide => aucune étape trouvée
 			if (!response || response.length === 0) {
@@ -33,9 +33,9 @@ class StapesController {
 
 	static async create(req, res) {
 		try {
-			const newStape = req.body;
+			const newStepe = req.body;
 
-			const result = await StapesServices.create(newStape);
+			const result = await StepesServices.create(newStepe);
 			return res.status(201).json(result);
 		} catch (error) {
 			error.status = 400;
@@ -50,7 +50,7 @@ class StapesController {
 				throw new Error('Id invalide');
 			}
 
-			const result = await StapesServices.update(id, req.body);
+			const result = await StepesServices.update(id, req.body);
 			return res.status(200).json(result);
 		} catch (error) {
 			return next(error);
@@ -64,7 +64,7 @@ class StapesController {
 				throw new Error('Id invalide');
 			}
 
-			const isDeleting = await StapesModels.delete(id);
+			const isDeleting = await StepesModels.delete(id);
 			return res.status(200).json(isDeleting);
 		} catch (error) {
 			return next(error);
@@ -72,4 +72,4 @@ class StapesController {
 	}
 }
 
-export default StapesController;
+export default StepesController;
