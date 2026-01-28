@@ -41,16 +41,16 @@ class RecipeController {
 			return next(error);
 		}
 	}
-	
+
 	static async create(req, res, next) {
 		try {
 			const recipeData = req.body;
 
-			// 📸 Gestion image (ICI)
+	
 			if (req.file) {
-				recipeData.image = `/uploads/recipes/${req.file.filename}`;
+				recipeData.recipe_image = `/uploads/recipes/${req.file.filename}`;
+				console.log(recipeData);
 			}
-
 			const result = await RecipesServices.create(recipeData);
 			res.status(201).json(result);
 		}

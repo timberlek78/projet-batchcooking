@@ -10,8 +10,8 @@ router.get('/', RecipeController.getAll);
 router.get('/:id', RecipeController.getById);
 router.get('/ingredient/:id', RecipeController.getIngredients);
 router.post(
-	'/recipes',
-	uploadRecipeImage.single('image'),
+	'/',
+	uploadRecipeImage.single('recipe_image'),
 	RecipeController.create
 );
 

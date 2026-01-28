@@ -17,6 +17,13 @@ export class RecipeService {
 	{
 		return api.post(`/recipes`, data);
 	}
+
+	static async createWithImage(formData) {
+
+		return api.post(`/recipes`, formData, {
+			headers: { 'Content-Type': undefined }, 
+		});
+	}
 }
 
 export default RecipeService;

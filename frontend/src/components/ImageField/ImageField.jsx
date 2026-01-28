@@ -9,8 +9,19 @@ import { deleteImageBlob, putImageBlob } from '../../utils/imageStore';
  * - Laisse le parent gérer l'aperçu via imageUrl (objectURL)
  * - Renvoie au parent un imageId persisté (string) via onChangeImageId
  */
-function ImageField({ imageUrl, imageId, onChange }) {
-	
+function ImageField({ imageUrl, onChange }) {
+
+	const handleChange = async (e) => {
+		const file = e.target.files?.[0];
+		if (!file) return;
+
+		const imageId = crypto.randomUUID();
+		await putImageBlob(imageId, file);
+
+		onChange({ imageId, file });
+	};
+
+
 	return (
 		<div className={style.cadre}>
 			<input
@@ -19,12 +30,16 @@ function ImageField({ imageUrl, imageId, onChange }) {
 				name="imageRecette"
 				id="imageRecette"
 				accept="image/*"
-				onChange={onChange}
+				onChange={handleChange}
 			/>
 
 			<label htmlFor="imageRecette" className={style.label}>
 				{imageUrl ? (
-					<img src={imageUrl} alt="Aperçu" className={style.preview} />
+					<img
+						src={imageUrl}
+						alt="Aperçu"
+						className={style.preview}
+					/>
 				) : (
 					<ImageIcon />
 				)}

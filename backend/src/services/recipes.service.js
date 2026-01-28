@@ -17,10 +17,26 @@ class RecipesServices {
 		return "";
 	}
 
-	static async create(data) {
-		const { ingredients = [], stepes = [], ...recipeData } = data;
-		console.log(data);
-		console.log("stepes ", stepes);
+	static async create(data) 
+	{
+		const parseRecipeBody = (body) =>{
+			return {
+				recipe_name: body.recipe_name,
+				recipe_image : body.recipe_image,
+				recipe_preparation_time: Number(body.recipe_preparation_time),
+				recipe_cooking_time: Number(body.recipe_cooking_time),
+				recipe_difficult: Number(body.recipe_difficult),
+				recipe_nb_personne: Number(body.recipe_nb_personne),
+				recipe_like_number: Number(body.recipe_like_number),
+				stepes: JSON.parse(body.stepes),
+				ingredients: JSON.parse(body.ingredients),
+			};
+		};
+
+		data = parseRecipeBody(data);
+
+		let { ingredients = [], stepes = [], ...recipeData } = data;
+
 		return await prisma.$transaction(async (tx) => {
 
 			// 1️⃣ Création de la recette via ta classe
@@ -56,10 +72,10 @@ class RecipesServices {
 			// ✅ Si on arrive ici → commit automatique
 			return recipe;
 		});
-	}
+	};
 
 
-
+	
 
 
 	static async update(recipe_id, data) {

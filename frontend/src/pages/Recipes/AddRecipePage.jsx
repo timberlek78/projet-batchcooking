@@ -8,7 +8,7 @@ import { useNavigate } from "react-router-dom";
 /* ======================
  * Utils
  * ====================== */
-import { getImageBlob } from '../../utils/imageStore.js';
+import { getImageBlob,deleteImageBlob } from '../../utils/imageStore.js';
 
 /* ======================
  * Components (génériques)
@@ -81,6 +81,7 @@ function AddRecipePage() {
 	// Charge le brouillon de recette depuis le localStorage (si présent)
 	const [imagePreviewUrl, setImagePreviewUrl] = useState("");
 	const [imageFile, setImageFile] = useState(null);
+	const [imageId, setImageId] = useState(null);
 
 
 	const [newRecipe, setRecipe] = useState(() => {
@@ -119,42 +120,48 @@ function AddRecipePage() {
 		localStorage.setItem(STORAGE_KEY, JSON.stringify(draft));
 	}, [newRecipe, stepes]);
 
-	/**
-	 * (Optionnel) Debug : affiche la recette complète à chaque changement
-	 */
+	
 	useEffect(() => {
 		console.log({ ...newRecipe, stepes });
 	}, [newRecipe, stepes]);
 
+	
+	/**
+	 * =========================
+	 * IMAGES
+	 * =========================
+	 */
+
+	const handleImageChange = ({ imageId, file }) => {
+		setImageId(imageId);
+		setImageFile(file);
+
+		localStorage.setItem('recipeImageId', imageId);
+
+		const url = URL.createObjectURL(file);
+		setImagePreviewUrl(url);
+	};
+
+
 	useEffect(() => {
-		let urlToRevoke = "";
+		const storedId = localStorage.getItem('recipeImageId');
+		if (!storedId) return;
 
-		const load = async () => {
-			// nettoyage preview si pas d'image
-			if (!newRecipe.imageId) {
-				setImagePreviewUrl("");
-				return;
-			}
+		setImageId(storedId);
 
-			const blob = await getImageBlob(newRecipe.imageId);
-
-			if (!blob) {
-				// imageId existe mais blob introuvable => on nettoie
-				setImagePreviewUrl("");
-				return;
-			}
+		const loadImage = async () => {
+			const blob = await getImageBlob(storedId);
+			if (!blob) return;
 
 			const url = URL.createObjectURL(blob);
-			urlToRevoke = url;
 			setImagePreviewUrl(url);
+			setImageFile(blob);
 		};
 
-		load();
+		loadImage();
+	}, []);
 
-		return () => {
-			if (urlToRevoke) URL.revokeObjectURL(urlToRevoke);
-		};
-	}, [newRecipe.imageId]);
+
 	/**
 	 * =========================
 	 * INGREDIENTS
@@ -211,38 +218,34 @@ function AddRecipePage() {
 		}));
 	};
 
+	const createRecipe = async () => {
+		const formData = new FormData();
 
-	const createRecipe = async () => 
-	{
 		const payload = {
 			...newRecipe,
 			stepes: stepes ?? [],
 		};
-		
-		// Champs simples
+
 		Object.entries(payload).forEach(([key, value]) => {
 			if (value !== null && value !== undefined) {
-				formData.append(key, value);
+				// Si c'est un objet ou tableau, on stringify
+				if (typeof value === "object") {
+					formData.append(key, JSON.stringify(value));
+				} else {
+					formData.append(key, value);
+				}
 			}
 		});
 
-		// Tableaux
-		formData.append("stepes", JSON.stringify(stepes ?? []));
+		// Image
+		console.log(imageFile)
 
-		// 📸 Image
-		if (imageFile) {
-			formData.append("image", imageFile);
-		}
+		formData.append("recipe_image", imageFile ?? "");
 
-		const create = (formData) => {
-			return fetch("/recipes", {
-				method: "POST",
-				body: formData, 
-			});
-		};
 
-		create(formData);
-	}
+		await RecipeService.createWithImage(formData);
+	};
+
 	
 	const handleCreateRecipe = async () => {
 		setWaitShow(true);
@@ -264,6 +267,7 @@ function AddRecipePage() {
 			setWaitMessage(Recipe.message.succes);
 
 		} catch (e) {
+			console.log(e);
 			setWaitStatus("error");
 			setWaitMessage("Une erreur est survenue");
 		}
@@ -316,11 +320,21 @@ function AddRecipePage() {
 	 * =========================
 	 * Décommente si tu veux un bouton "vider"
 	 */
-	const clearDraft = () => {
+	const clearDraft = async () => {
 		localStorage.removeItem(STORAGE_KEY);
+		localStorage.removeItem("recipeImageId");
+
+		if (imageId) {
+			await deleteImageBlob(imageId); // <- supprime l'image de IndexedDB
+		}
+
 		setRecipe(DEFAULT_RECIPE);
 		setStepes([]);
+		setImageFile(null);
+		setImagePreviewUrl("");
+		setImageId(null);
 	};
+
 
 	return (
 		<div className={style.page}>
@@ -350,11 +364,11 @@ function AddRecipePage() {
 			   ========================= */}
 			<div className={style.haut}>
 				<div className={style.photo}>
-					<ImageField 
-						imageUrl={imagePreviewUrl}
-						imageId={newRecipe.imageId ?? ""}
-						onChange={(file) => setImageFile(file)}
-					 />
+					<ImageField
+							imageUrl={imagePreviewUrl}
+							onChange={handleImageChange}
+					/>
+
 				</div>
 
 				<div className={style.recipe}>
