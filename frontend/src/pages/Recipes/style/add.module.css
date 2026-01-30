@@ -88,7 +88,7 @@
 {
 	display: flex;
 	gap: 1rem;            
-	align-items: stretch;
+	align-items: center;
 }
 
 .row {
@@ -116,7 +116,6 @@
 
 .title
 {
-	height: fit-content;
 	font: 1.2rem sans-serif;
 	font-family: Arial, Helvetica, sans-serif;
 	color: green;
@@ -189,15 +188,13 @@
 
 .listIng {
 	display: grid;
-	flex:1;
-	/* 5 lignes fixes */
 	grid-template-rows: repeat(5, auto);
-
-	/* Remplir colonne par colonne */
 	grid-auto-flow: column;
 
-	gap: 0.4rem 1rem; /* (ligne, colonne) */
+	gap: 0.4rem 1rem;
+
 }
+
 
 .infoGene {
 	display: flex;

@@ -9,6 +9,7 @@ import { useNavigate } from "react-router-dom";
  * Utils
  * ====================== */
 import { getImageBlob,deleteImageBlob } from '../../utils/imageStore.js';
+import {useUniformBulleWidth} from '../../utils/useUniformBulleWidth.jsx'
 
 /* ======================
  * Components (génériques)
@@ -194,8 +195,22 @@ function AddRecipePage() {
 		});
 	};
 
+	const qteChange = (id, qte) => {
+		setRecipe(prev => ({
+			...prev,
+			ingredients: prev.ingredients.map(ing =>
+				ing.ingredient_id === id
+					? { ...ing, qte }
+					: ing
+			)
+		}));
+	};
+
+
 	// Supprime un ingrédient par son id
 	const removeIngredient = (id) => {
+		console.log("je suis la");
+		
 		setRecipe((prev) => {
 			const newIngredients = prev.ingredients.filter(
 				(ing) => ing.ingredient_id !== id
@@ -335,7 +350,7 @@ function AddRecipePage() {
 		setImageId(null);
 	};
 
-
+	const containerRef = useUniformBulleWidth([newRecipe.ingredients]);
 	return (
 		<div className={style.page}>
 			{/* POPUP SELECTION INGREDIENTS */}
@@ -394,13 +409,13 @@ function AddRecipePage() {
 								</div>
 							</div>
 
-							<div id="listIng" className={style.listIng}>
+							<div id="listIng" ref ={containerRef} className={style.listIng}>
 								{newRecipe.ingredients?.map((ing) => (
 									<IngredientBulle
 										key={ing.ingredient_id}
-										id={ing.ingredient_id}
-										ingredientName={ing.ingredient_name}
+										ingredient={ing}
 										onClick={removeIngredient}
+										onChange={qteChange}
 									/>
 								))}
 

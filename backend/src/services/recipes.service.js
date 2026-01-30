@@ -48,7 +48,7 @@ class RecipesServices {
 					RecipesModels.linkIngredientRecipe(
 						recipe.recipe_id,
 						ing.ingredient_id,
-						ing.qte ?? 0,
+						Number(ing.qte) ?? 0,
 						tx
 					)
 				)
