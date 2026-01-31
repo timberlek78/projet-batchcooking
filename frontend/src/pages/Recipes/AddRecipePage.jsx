@@ -456,7 +456,7 @@ function AddRecipePage() {
 							</div>
 							<div className={style.btnBarre}>
 								<button className={style.btn} onClick={clearDraft}><TrashIcon /></button>
-								<button className={style.btn}><SaveIcon /></button>
+								{/* <button className={style.btn}><SaveIcon /></button> */}
 								<button className={style.btn} onClick={handleCreateRecipe}><PublishIcon /></button>
 							</div>
 						</div>
