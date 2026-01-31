@@ -48,7 +48,7 @@ class RecipeController {
 
 	
 			if (req.file) {
-				recipeData.recipe_image = `/uploads/recipes/${req.file.filename}`;
+				recipeData.recipe_image = req.file.filename;
 				console.log(recipeData);
 			}
 			const result = await RecipesServices.create(recipeData);

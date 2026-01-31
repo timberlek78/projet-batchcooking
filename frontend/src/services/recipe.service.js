@@ -13,8 +13,7 @@ export class RecipeService {
 		return api.get(`/recipes/ingredient/${recipe_id}`);
 	}
 
-	static async create(data) 
-	{
+	static async create(data) {
 		return api.post(`/recipes`, data);
 	}
 
@@ -23,6 +22,11 @@ export class RecipeService {
 		return api.post(`/recipes`, formData, {
 			headers: { 'Content-Type': undefined }, 
 		});
+	}
+
+	static getImage(filename) {
+		if (!filename) return null;
+		return `${api.defaults.baseURL}/uploads/recipes/${filename}`;
 	}
 }
 

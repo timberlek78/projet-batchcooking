@@ -32,7 +32,15 @@ app.use('/recipes', recipeRoutes);
 app.use('/stapes', stepesRoutes);
 app.use('/users', usersRoutes);
 app.use('/week', weekRoutes);
-app.use('/uploads',express.static(path.join(process.cwd(), 'uploads')));
+app.use(
+	'/uploads',
+	(req, res, next) => {
+		res.setHeader('Cross-Origin-Resource-Policy', 'cross-origin');
+		next();
+	},
+	express.static(path.join(process.cwd(), 'uploads'))
+);
+
 
 app.use(notFound);
 app.use(errorHandler);

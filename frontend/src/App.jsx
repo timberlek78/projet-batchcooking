@@ -6,6 +6,7 @@ import Layout from './components/Layout/Layout';
 import HomePage from './pages/HomePage.jsx';
 import RecipePage from './pages/Recipes/RecipePage.jsx';
 import AddRecipePage from './pages/Recipes/AddRecipePage.jsx';
+import ViewRecipe from './pages/Recipes/ViewRecipe.jsx';
 
 function App() {
 	return (
@@ -16,6 +17,7 @@ function App() {
 				<Route path="/recipes" element={<RecipePage />} />
 				<Route path="/recipes/add" element={<AddRecipePage />} />
 				<Route path="/users" element={<Users />} />
+				<Route path="/recipes/:recipeId" element={<ViewRecipe />} />
 			</Route>
 		</Routes>
 	);
