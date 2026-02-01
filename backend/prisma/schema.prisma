@@ -53,7 +53,7 @@ model Stepes {
 model Ingredient {
   ingredient_id   Int    @id @default(autoincrement())
   ingredient_name String @db.VarChar(255)
-  ingredient_unit String @db.VarChar(5)
+  ingredient_unit String @db.VarChar(10)
 
   RecipesIngredient RecipesIngredient[]
 }
