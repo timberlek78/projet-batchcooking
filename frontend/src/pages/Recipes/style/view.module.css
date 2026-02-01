@@ -1,0 +1,11 @@
+.row
+{
+    display: flex;
+    flex-direction: row;
+}
+
+.listIng
+{
+    border-radius: 25px;
+    background-color: white;
+}

@@ -4,6 +4,8 @@ import { useParams } from "react-router-dom";
 import service from "../../services/recipe.service.js";
 import RecipeGlobal from "../../features/recipes/RecipeView/RecipeGlobal.jsx";
 
+import style from "./style/view.module.css";
+
 function ViewRecipe() {
 	const { recipeId } = useParams();
 	const [recipe, setRecipe] = useState(null);
@@ -28,7 +30,18 @@ function ViewRecipe() {
 	}
 
 	return (
-		<RecipeGlobal recipe={recipe} />
+		<div className={style.row}>
+			<RecipeGlobal recipe={recipe} />
+			<div className={style.listIng}>
+				<ul>
+					<li>assasasasasasas</li>
+					<li>assasasasasasas</li>
+					<li>assasasasasasas</li>
+					<li>assasasasasasas</li>
+					<li>assasasasasasas</li>
+				</ul>
+			</div>
+		</div>
 	);
 }
 
