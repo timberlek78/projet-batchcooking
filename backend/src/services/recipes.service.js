@@ -6,16 +6,30 @@ import prisma from '../db.js';
 
 class RecipesServices {
 	static async getIngredients(idRecipe) {
-		const idsIngredientObjects = await RecipesModels.getIdIngredient(idRecipe);
+		const idsIngredientObjects = await RecipesModels.getIngredients(idRecipe);
 
-		const idsIngredient = idsIngredientObjects.map((row) => row.ingredient_id);
+		if (!idsIngredientObjects || idsIngredientObjects.length === 0) {
+			return [];
+		}
 
-		const ingredient = await IngredientModels.getIngredientNameById(idsIngredient);
+		const quantityMap = new Map(
+			idsIngredientObjects.map(row => [
+				row.ingredient_id,
+				row.quantity
+			])
+		);
 
-		if (ingredient && ingredient.length > 0) return ingredient;
+		const ingredientIds = idsIngredientObjects.map(row => row.ingredient_id);
+		const ingredients = await IngredientModels.getIngredientById(ingredientIds);
 
-		return "";
+		const result = ingredients.map(ing => ({
+			...ing,
+			quantity: quantityMap.get(ing.ingredient_id) ?? 0
+		}));
+
+		return result;
 	}
+
 
 	static async create(data) 
 	{

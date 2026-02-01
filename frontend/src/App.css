@@ -2,3 +2,8 @@ html {
 	background-color: #fff6ed;
 	margin: 1rem;
 }
+
+
+html, body, #root {
+	height: 100%;
+}

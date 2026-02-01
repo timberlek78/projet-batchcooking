@@ -4,19 +4,16 @@
 .info {
 	position: relative;
 	display: flex;
+	flex:1;
 	flex-direction: column;
 	justify-content: flex-end;
-
-	width: 100%;
-	max-width: 50rem;
-	aspect-ratio: 5 / 2;
 
 	padding: 1.5rem;
 
 	background-size: cover;
 	background-position: center;
 	background-repeat: no-repeat;
-
+	box-shadow: 0 5px 5px 5px rgba(0, 0, 0, 0.25);
 	border-radius: 25px;
 	overflow: hidden;
 }

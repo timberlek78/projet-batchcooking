@@ -5,10 +5,12 @@ import service from "../../services/recipe.service.js";
 import RecipeGlobal from "../../features/recipes/RecipeView/RecipeGlobal.jsx";
 
 import style from "./style/view.module.css";
+import ListIngredient from "../../features/recipes/RecipeView/ListIngredient/ListIngredient.jsx";
 
 function ViewRecipe() {
 	const { recipeId } = useParams();
 	const [recipe, setRecipe] = useState(null);
+	const [ingredient, setIngredient ] = useState(null)
 
 	useEffect(() => {
 		const loadRecipe = async () => {
@@ -18,28 +20,40 @@ function ViewRecipe() {
 			}
 		};
 
+		const loadIng = async () => {
+			const response = await service.getIngredients(recipeId);
+		
+			if(response)
+			{
+				setIngredient(response.data);
+			}
+		}
+
 		if (recipeId) {
 			loadRecipe();
+			loadIng();
 		}
 	}, [recipeId]);
 
-
-    console.log(recipe);
 	if (!recipe) {
 		return <p>Chargement...</p>;
 	}
 
 	return (
-		<div className={style.row}>
-			<RecipeGlobal recipe={recipe} />
-			<div className={style.listIng}>
-				<ul>
-					<li>assasasasasasas</li>
-					<li>assasasasasasas</li>
-					<li>assasasasasasas</li>
-					<li>assasasasasasas</li>
-					<li>assasasasasasas</li>
-				</ul>
+		<div className={style.content}>
+			<div className={style.row}>
+				<div className={style.recipe}>
+					<RecipeGlobal recipe={recipe} />
+				</div>
+
+				<div className={style.side}>
+					<ListIngredient ingredient={ingredient} />
+				</div>
+			
+			</div>
+			
+			<div className={style.stepe}>
+				asasasa
 			</div>
 		</div>
 	);

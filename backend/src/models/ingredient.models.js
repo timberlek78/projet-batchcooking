@@ -9,9 +9,8 @@ class IngredientModels {
 		return prisma.ingredient.findUnique({ where: { ingredient_id } });
 	}
 
-	static async getIngredientNameById(data_id) {
+	static async getIngredientById(data_id) {
 		return prisma.ingredient.findMany({
-			select: { ingredient_name: true },
 			where: { ingredient_id: { in: data_id } },
 		});
 	}

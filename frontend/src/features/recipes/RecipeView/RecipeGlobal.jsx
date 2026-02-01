@@ -28,8 +28,6 @@ function RecipeGlobal({ recipe }) {
 				{recipe.recipe_cooking_time > 2 ? "" : <Bulle info={`${recipe.recipe_cooking_time} min `} icon={<CookTimeIcon />} />}
 			</div>		
 		</div>
-
-
 		</div>
 	);
 }

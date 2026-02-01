@@ -9,9 +9,10 @@ class RecipesModels {
 		return prisma.recipes.findUnique({ where: { recipe_id } });
 	}
 
-	static async getIdIngredient(recipe_id) {
-		return prisma.recipesIngredient.findMany({
-			select: { ingredient_id: true },
+	static async getIngredients(recipe_id) {
+		return prisma.recipesIngredient.findMany(
+		{
+			select: { ingredient_id: true, quantity : true },
 			where: { recipe_id: recipe_id },
 		});
 	}
