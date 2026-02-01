@@ -6,11 +6,13 @@ import RecipeGlobal from "../../features/recipes/RecipeView/RecipeGlobal.jsx";
 
 import style from "./style/view.module.css";
 import ListIngredient from "../../features/recipes/RecipeView/ListIngredient/ListIngredient.jsx";
+import StepesView from "../../features/recipes/Stepes/StepesView.jsx";
 
 function ViewRecipe() {
 	const { recipeId } = useParams();
 	const [recipe, setRecipe] = useState(null);
-	const [ingredient, setIngredient ] = useState(null)
+	const [ingredient, setIngredient ] = useState([])
+	const [stepes, setStepes] = useState([]);
 
 	useEffect(() => {
 		const loadRecipe = async () => {
@@ -29,15 +31,26 @@ function ViewRecipe() {
 			}
 		}
 
+		const loadStepe = async () => {
+			const response = await service.getStepe(recipeId);
+
+			if(response)
+				setStepes(response.data);
+			
+		}
+
 		if (recipeId) {
-			loadRecipe();
+			loadStepe();
 			loadIng();
+			loadRecipe();
 		}
 	}, [recipeId]);
 
 	if (!recipe) {
 		return <p>Chargement...</p>;
 	}
+
+	
 
 	return (
 		<div className={style.content}>
@@ -53,7 +66,11 @@ function ViewRecipe() {
 			</div>
 			
 			<div className={style.stepe}>
-				asasasa
+				{
+					stepes.map((stepe) => (
+						<StepesView key={stepe.stepes_id} stepe={stepe} />
+					))
+				}
 			</div>
 		</div>
 	);

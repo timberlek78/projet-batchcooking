@@ -29,7 +29,7 @@ app.use(express.json());
 app.use('/db', dbRoutes);
 app.use('/ingredients', ingredientRoutes);
 app.use('/recipes', recipeRoutes);
-app.use('/stapes', stepesRoutes);
+app.use('/stepes', stepesRoutes);
 app.use('/users', usersRoutes);
 app.use('/week', weekRoutes);
 app.use(

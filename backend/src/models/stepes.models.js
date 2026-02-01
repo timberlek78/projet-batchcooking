@@ -10,6 +10,7 @@ export default class StepesModels {
 	static getByRecipe(recipe_id) {
 		return prisma.stepes.findMany({
 			where: { recipe_id },
+			orderBy : {stepes_number:'asc'}
 		});
 	}
 
