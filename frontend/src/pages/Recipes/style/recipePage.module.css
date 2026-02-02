@@ -41,8 +41,8 @@
 
 .container {
 	display: grid;
-	grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr));
-	gap: 4rem;
+	grid-template-columns: repeat(3, 1fr);
+	gap: 1.5rem;
 
 	padding: 1rem;
 	width: 100%;
@@ -50,8 +50,9 @@
 
 	border-radius: 50px;
 	border: 0.3rem solid green;
-
 	background-color: white;
 
-	overflow: scroll;
+	overflow-y: auto;
 }
+
+
