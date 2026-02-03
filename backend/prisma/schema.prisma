@@ -18,6 +18,11 @@ model Users {
   username String @unique @db.VarChar(255)
   password String
   email    String @unique
+  user_firstname String
+  user_lastname String
+
+  created_at DateTime
+  updated_at DateTime
 
   weeks Week[]
 }
