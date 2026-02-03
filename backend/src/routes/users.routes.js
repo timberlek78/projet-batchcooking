@@ -1,15 +1,15 @@
 import express from 'express';
-import { UsersConstroller } from '../controllers/users.controller.js';
+import { UsersController } from '../controllers/users.controller.js';
 
 const router = express.Router();
 
 //End point CRUD pour la table USERS
-router.get('/', UsersConstroller.getAll);
-router.get('/:id', UsersConstroller.getUserById);
+router.get('/', UsersController.getAll);
+router.get('/:id', UsersController.getUserById);
 
-router.post('/', UsersConstroller.register);
+router.post('/', UsersController.register);
 
-router.put('/:id', UsersConstroller.update);
-router.delete('/:id', UsersConstroller.delete);
+router.put('/:id', UsersController.update);
+router.delete('/:id', UsersController.delete);
 
 export default router;

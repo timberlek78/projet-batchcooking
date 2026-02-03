@@ -1,0 +1,22 @@
+/* Taille standard partagée */
+:root {
+	--bulle-h: 2rem;
+	--bulle-w: 8rem; /* carré par défaut */
+	--bulle-radius: 25px;
+}
+
+/* Base commune : même taille pour toutes les bulles */
+.bulle {
+	width: var(--bulle-w);
+	height: var(--bulle-h);
+
+	display: flex;
+
+	border: 1px solid green;
+	border-radius: var(--bulle-radius);
+	background: white;
+
+	box-sizing: border-box;
+
+	cursor: pointer;
+}

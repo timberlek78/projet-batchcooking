@@ -1,17 +1,17 @@
 import UserModels from '../models/users.models.js';
 import { UsersService } from '../services/users.services.js';
 
-export class UsersConstroller {
-	static async getAll(req, res) {
+export class UsersController {
+	static async getAll(req, res, next) {
 		try {
 			const response = await UserModels.getAll();
-			res.status(200).json(response);
+			return res.status(200).json(response);
 		} catch (error) {
 			return next(error);
 		}
 	}
 
-	static async getUserById(req, res) {
+	static async getUserById(req, res, next) {
 		try {
 			const id = Number(req.params.id);
 
@@ -34,9 +34,10 @@ export class UsersConstroller {
 		}
 	}
 
-	static async register(req, res) {
+	static async register(req, res, next) {
 		try {
 			const { username, email, password } = req.body;
+
 			const result = await UsersService.register(username, email, password);
 
 			const user = {
@@ -45,40 +46,43 @@ export class UsersConstroller {
 				email: result.email,
 			};
 
-			res.status(201).json(user);
+			return res.status(201).json(user);
 		} catch (error) {
 			return next(error);
 		}
 	}
 
-	static async update(req, res) {
+	static async update(req, res, next) {
 		try {
 			const user_id = Number(req.params.id);
+
 			if (!user_id) {
 				return res.status(400).json({ error: 'ID invalide' });
 			}
 
-			// Exemple body: { username: "new", email: "...", password: "..." }
 			const updatedUser = await UsersService.update(user_id, req.body);
 
 			// Ne jamais renvoyer le password
 			const { password, ...safeUser } = updatedUser;
+
 			return res.status(200).json(safeUser);
 		} catch (error) {
 			return next(error);
 		}
 	}
 
-	static async delete(req, res) {
+	static async delete(req, res, next) {
 		try {
 			const id = Number(req.params.id);
 
 			if (!id) {
-				throw new Error('Id invalide');
+				const err = new Error('ID invalide');
+				err.statusCode = 400;
+				throw err;
 			}
 
 			const isDeleting = await UserModels.delete(id);
-			res.status(200).json(isDeleting);
+			return res.status(200).json(isDeleting);
 		} catch (error) {
 			return next(error);
 		}
