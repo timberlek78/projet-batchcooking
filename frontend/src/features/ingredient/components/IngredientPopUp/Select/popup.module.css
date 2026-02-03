@@ -1,0 +1,88 @@
+/* Fond sombre + flou */
+.overlay {
+	position: fixed;
+	inset: 0;
+	background: rgba(0, 0, 0, 0.25);
+	backdrop-filter: blur(6px);
+	-webkit-backdrop-filter: blur(6px);
+
+	display: flex;
+	align-items: center;
+	justify-content: center;
+
+	z-index: 999;
+}
+
+.PopUp {
+	width: min(600px, 90vw);
+	max-height: 30vh;
+
+	border-radius: 1em;
+	box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25);
+	background-color: white;
+
+	padding: 1rem 1.2rem;
+
+	display: flex;
+	flex-direction: column;
+
+	/* animation */
+	transform: scale(0.98) translateY(10px);
+	opacity: 0;
+	animation: popIn 180ms ease-out forwards;
+
+	overflow: visible;
+}
+
+.PopUpContent {
+	flex: 1;
+
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(6rem, 1fr));
+	grid-auto-rows: min-content;
+	gap: 1rem 2rem;
+
+	overflow-y: auto;
+	overflow-x: hidden;
+
+	padding-top: 0.35rem;
+	padding-left: 0.35rem;
+	padding-right: 0.35rem;
+
+	box-sizing: border-box;
+}
+
+.ingredient
+{
+	display: flex;
+	align-items: center;
+	justify-content: center;
+
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: medium;
+	
+	padding: 0.5rem;
+	border-radius: 25px;
+	border : 1px solid #00C2C7;
+
+	cursor: pointer;
+}
+
+.ingredient:hover{
+	transform: translateY(-2px);
+	box-shadow: 0 2px 2px rgba(46, 125, 50, 0.35);
+}
+
+.ingredient[aria-checked='true'] {
+	background: #00C2C7;
+	color : white;
+	border-radius: 25px;
+}
+
+@keyframes popIn {
+	to {
+		transform: scale(1) translateY(0);
+		opacity: 1;
+	}
+}
+

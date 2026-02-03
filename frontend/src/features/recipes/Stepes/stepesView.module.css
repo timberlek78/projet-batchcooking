@@ -1,0 +1,21 @@
+.stepe
+{
+    padding: 2rem;
+}
+
+.text
+{
+    min-height: 10rem;
+    text-align:start;
+    font-family: Arial, Helvetica, sans-serif;
+
+}
+
+.name
+{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 3ch;
+    color: green;
+    margin-bottom: 1rem;
+}
+

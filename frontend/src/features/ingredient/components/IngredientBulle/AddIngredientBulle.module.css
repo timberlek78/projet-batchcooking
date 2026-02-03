@@ -1,0 +1,32 @@
+.addBulle
+{
+	align-items: center;
+	justify-content: center;
+
+	height: fit-content;
+	border: 1px solid #00C2C7;
+}
+
+
+.icon {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.icon svg {
+	width: 16px;   /* 🔥 taille icône */
+	height: 16px;
+}
+
+.btn
+{
+	border: none;
+	background: transparent;
+}
+
+.text
+{
+	height: fit-content;
+	min-height: 2rem;
+}

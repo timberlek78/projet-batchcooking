@@ -1,0 +1,22 @@
+.grille {
+	display: flex;
+	flex-direction: column;
+}
+
+.row {
+	display: flex;
+	flex-direction: row;
+	gap: 1rem;
+}
+
+.large {
+	flex: 7;
+}
+
+.small {
+	flex: 3;
+}
+
+.trio {
+	flex: 3;
+}

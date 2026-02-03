@@ -1,0 +1,1448 @@
+<!DOCTYPE html>
+<!-- saved from url=(0032)http://localhost:5173/recipes/34 -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<script type="module">import { injectIntoGlobalHook } from "/@react-refresh";
+injectIntoGlobalHook(window);
+window.$RefreshReg$ = () => {};
+window.$RefreshSig$ = () => (type) => type;</script>
+
+		<script type="module" src="./Miaminou_files/client"></script>
+
+		
+		<link rel="icon" type="image/svg+xml" href="http://localhost:5173/vite.svg">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Miaminou</title>
+	<style type="text/css" data-vite-dev-id="C:/Miaminou/Miaminou/frontend/src/pages/styles/Test_BD.module.css">._container_cbm0j_1 {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	height: 100vh;
+	background: #f8f9fa;
+	font-family: sans-serif;
+}
+
+h1 {
+	color: #003049;
+	margin-bottom: 1rem;
+}
+
+._message_cbm0j_31 {
+	background: #f77f00;
+	color: white;
+	padding: 1rem 2rem;
+	border-radius: 12px;
+	font-size: 1.2rem;
+}
+</style><style type="text/css" data-vite-dev-id="C:/Miaminou/Miaminou/frontend/src/App.css">html {
+	background-color: #fff6ed;
+	margin: 1rem;
+}
+
+
+html, body, #root {
+	height: 100%;
+}
+</style><style type="text/css" data-vite-dev-id="C:/Miaminou/Miaminou/frontend/src/components/NavBar/navBar.module.css">._container_3vd3t_1 {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap; /* 🔴 clé ici */
+	background-color: white;
+
+	border-radius: 50px;
+
+	justify-content: left;
+	align-items: center;
+
+	font-family: Arial, Helvetica, sans-serif;
+
+	box-shadow: 0 5px 4px rgba(0, 0, 0, 0.25);
+}
+
+._lien_3vd3t_33 {
+	margin-right: 5rem;
+	color: black;
+	text-decoration: none;
+}
+
+._lien_3vd3t_33:hover {
+	border: thin solid black;
+	padding: 1rem;
+	border-radius: 50px;
+}
+
+._logo_3vd3t_57 {
+	margin-left: 1rem;
+}
+</style><style type="text/css" data-vite-dev-id="C:/Miaminou/Miaminou/frontend/src/pages/styles/home.module.css">._grille_x7qbz_1 {
+	display: flex;
+	flex-direction: column;
+}
+
+._row_x7qbz_11 {
+	display: flex;
+	flex-direction: row;
+	gap: 1rem;
+}
+
+._large_x7qbz_23 {
+	flex: 7;
+}
+
+._small_x7qbz_31 {
+	flex: 3;
+}
+
+._trio_x7qbz_39 {
+	flex: 3;
+}
+</style><style type="text/css" data-vite-dev-id="C:/Miaminou/Miaminou/frontend/src/components/Section/section.module.css">._container_1xqxf_1 {
+	background-color: #ffffff;
+	border-radius: 50px;
+	box-shadow: 0 5px 4px rgba(0, 0, 0, 0.25);
+
+	transition:
+		transform 0.2s ease,
+		box-shadow 0.2s ease;
+
+	padding: 1rem;
+	margin-top: 2rem;
+
+	font-family: Arial, Helvetica, sans-serif;
+	text-align: justify;
+}
+
+._container_1xqxf_1:hover {
+	/* état survolé */
+	transform: translateY(-6px);
+	box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+}
+
+._icon_1xqxf_45 {
+	width: 48px;
+	height: 48px;
+	margin-right: 1rem;
+	margin-left: 1rem;
+}
+
+._titre_1xqxf_59 {
+	display: flex;
+	align-items: center;
+	gap: 0.4rem;
+
+	margin-bottom: 1rem;
+}
+
+._paragraphe_1xqxf_75 {
+	font-size: larger;
+	margin-right: 1rem;
+}
+
+._list_1xqxf_85 {
+	padding: 1.5rem;
+}
+
+._multiList_1xqxf_93 {
+	display: flex;
+	flex-direction: row;
+	gap: 2rem;
+	padding: 1.5rem;
+}
+</style><style type="text/css" data-vite-dev-id="C:/Miaminou/Miaminou/frontend/src/features/recipes/RecipeCard/recipeCard.module.css">._card_161fc_1 {
+	height: fit-content;
+	border: thin solid black;
+
+	border-radius: 50px;
+	padding: 1rem;
+	font-family: Arial, Helvetica, sans-serif;
+
+	transition:
+		transform 0.2s ease,
+		box-shadow 0.2s ease;
+}
+
+._ing_161fc_27 {
+	display: table-column;
+	padding: 1rem;
+}
+
+._difficulte_161fc_37 {
+	display: inline-flex;
+	white-space: nowrap;
+}
+
+._preparation_161fc_47 {
+	display: inline-flex;
+	white-space: nowrap;
+}
+
+._info_161fc_57 {
+	display: flex;
+	gap: 0.4rem;
+	flex-direction: row;
+	align-items: flex-end;
+	justify-content: space-between;
+}
+
+._title_161fc_73 {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: space-between;
+}
+
+._complementaire_161fc_87 {
+	display: flex;
+	flex-direction: row;
+	gap: 5rem;
+	align-items: flex-start;
+	width: fit-content;
+	margin-right: 1rem;
+}
+
+._card_161fc_1:hover {
+	/* état survolé */
+	transform: translateY(-6px);
+	box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+}
+</style><style type="text/css" data-vite-dev-id="C:/Miaminou/Miaminou/frontend/src/pages/Recipes/style/recipePage.module.css">._page_yytki_1 {
+	display: grid;
+	place-items: center;
+}
+
+._top_yytki_11 {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	width: 100%;
+	justify-content:center;
+	padding: 0 1rem;
+	gap:0.4rem;
+}
+
+._topContent_yytki_31 {
+	display: flex;
+	gap: 1rem;
+	align-items: center;
+	width: 100%;
+	max-width: 80rem;
+}
+
+._topContent_yytki_31 > * {
+	flex: 1;
+}
+
+/* wrapper autour du champ de recherche */
+._searchWrap_yytki_57 {
+	width: 100%;
+	min-width: 16rem;
+	max-width: 40rem;
+}
+
+@media (max-width: 700px) {
+	._searchWrap_yytki_57 {
+		width: 100%;
+		min-width: 0;
+	}
+}
+
+._container_yytki_83 {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr));
+	gap: 4rem;
+
+	padding: 1rem;
+	width: 100%;
+	height: 90rem;
+
+	border-radius: 50px;
+	border: 0.3rem solid green;
+
+	background-color: white;
+
+	overflow: scroll;
+}
+</style><style type="text/css" data-vite-dev-id="C:/Miaminou/Miaminou/frontend/src/features/recherche/components/RechercheField.module.css">._searchWrapper_i1tnu_1 {
+	position: relative;
+	width: 100%;
+	margin-top: 2rem;
+	margin-bottom: 2rem;
+	border-radius: 999px;
+
+	transition:
+		transform 0.2s ease,
+		box-shadow 0.2s ease;
+}
+
+._searchWrapper_i1tnu_1:hover {
+	transform: translateY(-6px);
+	box-shadow: 0 10px 25px rgba(46, 125, 50, 0.35);
+}
+
+._search_i1tnu_1 {
+	width: 100%;
+	height: 3rem;
+
+	padding-left: 3rem;
+	padding-right: 1.5rem;
+
+	border-radius: 999px;
+	border: 2px solid #2e7d32;
+
+	font-size: 1rem;
+
+	/* important : l’input prend le wrapper */
+	background: white;
+	outline: none;
+
+	/* pour que la shadow du wrapper fasse propre */
+	border-color: #2e7d32;
+}
+
+._icon_i1tnu_75 {
+	position: absolute;
+	left: 1rem;
+	top: 50%;
+	transform: translateY(-50%);
+	pointer-events: none; /* clic passe à l’input */
+
+	font-size: 1.1rem;
+	opacity: 0.6;
+}
+
+._searchWrapper_i1tnu_1:hover{
+	transform: translateY(-6px);
+	box-shadow: 0 2px 10px #2e7d32;
+
+}
+
+</style><style type="text/css" data-vite-dev-id="C:/Miaminou/Miaminou/frontend/src/components/Button/AddButton/addButton.module.css">._button_1rl4w_1{
+	border-radius:100%;
+	width: 3.5rem;
+	height: 3.5rem;
+	max-width: 3.5rem;
+	max-height: 3.5rem;
+	box-shadow: 0 3px 3px 2px rgb(0, 0, 0,0.25);
+	background-color: white;
+	border: none;
+}
+
+._button_1rl4w_1:hover
+{
+	transform: translateY(-1px);
+	box-shadow: 0 3px 3px 2px rgb(0, 0, 0,0.50);
+}
+
+._button_1rl4w_1:active {
+	transform: translateY(3px);
+	box-shadow: 0 1px 0 rgba(0, 0, 0, 0.25);
+}
+
+._button_1rl4w_1:focus-visible {
+	outline: none;
+	box-shadow:
+		0 0 0 3px rgba(0, 128, 0, 0.4),
+		0 4px 0 rgba(0, 0, 0, 0.25);
+}
+
+._icon_1rl4w_59 {
+	width: 100%;
+	height: 100%;
+	stroke: green;
+}
+
+</style><style type="text/css" data-vite-dev-id="C:/Miaminou/Miaminou/frontend/src/components/TextField/Principale/textfield.module.css">._global_dopb1_1 {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	gap: 0.5rem;
+}
+
+._icon_dopb1_15 {
+	flex-shrink: 0;
+}
+
+._textfield_dopb1_23 {
+	flex: 1;
+	min-width: 0;
+	min-height: 2rem;
+	margin-bottom: 1rem;
+	
+	border: none;
+	border-bottom: 2px solid green;
+	outline: none;
+	background: transparent;
+
+	font-size: larger;
+	font-family: Arial, Helvetica, sans-serif;
+	color:green;
+}
+
+
+._textfield_dopb1_23::placeholder
+{
+	font-size: larger;
+	font-family: Arial, Helvetica, sans-serif;
+	color:green;
+}</style><style type="text/css" data-vite-dev-id="C:/Miaminou/Miaminou/frontend/src/components/TextField/Secondaire/textfield.module.css">._global_kiysi_1 {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	gap: 0.5rem;
+}
+
+._icon_kiysi_15 {
+	flex-shrink: 0;
+}
+
+
+._textfield_kiysi_25 {
+	flex: 1;
+	min-width: 0;
+
+	border: none;
+	border-bottom: 2px solid #00C2C7;
+	outline: none;
+	background: transparent;
+}
+
+
+._textfield_kiysi_25::placeholder
+{
+	font-size: medium;
+	color:#00C2C7;
+}</style><style type="text/css" data-vite-dev-id="C:/Miaminou/Miaminou/frontend/src/components/ImageField/imageField.module.css">._cadre_1a9vb_1 {
+	width: 100%;
+	height: 100%;
+
+	display: flex;
+	align-items: center;
+	justify-content: center;
+
+	cursor: pointer;
+}
+
+
+._cadre_1a9vb_1 label {
+	width: 100%;
+	height: 100%;
+
+	display: flex;
+	align-items: center;
+	justify-content: center;
+
+	cursor: pointer;
+}
+
+
+._cadre_1a9vb_1 img {
+	width: 100%;
+	height: 100%;
+
+	object-fit: cover;       /* 🔥 remplit sans déformer */
+	border-radius: inherit;  /* coins arrondis */
+}
+
+
+._cadre_1a9vb_1 svg{
+    width: 12rem;
+    height: 12rem;
+    fill: green;
+}
+
+
+._input_1a9vb_81 {
+	display: none;
+}
+
+</style><style type="text/css" data-vite-dev-id="C:/Miaminou/Miaminou/frontend/src/components/Ingredient/IngredientBulle/AddIngredientBulle.module.css">._addBulle_1y0uo_1
+{
+	align-items: center;
+	justify-content: center;
+
+	height: fit-content;
+	border: 1px solid #00C2C7;
+}
+
+
+._icon_1y0uo_21 {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+._icon_1y0uo_21 svg {
+	width: 16px;   /* 🔥 taille icône */
+	height: 16px;
+}
+
+._btn_1y0uo_43
+{
+	border: none;
+	background: transparent;
+}
+
+._text_1y0uo_55
+{
+	height: fit-content;
+	min-height: 2rem;
+}</style><style type="text/css" data-vite-dev-id="C:/Miaminou/Miaminou/frontend/src/components/Ingredient/IngredientBulle/bulle.module.css">/* Taille standard partagée */
+:root {
+	--bulle-h: 2rem;
+	--bulle-w: 8rem; /* carré par défaut */
+	--bulle-radius: 25px;
+}
+
+/* Base commune : même taille pour toutes les bulles */
+._bulle_1xhkv_17 {
+	width: var(--bulle-w);
+	height: var(--bulle-h);
+
+	display: flex;
+
+	border: 1px solid green;
+	border-radius: var(--bulle-radius);
+	background: white;
+
+	box-sizing: border-box;
+
+	cursor: pointer;
+}
+</style><style type="text/css" data-vite-dev-id="C:/Miaminou/Miaminou/frontend/src/features/ingredient/components/IngredientBulle/IngredientBulle.module.css">._bulleText_199rp_1 {
+	display: inline-flex;
+	align-items: center;
+	gap: 0.4rem;
+
+	padding: 0.35rem 0.75rem;
+	
+	white-space: nowrap;
+	box-sizing: border-box;
+
+	font-family: Arial, Helvetica, sans-serif;
+}
+
+._bulleText_199rp_1 > span:last-child {
+	margin-left: auto; /* 🔥 pousse l’icône à droite */
+	display: inline-flex;
+	align-items: center;
+	cursor: pointer;
+}
+
+._qte_199rp_41 {
+	width: auto;                      
+	min-width: 3ch;       
+	margin-right: 0.05rem;
+
+	flex-shrink: 0;
+
+	border: none;
+	background: transparent;
+	outline: none;
+
+	text-align: right;
+	font: inherit;
+	line-height: 1;
+
+	overflow: hidden;
+	white-space: nowrap;
+
+	-moz-appearance: textfield;
+}
+
+._qte_199rp_41::-webkit-inner-spin-button,
+._qte_199rp_41::-webkit-outer-spin-button {
+	-webkit-appearance: none;
+	margin: 0;
+}
+
+._unit_199rp_95 {
+	font-size: 0.85em;
+	opacity: 0.7;
+	user-select: none;
+}
+
+._text_199rp_107 {
+	display: inline-flex;
+	align-items: center;
+	flex-shrink: 0;
+
+
+	white-space: nowrap;
+	line-height: 1;
+}
+</style><style type="text/css" data-vite-dev-id="C:/Miaminou/Miaminou/frontend/src/features/ingredient/components/IngredientBulle/bulle.module.css">/* Taille standard partagée */
+:root {
+	--bulle-h: 2rem;
+	--bulle-w: 8rem; /* carré par défaut */
+	--bulle-radius: 25px;
+}
+
+/* Base commune : même taille pour toutes les bulles */
+._bulle_1xhkv_17 {
+	width: var(--bulle-w);
+	height: var(--bulle-h);
+
+	display: flex;
+
+	border: 1px solid green;
+	border-radius: var(--bulle-radius);
+	background: white;
+
+	box-sizing: border-box;
+
+	cursor: pointer;
+}
+</style><style type="text/css" data-vite-dev-id="C:/Miaminou/Miaminou/frontend/src/features/recipes/Stepes/Stepes.module.css">._stepes_4raix_1
+{
+	width: 100%;
+}
+
+._row_4raix_11
+{
+	width: 100%;
+	display:flex;
+	flex-direction: row;
+	justify-items: start;
+	gap:0;
+}
+
+._stepeName_4raix_29{
+	background-color: transparent;
+	border: none;
+	font-size: 1.5rem;
+	width:6rem;
+	color: #00C2C7;
+}
+
+._stepeName_4raix_29:focus
+{
+	outline: none;
+	background-color: transparent;
+}
+
+._stepeName_4raix_29::placeholder{
+	color:#00C2C7;
+}
+
+._stepeContent_4raix_65
+{
+	width: 100%;
+	height: 5rem;
+	font-size: medium;
+
+	border: none;
+	background-color: transparent;
+
+	font-family: Arial, Helvetica, sans-serif;
+	max-height: 10rem;
+}
+
+._stepeContent_4raix_65:focus
+{
+	outline: none;
+	background-color: transparent;
+}
+._btn_4raix_101
+{
+	border:none;
+	border-radius:99px;
+	background-color: transparent;
+}
+
+._btn_4raix_101:hover
+{
+	transform: translateY(-1px);
+	box-shadow: 0 3px 3px 2px rgb(0, 0, 0,0.25);
+}
+
+._btn_4raix_101 svg{
+	width: 32px;
+	height: 32px;
+}
+
+hr
+{
+	width: 30%;
+	height: 1px;
+	background-color: green;
+}</style><style type="text/css" data-vite-dev-id="C:/Miaminou/Miaminou/frontend/src/components/Ingredient/IngredientPopUp/Select/popup.module.css">/* Fond sombre + flou */
+._overlay_vhb71_3 {
+	position: fixed;
+	inset: 0;
+	background: rgba(0, 0, 0, 0.25);
+	backdrop-filter: blur(6px);
+	-webkit-backdrop-filter: blur(6px);
+
+	display: flex;
+	align-items: center;
+	justify-content: center;
+
+	z-index: 999;
+}
+
+._PopUp_vhb71_31 {
+	width: min(600px, 90vw);
+	max-height: 30vh;
+
+	border-radius: 1em;
+	box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25);
+	background-color: white;
+
+	padding: 1rem 1.2rem;
+
+	display: flex;
+	flex-direction: column;
+
+	/* animation */
+	transform: scale(0.98) translateY(10px);
+	opacity: 0;
+	animation: _popIn_vhb71_1 180ms ease-out forwards;
+
+	overflow: visible;
+}
+
+._PopUpContent_vhb71_73 {
+	flex: 1;
+
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(6rem, 1fr));
+	grid-auto-rows: min-content;
+	gap: 1rem 2rem;
+
+	overflow-y: auto;
+	overflow-x: hidden;
+
+	padding-top: 0.35rem;
+	padding-left: 0.35rem;
+	padding-right: 0.35rem;
+
+	box-sizing: border-box;
+}
+
+._ingredient_vhb71_109
+{
+	display: flex;
+	align-items: center;
+	justify-content: center;
+
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: medium;
+	
+	padding: 0.5rem;
+	border-radius: 25px;
+	border : 1px solid #00C2C7;
+
+	cursor: pointer;
+}
+
+._ingredient_vhb71_109:hover{
+	transform: translateY(-2px);
+	box-shadow: 0 2px 2px rgba(46, 125, 50, 0.35);
+}
+
+._ingredient_vhb71_109[aria-checked='true'] {
+	background: #00C2C7;
+	color : white;
+	border-radius: 25px;
+}
+
+@keyframes _popIn_vhb71_1 {
+	to {
+		transform: scale(1) translateY(0);
+		opacity: 1;
+	}
+}
+
+</style><style type="text/css" data-vite-dev-id="C:/Miaminou/Miaminou/frontend/src/components/Ingredient/IngredientPopUp/popup.module.css">._overlay_wvsec_1 {
+	position: fixed;
+	inset: 0;
+	background: rgba(0, 0, 0, 0.25);
+	backdrop-filter: blur(6px);
+	-webkit-backdrop-filter: blur(6px);
+
+	display: flex;
+	align-items: center;
+	justify-content: center;
+
+	z-index: 999;
+}</style><style type="text/css" data-vite-dev-id="C:/Miaminou/Miaminou/frontend/src/components/Ingredient/IngredientPopUp/Create/popup.module.css">/* popup.module.css (IngredientCreatePopUp) */
+
+._PopUp_6zhpi_5 {
+	width: min(520px, 92vw);
+	max-height: 70vh;
+
+	background: #fff;
+	border-radius: 18px;
+
+	padding: 1.25rem;
+	box-shadow: 0 14px 40px rgba(0, 0, 0, 0.18);
+
+	display: flex;
+	flex-direction: column;
+	gap: 1rem;
+
+	/* animation */
+	transform: scale(0.98) translateY(10px);
+	opacity: 0;
+	animation: _popIn_6zhpi_1 180ms ease-out forwards;
+
+	/* si tu ajoutes beaucoup de contenu */
+	overflow: hidden;
+}
+
+/* Zone contenu scrollable si besoin */
+._content_6zhpi_53 {
+	display: flex;
+	flex-direction: column;
+	gap: 0.9rem;
+
+	overflow: auto;
+	padding-right: 0.25rem; /* petit confort pour scrollbar */
+}
+
+/* Optionnel : titre */
+._title_6zhpi_73 {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 1.1rem;
+	font-weight: 700;
+	margin: 0;
+	color: #0b1320;
+}
+
+
+._icon_6zhpi_91 {
+	width: 26px;
+	height: 26px;
+	flex-shrink: 0;
+	opacity: 0.9;
+}
+
+/* Optionnel : footer (boutons) */
+._footer_6zhpi_107 {
+	display: flex;
+	justify-content: flex-end;
+	gap: 0.75rem;
+	margin-top: 0.25rem;
+}
+
+._btn_6zhpi_121 {
+	display: flex;                
+	align-items: center;       
+	justify-content: center;      
+
+	border: 2px solid green;
+	background-color: white;
+	border-radius: 9999px;
+
+	width: 2.5rem;                
+	height: 2.5rem;
+
+	padding: 0;                   
+	cursor: pointer;
+}
+
+._btn_6zhpi_121:hover{
+	background-color: green;
+	
+}
+
+._btn_6zhpi_121:hover svg path{
+	stroke: white;
+}
+
+._btn_6zhpi_121 svg
+{
+	width: 1.2rem;
+	height: 1.2rem;
+}
+
+._btn_6zhpi_121 svg path
+{
+	width: 1.2rem;
+	height: 1.2rem;
+	stroke:green;
+}
+
+
+
+/* Petite animation d’ouverture */
+@keyframes _popIn_6zhpi_1 {
+	to {
+		transform: scale(1) translateY(0);
+		opacity: 1;
+	}
+}
+
+/* Responsive */
+@media (max-width: 520px) {
+	._PopUp_6zhpi_5 {
+		padding: 1rem;
+		border-radius: 16px;
+		gap: 0.85rem;
+	}
+	._icon_6zhpi_91 {
+		width: 24px;
+		height: 24px;
+	}
+}
+</style><style type="text/css" data-vite-dev-id="C:/Miaminou/Miaminou/frontend/src/components/WaitingPopUp/waitingPopUp.module.css">._overlay_1brj1_1 {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100vw;
+	height: 100vh;
+
+	background-color: rgba(0, 0, 0, 0.4);
+	backdrop-filter: blur(2px);
+
+	display: flex;
+	align-items: center;
+	justify-content: center;
+
+	z-index: 9999;
+}
+
+._popup_1brj1_35 {
+	background: white;
+	padding: 2rem 2.5rem;
+	border-radius: 16px;
+
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 1rem;
+
+	box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+}
+
+._message_1brj1_61 {
+	font-size: 1rem;
+	font-weight: 500;
+	color: #333;
+	text-align: center;
+}
+
+/* Loader */
+._loader_1brj1_77 {
+	width: 48px;
+	height: 48px;
+	border: 4px solid #ddd;
+	border-top: 4px solid #4caf50;
+	border-radius: 50%;
+	animation: _spin_1brj1_1 1s linear infinite;
+}
+
+@keyframes _spin_1brj1_1 {
+	to {
+		transform: rotate(360deg);
+	}
+}
+
+
+/* couleurs par état */
+._loading_1brj1_111 {}
+
+._success_1brj1_115 {
+	border: 2px solid #4caf50;
+}
+
+._error_1brj1_123 {
+	border: 2px solid #f44336;
+}
+
+/* icônes */
+._successIcon_1brj1_133,
+._errorIcon_1brj1_135 {
+	width: 48px;
+	height: 48px;
+	border-radius: 50%;
+
+	display: flex;
+	align-items: center;
+	justify-content: center;
+
+	font-size: 2rem;
+	font-weight: bold;
+	color: white;
+}
+
+._successIcon_1brj1_133 {
+	background-color: #4caf50;
+}
+
+._errorIcon_1brj1_135 {
+	background-color: #f44336;
+}
+</style><style type="text/css" data-vite-dev-id="C:/Miaminou/Miaminou/frontend/src/pages/Recipes/style/add.module.css">._page_55iqi_1{
+	display: grid;
+	gap: 2rem;
+}
+
+._haut_55iqi_11 {
+	margin-top: 2rem;
+	display: grid;
+	grid-template-columns: minmax(200px, 1fr) minmax(0, 2fr);
+	gap: 1rem;
+
+	height: 22rem;        
+	align-items: stretch; 
+}
+
+._btn_55iqi_31 {
+	width: 3rem;
+	height: 3rem;
+
+	background-color: transparent;
+	border: none;
+	border-radius: 999px;
+
+	cursor: pointer;
+
+	/* Effet relief */
+
+
+	transition:
+		transform 0.1s ease,
+		box-shadow 0.1s ease;
+}
+
+._btn_55iqi_31:hover {
+	box-shadow: 0 4px 0 rgba(0, 0, 0, 0.25);
+	transform: translateY(-1px);
+	box-shadow:1 0 rgba(0, 0, 0, 0.25);
+}
+
+._btn_55iqi_31:active {
+	transform: translateY(3px);
+	box-shadow: 0 1px 0 rgba(0, 0, 0, 0.25);
+}
+
+._btn_55iqi_31:focus-visible {
+	outline: none;
+	box-shadow:
+		0 0 0 3px rgba(0, 128, 0, 0.4),
+		0 4px 0 rgba(0, 0, 0, 0.25);
+}
+
+._btnBarre_55iqi_103 {
+	margin-top: auto;      
+	margin-left: auto;      
+	width: fit-content;
+	border-radius: 25px;
+	display: flex;
+	gap: 0.5rem;
+}
+
+._btn_55iqi_31 svg{
+	width: 32px;
+	height: 32px;
+}
+
+
+._addBtn_55iqi_133 {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+
+	width: 2rem;
+	height: 2rem;
+}
+
+._addBtn_55iqi_133 svg {
+	width: 1.2rem;
+	height: 1.2rem;
+}
+
+._addBtn_55iqi_133:active {
+	transform: translateY(0);
+	box-shadow: none;
+}
+
+._IngredientRow_55iqi_171
+{
+	display: flex;
+	gap: 1rem;            
+	align-items: center;
+}
+
+._row_55iqi_185 {
+  display: flex;
+  gap: 1rem;
+  align-items: stretch; /* OK */
+}
+
+._row_55iqi_185 > * {
+	flex: 1;            
+	min-width: 0;        
+}
+
+._ingredient_55iqi_207
+{
+	display: flex;
+	flex-direction: column;
+	flex:1;
+
+	align-items: stretch;
+	justify-content: flex-start;
+
+	gap: 1rem;
+}
+
+._title_55iqi_231
+{
+	font: 1.2rem sans-serif;
+	font-family: Arial, Helvetica, sans-serif;
+	color: green;
+	
+}
+
+._photo_55iqi_247 {
+  	flex: 1;
+  	min-width: 0;
+  
+  	overflow: hidden;
+
+  	border-radius: 25px;
+  	display: flex;
+
+  	background-color: white;
+	border-radius: 25px;
+	box-shadow:0px 10px 25px 2px rgba(0, 0, 0,0.50);
+}
+
+._photo_55iqi_247 img {
+  width: 100%;
+  height: 100%;        /* suit la hauteur du conteneur */
+  object-fit: cover;   
+  display: block;
+}
+
+._recipe_55iqi_289
+{
+	background-color: white;
+	border-radius: 25px;
+	box-shadow:0px 10px 25px 2px rgba(0, 0, 0,0.50);
+	padding: 2rem;
+}
+
+._stape_55iqi_305 {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	background-color: white;
+	max-height: 50rem;
+	border-radius: 25px;
+	box-shadow: 0px 10px 25px 2px rgba(0, 0, 0, 0.50);
+	padding: 1rem;
+
+	overflow-y: auto;
+
+	scrollbar-width: none;
+
+	-ms-overflow-style: none;
+}
+
+._stape_55iqi_305::-webkit-scrollbar {
+	display: none;
+}
+
+._stape_55iqi_305:hover {
+	scrollbar-width: thin;
+}
+
+._stape_55iqi_305:hover::-webkit-scrollbar {
+	display: block;
+	width: 6px;
+}
+
+._stape_55iqi_305:hover::-webkit-scrollbar-thumb {
+	background-color: rgba(0, 0, 0, 0.3);
+	border-radius: 999px;
+}
+
+._listIng_55iqi_375 {
+	display: grid;
+	grid-template-rows: repeat(5, auto);
+	grid-auto-flow: column;
+
+	gap: 0.4rem;
+}
+
+
+._infoGene_55iqi_393 {
+	display: flex;
+	flex-direction: column;
+	gap: 0.5rem;
+	height: 100%;
+}
+
+
+@media (max-width: 900px) {
+	._haut_55iqi_11 {
+		grid-template-columns: 1fr; /* ✅ 1 colonne */
+	}
+}
+
+@media (max-width: 520px) {
+	._listIng_55iqi_375 {
+		grid-template-columns: 1fr;
+	}
+}
+
+@media (max-width: 900px) {
+	._row_55iqi_185 {
+		flex-direction: column;
+	}
+}
+</style><style type="text/css" data-vite-dev-id="C:/Miaminou/Miaminou/frontend/src/features/recipes/RecipeView/recipeGlobal.module.css">/* =========================
+   CONTENEUR PRINCIPAL
+   ========================= */
+._info_j3x8k_7 {
+	position: relative;
+	display: flex;
+	flex:1;
+	flex-direction: column;
+	justify-content: flex-end;
+
+	padding: 1.5rem;
+
+	background-size: cover;
+	background-position: center;
+	background-repeat: no-repeat;
+
+	border-radius: 25px;
+	overflow: hidden;
+}
+
+
+/* =========================
+   LIGNE DES BULLES
+   ========================= */
+._row_j3x8k_49 {
+	display: flex;
+	align-items: center;
+	width: 100%;
+}
+
+
+
+/* =========================
+   BULLES (COMMUN)
+   ========================= */
+._bulle_j3x8k_71 {
+	display: inline-flex;
+	align-items: center;
+
+	background-color: rgba(255, 255, 255, 0.9);
+	border-radius: 25px;
+
+	padding: 0.6rem 0.9rem;
+	gap: 0.4rem;
+
+	min-height: 2.5rem;
+	max-width: 100%;
+}
+
+
+/* =========================
+   ICÔNE
+   ========================= */
+._icon_j3x8k_107 {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+
+	width: 32px;
+	height: 32px;
+	flex-shrink: 0;
+}
+
+._icon_j3x8k_107 svg {
+	width: 100%;
+	height: 100%;
+	display: block;
+	color: black;
+}
+
+
+/* =========================
+   TEXTE
+   ========================= */
+._text_j3x8k_149 {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 1.5rem;
+	color: black;
+	white-space: nowrap;
+}
+
+
+/* =========================
+   NOM RECETTE
+   ========================= */
+._name_j3x8k_171 {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 1.5rem;
+	font-weight: bold;
+	padding: 0.8rem 1rem;
+}
+
+._margin_j3x8k_185 {
+	display: flex;
+	gap: 0.5rem;
+
+	margin-left: auto; 
+}
+</style><style type="text/css" data-vite-dev-id="C:/Miaminou/Miaminou/frontend/src/pages/Recipes/style/view.module.css">._content_r82bb_1 {
+	display: flex;
+    flex-direction: column;
+	gap: 2rem;
+
+	width: 100%;
+    height: 100%;
+	max-width: 1600px;
+	margin: 3rem auto;
+	padding: 0 1.5rem;
+
+    
+	min-height: calc(100vh - 6rem);
+
+    align-items: stretch;
+	box-sizing: border-box;
+}
+
+
+
+._row_r82bb_41 {
+	display: flex;
+	width: 100%;
+	height: 25rem;
+	gap: 1.5rem;
+	align-items: stretch;
+    justify-items: space-between;
+}
+
+
+._recipe_r82bb_61 {
+    display: flex;
+	flex: 0 0 55%; 
+	min-width: 0; 
+}
+
+._side_r82bb_73 {
+	display: flex;
+	flex: 0 0 45%;        
+	max-width: 420px;         
+}
+
+
+._stepe_r82bb_87 {
+	background-color: white;
+
+	flex: 1;       
+	min-height: 0;  
+}
+</style><style type="text/css" data-vite-dev-id="C:/Miaminou/Miaminou/frontend/src/features/recipes/RecipeView/ListIngredient/listIngredient.module.css">._list_5c6ru_1 {
+	background-color: white;
+	border-radius: 16px;
+
+	display: flex;
+	flex-direction: column;
+    height: 100%;
+
+	padding: 1rem;
+	box-sizing: border-box;
+    overflow-y: auto; 
+}
+
+._row_5c6ru_27 {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+
+	margin-bottom: 1rem;
+}
+
+._titre_5c6ru_43 {
+	display: flex;
+	align-items: center;
+	gap: 0.5rem;
+
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 1.1rem;
+	font-weight: bold;
+}
+
+
+._personne_5c6ru_65 {
+	display: flex;
+	align-items: center;
+	gap: 0.4rem;
+
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 0.95rem;
+}
+
+._nbPersonne_5c6ru_83 {
+	min-width: 1.5rem;
+	text-align: center;
+	font-weight: bold;
+}
+
+._btn_5c6ru_95 {
+	border: none;
+	background: none;
+	cursor: pointer;
+
+	font-size: 1.1rem;
+	line-height: 1;
+	padding: 0 0.3rem;
+}
+
+
+._listIngredient_5c6ru_117 {
+	display: flex;
+	flex-direction: column;
+	gap: 0.6rem;
+
+	flex: 1;
+}
+
+
+._ingredient_5c6ru_135 {
+	display: flex;
+	align-items: center;
+	gap: 0.6rem;
+
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 0.95rem;
+}
+
+._ingredient_5c6ru_135 svg {
+	width: 20px;
+	height: 20px;
+	flex-shrink: 0;
+}
+</style><style>
+      body.shimeji-pinned iframe {
+        pointer-events: none;
+      }
+      body.shimeji-select-ie {
+        cursor: cell !important;
+      }
+      #shimeji-contextMenu::-webkit-scrollbar {
+        width: 6px;
+      }
+      #shimeji-contextMenu::-webkit-scrollbar-thumb {
+        background-color: rgba(30,30,30,0.6);
+        border-radius: 3px;
+      }
+      #shimeji-contextMenu::-webkit-scrollbar-thumb:hover {
+        background: #555;
+      }
+    </style><meta name="shimejiBrowserExtensionId" content="gohjpllcolmccldfdggmamodembldgpc" data-version="2.0.5"></head>
+	<body>
+		<div id="root"><div class="_container_3vd3t_1"><h1 class="_logo_3vd3t_57">Miaminou</h1><ul><a class="_lien_3vd3t_33" href="http://localhost:5173/home">Accueil</a><a class="_lien_3vd3t_33" href="http://localhost:5173/test_db">Tester connexion</a><a class="_lien_3vd3t_33" href="http://localhost:5173/recipes">Recettes</a><a class="_lien_3vd3t_33" href="http://localhost:5173/users">Utilisateurs</a></ul></div><main class="content"><div class="_content_r82bb_1"><div class="_row_r82bb_41"><div class="_recipe_r82bb_61"><div class="_info_j3x8k_7" style="background-image: url(&quot;http://localhost:5000/uploads/recipes/1769889624646-956186622.jpg&quot;);"><div class="_row_j3x8k_49"><div class="_bulle_j3x8k_71 _name_j3x8k_171">Poisson pané sauce rose</div><div class="_margin_j3x8k_185"><div class="_bulle_j3x8k_71"><svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M25.7043 0.403089C26.2417 -0.134363 27.1132 -0.134363 27.6506 0.403089L29.5969 2.34934C30.1344 2.88679 30.1344 3.75815 29.5969 4.29561C29.0594 4.83304 28.1881 4.83304 27.6506 4.29561L25.7043 2.34934C25.1669 1.8119 25.1669 0.940527 25.7043 0.403089Z" fill="black"></path><path d="M20.8386 1.37598C21.376 0.838541 22.2474 0.838541 22.7848 1.37598L28.6236 7.21475C29.1611 7.7522 29.1611 8.62356 28.6236 9.161C28.0861 9.69845 27.2147 9.69845 26.6773 9.161L20.8386 3.32223C20.3012 2.78479 20.3012 1.91342 20.8386 1.37598Z" fill="black"></path><path d="M21.8119 10.1344L10.1345 21.8118L13.0539 24.7311C13.5913 25.2685 13.5913 26.14 13.0539 26.6774C12.5163 27.2148 11.645 27.2148 11.1075 26.6774L3.32252 18.8923C2.78507 18.3549 2.78507 17.4836 3.32251 16.946C3.85996 16.4086 4.73132 16.4086 5.26878 16.946L8.18824 19.8655L19.8657 8.18812L16.9462 5.26865C16.4088 4.73121 16.4088 3.85984 16.9462 3.3224C17.4836 2.78495 18.355 2.78495 18.8924 3.3224L26.6775 11.1074C27.2149 11.6449 27.2149 12.5163 26.6775 13.0537C26.1401 13.5911 25.2687 13.5911 24.7313 13.0537L21.8119 10.1344Z" fill="black"></path><path d="M3.32224 20.8388C2.7848 20.3014 1.91343 20.3014 1.37599 20.8388C0.838537 21.3764 0.838537 22.2477 1.37599 22.7852L7.21476 28.6239C7.7522 29.1613 8.62357 29.1613 9.16101 28.6239C9.69846 28.0865 9.69846 27.2151 9.16101 26.6777L3.32224 20.8388Z" fill="black"></path><path d="M2.34934 25.7043C1.8119 25.1669 0.940527 25.1669 0.403089 25.7043C-0.134363 26.2419 -0.134363 27.1132 0.403089 27.6507L2.34934 29.5969C2.88679 30.1344 3.75815 30.1344 4.29559 29.5969C4.83304 29.0594 4.83304 28.1881 4.29559 27.6507L2.34934 25.7043Z" fill="black"></path></svg><svg width="11" height="30" viewBox="0 0 11 30" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="0.5" y="0.5" width="10" height="29" rx="5" fill="#01CAD0" stroke="#01CAD0"></rect></svg><svg width="11" height="30" viewBox="0 0 11 30" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="0.5" y="0.5" width="10" height="29" rx="5" stroke="#01CAD0"></rect></svg><svg width="11" height="30" viewBox="0 0 11 30" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="0.5" y="0.5" width="10" height="29" rx="5" stroke="#01CAD0"></rect></svg><svg width="11" height="30" viewBox="0 0 11 30" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="0.5" y="0.5" width="10" height="29" rx="5" stroke="#01CAD0"></rect></svg></div><div class="_bulle_j3x8k_71"><span class="_icon_j3x8k_107"><svg width="32px" height="32px" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M9 7.5C9 5.84315 10.3431 4.5 12 4.5C13.6569 4.5 15 5.84315 15 7.5H15.75C17.4069 7.5 18.75 8.84315 18.75 10.5C18.75 12.1569 17.4069 13.5 15.75 13.5H15V15.75H9V13.5H8.25C6.59315 13.5 5.25 12.1569 5.25 10.5C5.25 8.84315 6.59315 7.5 8.25 7.5H9ZM7.74631 6.02787C8.35613 4.26554 10.0303 3 12 3C13.9697 3 15.6439 4.26554 16.2537 6.02788C18.5019 6.27827 20.25 8.18499 20.25 10.5C20.25 12.7297 18.6283 14.5807 16.5 14.9378V19.5L15.75 20.25H8.25L7.5 19.5V14.9378C5.37172 14.5807 3.75 12.7297 3.75 10.5C3.75 8.18499 5.49811 6.27827 7.74631 6.02787ZM9 18.75V17.25H15V18.75H9Z" fill="currentColor"></path></svg></span><div class="_text_j3x8k_149">20 min </div></div><div class="_bulle_j3x8k_71"><span class="_icon_j3x8k_107"><svg width="32px" height="32px" viewBox="-4.88 0 86.917 86.917" xmlns="http://www.w3.org/2000/svg"><g id="oven_baker_line" data-name="oven baker line" transform="translate(-368.118 -359.595)"><rect id="Rectangle_8" data-name="Rectangle 8" width="73.106" height="82.865" rx="6.082" transform="translate(370.144 361.621)" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="4.051"></rect><rect id="Rectangle_9" data-name="Rectangle 9" width="50.507" height="39.036" rx="1.521" transform="translate(381.444 393.295)" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="4.051"></rect><line id="Line_29" data-name="Line 29" x2="71.355" transform="translate(370.837 382.399)" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="4.051"></line><line id="Line_30" data-name="Line 30" x2="1.056" transform="translate(378.437 371.423)" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="4.051"></line><line id="Line_31" data-name="Line 31" x2="1.056" transform="translate(390.787 371.423)" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="4.051"></line><line id="Line_32" data-name="Line 32" x2="1.056" transform="translate(403.137 371.423)" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="4.051"></line><line id="Line_33" data-name="Line 33" x2="1.056" transform="translate(415.487 371.423)" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="4.051"></line><line id="Line_34" data-name="Line 34" x2="1.056" transform="translate(434.593 371.423)" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="4.051"></line><path id="Path_25" data-name="Path 25" d="M402.293,401.929a7.183,7.183,0,0,0-3.167,5.594c0,3.589,4.011,4.539,4.011,9.606a6.358,6.358,0,0,1-4.011,6.333" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="4.051"></path><path id="Path_26" data-name="Path 26" d="M414.22,401.929a7.184,7.184,0,0,0-3.166,5.594c0,3.589,4.011,4.539,4.011,9.606a6.358,6.358,0,0,1-4.011,6.333" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="4.051"></path></g></svg></span><div class="_text_j3x8k_149">0 min </div></div></div></div></div></div><div class="_side_r82bb_73"><div class="_list_5c6ru_1"><div class="_row_5c6ru_27"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><g clip-path="url(#clip0_64_3895)"><path d="M2.00011 18.43C3.51011 19.79 13.6401 13.76 15.1401 11.22C15.8601 9.99995 15.0101 8.20995 13.6201 6.77995C15.2001 5.72995 16.5901 8.99995 17.9101 8.30995C18.5101 7.98995 18.9001 6.99995 18.6101 6.38995C18.0901 5.30995 16.3601 5.30995 15.1901 5.17995C16.0201 4.97995 18.0101 4.12995 18.0501 2.92995C18.0901 2.00995 16.9201 0.959954 16.0001 1.06995C14.7901 1.20995 14.3501 2.94995 13.9401 4.06995C13.8901 3.35995 13.7401 1.79995 12.9601 1.11995C11.9201 0.209953 10.6701 1.06995 10.6401 2.16995C10.6001 3.49995 13.4601 4.23995 12.5601 5.83995C11.0401 4.66995 9.25011 4.02995 8.10011 4.69995C7.61012 5.00995 7.05011 5.60995 6.47011 6.38995C7.36011 7.32995 8.59011 8.45995 9.56011 9.10995C9.76011 9.24995 9.82011 9.52995 9.67011 9.72995C9.53011 9.93995 9.25011 9.98995 9.05011 9.84995C8.06011 9.17995 6.85011 8.06995 5.95011 7.13995C5.50011 7.80995 5.04011 8.56995 4.61011 9.36995C5.46011 10.23 6.54011 11.2 7.40011 11.78C7.60011 11.92 7.65011 12.2 7.51011 12.4C7.37011 12.61 7.09011 12.66 6.88011 12.52C6.03011 11.94 5.02011 11.04 4.17011 10.2C2.40011 13.69 1.10011 17.63 2.00011 18.43Z" fill="currentColor"></path></g><defs><clippath id="clip0_64_3895"><rect width="20" height="20" fill="white"></rect></clippath></defs></svg><div class="_titre_5c6ru_43">Liste Ingrédient</div><div class="_personne_5c6ru_65"><svg width="32px" height="32px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path opacity="0.4" d="M17.9981 7.16C17.9381 7.15 17.8681 7.15 17.8081 7.16C16.4281 7.11 15.3281 5.98 15.3281 4.58C15.3281 3.15 16.4781 2 17.9081 2C19.3381 2 20.4881 3.16 20.4881 4.58C20.4781 5.98 19.3781 7.11 17.9981 7.16Z" stroke="#292D32" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><path opacity="0.4" d="M16.9675 14.4402C18.3375 14.6702 19.8475 14.4302 20.9075 13.7202C22.3175 12.7802 22.3175 11.2402 20.9075 10.3002C19.8375 9.59016 18.3075 9.35016 16.9375 9.59016" stroke="#292D32" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><path opacity="0.4" d="M5.96656 7.16C6.02656 7.15 6.09656 7.15 6.15656 7.16C7.53656 7.11 8.63656 5.98 8.63656 4.58C8.63656 3.15 7.48656 2 6.05656 2C4.62656 2 3.47656 3.16 3.47656 4.58C3.48656 5.98 4.58656 7.11 5.96656 7.16Z" stroke="#292D32" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><path opacity="0.4" d="M6.9975 14.4402C5.6275 14.6702 4.1175 14.4302 3.0575 13.7202C1.6475 12.7802 1.6475 11.2402 3.0575 10.3002C4.1275 9.59016 5.6575 9.35016 7.0275 9.59016" stroke="#292D32" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><path d="M12.0001 14.6302C11.9401 14.6202 11.8701 14.6202 11.8101 14.6302C10.4301 14.5802 9.33008 13.4502 9.33008 12.0502C9.33008 10.6202 10.4801 9.47021 11.9101 9.47021C13.3401 9.47021 14.4901 10.6302 14.4901 12.0502C14.4801 13.4502 13.3801 14.5902 12.0001 14.6302Z" stroke="#292D32" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><path d="M9.0907 17.7804C7.6807 18.7204 7.6807 20.2603 9.0907 21.2003C10.6907 22.2703 13.3107 22.2703 14.9107 21.2003C16.3207 20.2603 16.3207 18.7204 14.9107 17.7804C13.3207 16.7204 10.6907 16.7204 9.0907 17.7804Z" stroke="#292D32" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg><button class="_btn_5c6ru_95"> - </button><div class="_nbPersonne_5c6ru_83">1</div><button class="_btn_5c6ru_95"> + </button></div></div><div class="_listIngredient_5c6ru_117"><div class="_ingredient_5c6ru_135"><svg width="25" height="29" viewBox="0 0 25 29" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9.33536 0.130476C8.67822 0.130275 8.23564 0.641721 8.23583 1.27195L8.23745 6.71063C8.23764 7.3291 7.91361 7.62483 7.41669 7.62468C6.9628 7.62454 6.69494 7.25702 6.69481 6.82077L6.66837 1.17104C6.66816 0.458151 6.03402 0.00184446 5.44567 0.00166461C4.85709 0.0014847 4.2235 0.457404 4.22372 1.17029L4.22541 6.82001C4.22554 7.25632 3.93287 7.62362 3.47892 7.62348C2.98261 7.62333 2.65819 7.32739 2.658 6.70892L2.65638 1.27025C2.65619 0.640015 2.21324 0.128298 1.5561 0.128098C0.898461 0.128991 0.548371 0.684282 0.477234 1.22899C0.406097 1.77419 0.0423448 5.66784 0.00311858 8.15642C-0.0366649 10.6456 1.74448 12.102 2.7591 12.5647C3.45279 12.8811 3.95504 13.5611 3.95529 14.3787L3.54439 28.009L7.36353 28.0101L6.94447 14.3796C6.94423 13.562 7.44574 12.8824 8.1393 12.5664C9.15386 12.1042 10.9342 10.649 10.8931 8.15975C10.8522 5.67114 10.4866 1.77728 10.4146 1.23203C10.3429 0.687276 9.99278 0.131771 9.33536 0.130476Z" fill="currentColor"></path><path d="M19.0942 0.221025C16.452 0.220217 13.6498 2.98569 13.6511 7.33118C13.6518 9.82038 15.5695 11.8418 16.4078 12.5688C17.2276 13.2804 17.6038 13.5652 17.604 14.3828L17.1931 28.0131L21.0123 28.0142L20.5929 14.3837C20.5927 13.5662 20.9692 13.2816 21.7886 12.5705C22.6254 11.8439 24.5421 9.82371 24.5414 7.33451C24.5401 2.98902 21.7365 0.221833 19.0942 0.221025Z" fill="currentColor"></path></svg><div>200</div><div>g</div><div>Riz</div></div><div class="_ingredient_5c6ru_135"><svg width="25" height="29" viewBox="0 0 25 29" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9.33536 0.130476C8.67822 0.130275 8.23564 0.641721 8.23583 1.27195L8.23745 6.71063C8.23764 7.3291 7.91361 7.62483 7.41669 7.62468C6.9628 7.62454 6.69494 7.25702 6.69481 6.82077L6.66837 1.17104C6.66816 0.458151 6.03402 0.00184446 5.44567 0.00166461C4.85709 0.0014847 4.2235 0.457404 4.22372 1.17029L4.22541 6.82001C4.22554 7.25632 3.93287 7.62362 3.47892 7.62348C2.98261 7.62333 2.65819 7.32739 2.658 6.70892L2.65638 1.27025C2.65619 0.640015 2.21324 0.128298 1.5561 0.128098C0.898461 0.128991 0.548371 0.684282 0.477234 1.22899C0.406097 1.77419 0.0423448 5.66784 0.00311858 8.15642C-0.0366649 10.6456 1.74448 12.102 2.7591 12.5647C3.45279 12.8811 3.95504 13.5611 3.95529 14.3787L3.54439 28.009L7.36353 28.0101L6.94447 14.3796C6.94423 13.562 7.44574 12.8824 8.1393 12.5664C9.15386 12.1042 10.9342 10.649 10.8931 8.15975C10.8522 5.67114 10.4866 1.77728 10.4146 1.23203C10.3429 0.687276 9.99278 0.131771 9.33536 0.130476Z" fill="currentColor"></path><path d="M19.0942 0.221025C16.452 0.220217 13.6498 2.98569 13.6511 7.33118C13.6518 9.82038 15.5695 11.8418 16.4078 12.5688C17.2276 13.2804 17.6038 13.5652 17.604 14.3828L17.1931 28.0131L21.0123 28.0142L20.5929 14.3837C20.5927 13.5662 20.9692 13.2816 21.7886 12.5705C22.6254 11.8439 24.5421 9.82371 24.5414 7.33451C24.5401 2.98902 21.7365 0.221833 19.0942 0.221025Z" fill="currentColor"></path></svg><div>3</div><div>g</div><div>Concentré de tomate</div></div><div class="_ingredient_5c6ru_135"><svg width="25" height="29" viewBox="0 0 25 29" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9.33536 0.130476C8.67822 0.130275 8.23564 0.641721 8.23583 1.27195L8.23745 6.71063C8.23764 7.3291 7.91361 7.62483 7.41669 7.62468C6.9628 7.62454 6.69494 7.25702 6.69481 6.82077L6.66837 1.17104C6.66816 0.458151 6.03402 0.00184446 5.44567 0.00166461C4.85709 0.0014847 4.2235 0.457404 4.22372 1.17029L4.22541 6.82001C4.22554 7.25632 3.93287 7.62362 3.47892 7.62348C2.98261 7.62333 2.65819 7.32739 2.658 6.70892L2.65638 1.27025C2.65619 0.640015 2.21324 0.128298 1.5561 0.128098C0.898461 0.128991 0.548371 0.684282 0.477234 1.22899C0.406097 1.77419 0.0423448 5.66784 0.00311858 8.15642C-0.0366649 10.6456 1.74448 12.102 2.7591 12.5647C3.45279 12.8811 3.95504 13.5611 3.95529 14.3787L3.54439 28.009L7.36353 28.0101L6.94447 14.3796C6.94423 13.562 7.44574 12.8824 8.1393 12.5664C9.15386 12.1042 10.9342 10.649 10.8931 8.15975C10.8522 5.67114 10.4866 1.77728 10.4146 1.23203C10.3429 0.687276 9.99278 0.131771 9.33536 0.130476Z" fill="currentColor"></path><path d="M19.0942 0.221025C16.452 0.220217 13.6498 2.98569 13.6511 7.33118C13.6518 9.82038 15.5695 11.8418 16.4078 12.5688C17.2276 13.2804 17.6038 13.5652 17.604 14.3828L17.1931 28.0131L21.0123 28.0142L20.5929 14.3837C20.5927 13.5662 20.9692 13.2816 21.7886 12.5705C22.6254 11.8439 24.5421 9.82371 24.5414 7.33451C24.5401 2.98902 21.7365 0.221833 19.0942 0.221025Z" fill="currentColor"></path></svg><div>20</div><div>g</div><div>Crème</div></div><div class="_ingredient_5c6ru_135"><svg width="25" height="29" viewBox="0 0 25 29" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9.33536 0.130476C8.67822 0.130275 8.23564 0.641721 8.23583 1.27195L8.23745 6.71063C8.23764 7.3291 7.91361 7.62483 7.41669 7.62468C6.9628 7.62454 6.69494 7.25702 6.69481 6.82077L6.66837 1.17104C6.66816 0.458151 6.03402 0.00184446 5.44567 0.00166461C4.85709 0.0014847 4.2235 0.457404 4.22372 1.17029L4.22541 6.82001C4.22554 7.25632 3.93287 7.62362 3.47892 7.62348C2.98261 7.62333 2.65819 7.32739 2.658 6.70892L2.65638 1.27025C2.65619 0.640015 2.21324 0.128298 1.5561 0.128098C0.898461 0.128991 0.548371 0.684282 0.477234 1.22899C0.406097 1.77419 0.0423448 5.66784 0.00311858 8.15642C-0.0366649 10.6456 1.74448 12.102 2.7591 12.5647C3.45279 12.8811 3.95504 13.5611 3.95529 14.3787L3.54439 28.009L7.36353 28.0101L6.94447 14.3796C6.94423 13.562 7.44574 12.8824 8.1393 12.5664C9.15386 12.1042 10.9342 10.649 10.8931 8.15975C10.8522 5.67114 10.4866 1.77728 10.4146 1.23203C10.3429 0.687276 9.99278 0.131771 9.33536 0.130476Z" fill="currentColor"></path><path d="M19.0942 0.221025C16.452 0.220217 13.6498 2.98569 13.6511 7.33118C13.6518 9.82038 15.5695 11.8418 16.4078 12.5688C17.2276 13.2804 17.6038 13.5652 17.604 14.3828L17.1931 28.0131L21.0123 28.0142L20.5929 14.3837C20.5927 13.5662 20.9692 13.2816 21.7886 12.5705C22.6254 11.8439 24.5421 9.82371 24.5414 7.33451C24.5401 2.98902 21.7365 0.221833 19.0942 0.221025Z" fill="currentColor"></path></svg><div>12</div><div>g</div><div>Poisson pané</div></div></div></div></div></div><div class="_stepe_r82bb_87">asasasa</div></div></main></div>
+		<script type="module" src="./Miaminou_files/main.jsx"></script>
+	
+
+<div id="shimeji-workArea" style="position: fixed; background: transparent; z-index: 2147483643; width: 100vw; height: 100vh; left: 0px; top: 0px; transform: translate(0px, 0px); pointer-events: none;"></div></body></html>

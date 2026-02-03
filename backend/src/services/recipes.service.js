@@ -1,12 +1,96 @@
 import RecipesModels from '../models/recipes.models.js';
+import IngredientModels from '../models/ingredient.models.js';
+import StepesModels from '../models/stepes.models.js';
+
+import prisma from '../db.js';
 
 class RecipesServices {
-	static async create(data) {
-		if (data.recipe_difficult < 1 || data.recipe_difficult > 5)
-			throw new Error('Difficult level invalide');
+	static async getIngredients(idRecipe) {
+		const idsIngredientObjects = await RecipesModels.getIngredients(idRecipe);
 
-		return RecipesModels.create(data);
+		if (!idsIngredientObjects || idsIngredientObjects.length === 0) {
+			return [];
+		}
+
+		const quantityMap = new Map(
+			idsIngredientObjects.map(row => [
+				row.ingredient_id,
+				row.quantity
+			])
+		);
+
+		const ingredientIds = idsIngredientObjects.map(row => row.ingredient_id);
+		const ingredients = await IngredientModels.getIngredientById(ingredientIds);
+
+		const result = ingredients.map(ing => ({
+			...ing,
+			quantity: quantityMap.get(ing.ingredient_id) ?? 0
+		}));
+
+		return result;
 	}
+
+
+	static async create(data) 
+	{
+		const parseRecipeBody = (body) =>{
+			return {
+				recipe_name: body.recipe_name,
+				recipe_image : body.recipe_image,
+				recipe_preparation_time: Number(body.recipe_preparation_time),
+				recipe_cooking_time: Number(body.recipe_cooking_time),
+				recipe_difficult: Number(body.recipe_difficult),
+				recipe_nb_personne: Number(body.recipe_nb_personne),
+				recipe_like_number: Number(body.recipe_like_number),
+				stepes: JSON.parse(body.stepes),
+				ingredients: JSON.parse(body.ingredients),
+			};
+		};
+
+		data = parseRecipeBody(data);
+
+		let { ingredients = [], stepes = [], ...recipeData } = data;
+
+		return await prisma.$transaction(async (tx) => {
+
+			// 1️⃣ Création de la recette via ta classe
+			const recipe = await RecipesModels.create(recipeData, tx);
+
+			// 2️⃣ Liaison ingrédients
+			await Promise.all(
+				ingredients.map((ing) =>
+					RecipesModels.linkIngredientRecipe(
+						recipe.recipe_id,
+						ing.ingredient_id,
+						Number(ing.qte) ?? 0,
+						tx
+					)
+				)
+			);
+
+
+			// 3️⃣ Création des étapes
+			await Promise.all(
+				stepes.map((stepe) =>{
+					console.log("je suis la")
+					const data = {
+						...stepe,
+						recipe: { connect: { recipe_id: recipe.recipe_id } },
+					}
+					return StepesModels.create(data, tx)
+				}
+					
+				)
+			);
+
+			// ✅ Si on arrive ici → commit automatique
+			return recipe;
+		});
+	};
+
+
+	
+
 
 	static async update(recipe_id, data) {
 		if (!data || typeof data !== 'object') {

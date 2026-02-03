@@ -2,7 +2,7 @@ import IngredientModels from '../models/ingredient.models.js';
 import IngredientServices from '../services/ingredient.service.js';
 
 class IngredientController {
-	static async getAll(req, res) {
+	static async getAll(req, res,next) {
 		try {
 			const response = await IngredientModels.getAll();
 			res.status(200).json(response);
@@ -12,7 +12,7 @@ class IngredientController {
 		}
 	}
 
-	static async getById(req, res) {
+	static async getById(req, res,next) {
 		try {
 			const id = Number(req.params.id);
 			if (!id) {
@@ -28,9 +28,10 @@ class IngredientController {
 		}
 	}
 
-	static async create(req, res) {
+	static async create(req, res,next) {
 		try {
 			const newIngredient = req.body;
+			console.log(newIngredient);
 			const result = await IngredientServices.create(newIngredient);
 			res.status(201).json(result);
 		} catch (error) {
@@ -39,7 +40,7 @@ class IngredientController {
 		}
 	}
 
-	static async update(req, res) {
+	static async update(req, res,next) {
 		try {
 			const id = Number(req.params.id);
 			if (!id) throw new Error('Id invalide');
@@ -51,7 +52,7 @@ class IngredientController {
 		}
 	}
 
-	static async delete(req, res) {
+	static async delete(req, res,next) {
 		try {
 			const id = Number(req.params.id);
 			if (!id) throw new Error('Id invalide');

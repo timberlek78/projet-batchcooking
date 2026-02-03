@@ -7,11 +7,11 @@ class RecipeController {
 			const response = await RecipesModels.getAll();
 			res.status(200).json(response);
 		} catch (error) {
-			return next(error);
+			console.log(error);
 		}
 	}
 
-	static async getById(req, res) {
+	static async getById(req, res, next) {
 		try {
 			const id = Number(req.params.id);
 
@@ -27,18 +27,40 @@ class RecipeController {
 		}
 	}
 
-	static async create(req, res) {
+	static async getIngredients(req, res, next) {
 		try {
-			const newRecipes = req.body;
-			const result = await RecipesServices.create(newRecipes);
-			res.status(201).json(result);
+			const id = Number(req.params.id);
+			if (!id) {
+				throw new Error('Id invalide');
+			}
+
+			const response = await RecipesServices.getIngredients(id);
+			res.status(200).json(response ?? "Pas ingrédient pour cette recette");
+
 		} catch (error) {
-			//console.log(error);
 			return next(error);
 		}
 	}
 
-	static async update(req, res) {
+	static async create(req, res, next) {
+		try {
+			const recipeData = req.body;
+
+	
+			if (req.file) {
+				recipeData.recipe_image = req.file.filename;
+				console.log(recipeData);
+			}
+			const result = await RecipesServices.create(recipeData);
+			res.status(201).json(result);
+		}
+		catch (error) {
+			return next(error);
+		}
+	}
+
+
+	static async update(req, res, next) {
 		try {
 			const id = Number(req.params.id);
 			if (!id) {
@@ -52,7 +74,7 @@ class RecipeController {
 		}
 	}
 
-	static async delete(req, res) {
+	static async delete(req, res, next) {
 		try {
 			const id = Number(req.params.id);
 			if (!id) {

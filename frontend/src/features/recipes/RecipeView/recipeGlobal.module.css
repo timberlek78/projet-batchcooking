@@ -1,0 +1,98 @@
+/* =========================
+   CONTENEUR PRINCIPAL
+   ========================= */
+.info {
+	position: relative;
+	display: flex;
+	flex:1;
+	flex-direction: column;
+	justify-content: flex-end;
+
+	padding: 1.5rem;
+
+	background-size: cover;
+	background-position: center;
+	background-repeat: no-repeat;
+	box-shadow: 0 5px 5px 5px rgba(0, 0, 0, 0.25);
+	border-radius: 25px;
+	overflow: hidden;
+}
+
+
+/* =========================
+   LIGNE DES BULLES
+   ========================= */
+.row {
+	display: flex;
+	align-items: center;
+	width: 100%;
+}
+
+
+
+/* =========================
+   BULLES (COMMUN)
+   ========================= */
+.bulle {
+	display: inline-flex;
+	align-items: center;
+
+	background-color: rgba(255, 255, 255, 0.9);
+	border-radius: 25px;
+
+	padding: 0.6rem 0.9rem;
+	gap: 0.4rem;
+
+	min-height: 2.5rem;
+	max-width: 100%;
+}
+
+
+/* =========================
+   ICÔNE
+   ========================= */
+.icon {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+
+	width: 32px;
+	height: 32px;
+	flex-shrink: 0;
+}
+
+.icon svg {
+	width: 100%;
+	height: 100%;
+	display: block;
+	color: black;
+}
+
+
+/* =========================
+   TEXTE
+   ========================= */
+.text {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 1.5rem;
+	color: black;
+	white-space: nowrap;
+}
+
+
+/* =========================
+   NOM RECETTE
+   ========================= */
+.name {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 1.5rem;
+	font-weight: bold;
+	padding: 0.8rem 1rem;
+}
+
+.margin {
+	display: flex;
+	gap: 0.5rem;
+
+	margin-left: auto; 
+}

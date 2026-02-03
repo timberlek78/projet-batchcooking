@@ -1,0 +1,166 @@
+.card {
+	display: flex;
+	width: fit-content;
+	min-width: 35rem;
+	height: 320px;
+
+	border-radius: 25px;
+	overflow: hidden;
+
+	background-size: cover;
+	background-position: center;
+	background-repeat: no-repeat;
+
+	cursor: pointer;
+	font-family: Arial, Helvetica, sans-serif;
+
+	transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card:hover:has(.like:hover) {
+	transform: none;
+	box-shadow: none;
+}
+
+.overlay {
+	display: flex;
+	flex-direction: column;
+
+	width: 100%;
+	height: 100%;
+
+	padding: 1rem;
+	box-sizing: border-box;
+
+	background: linear-gradient(
+		to top,
+		rgba(0, 0, 0, 0.85),
+		rgba(0, 0, 0, 0.3),
+		rgba(0, 0, 0, 0.1)
+	);
+
+	color: white;
+}
+
+
+.name
+{
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+
+	font-size: 3ch;
+	width: 100%;
+
+}
+
+.row
+{
+	display: flex;
+	flex-direction: row;
+	gap: 0.4rem;
+}
+
+.bas
+{
+	display: flex;
+	flex-direction: row;
+	gap: 1rem;
+
+	margin-top: auto;  
+	align-self: flex-start;
+}
+
+.ing {
+	display: flex;
+	flex-direction: column;
+	gap: 0.3rem;
+	padding: 0;
+	margin: 0;
+	list-style: none;
+}
+
+
+.difficulte {
+	display: inline-flex;
+	white-space: nowrap;
+}
+
+.preparation {
+	display: inline-flex;
+	white-space: nowrap;
+}
+
+.info {
+	display: flex;
+	flex-direction: column;
+
+
+	border-radius: 25px ;
+	background-color: rgba(255, 255, 255, 0.9);
+
+	padding: 1rem;
+	color:black;
+
+	gap: 0.5rem;
+
+	width: fit-content;
+	min-width: 15rem;
+	justify-content: space-between;
+}
+
+.haut
+{
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-end;
+}
+
+.like
+{
+	display: flex;
+	align-items: center;
+	justify-items: center;
+	padding: 1rem;
+	border: none;
+	border-radius: 25px;
+}
+
+
+.like:hover svg  {
+	transform: scale(1.2);
+	fill: #D6006D;
+	color : #D6006D;
+}
+
+.like svg {
+	width: 32px;
+	height: 32px;
+	fill: none;
+	cursor: pointer;
+
+	transition: transform 0.2s ease, fill 0.2s ease;
+}
+
+.title {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.complementaire {
+	display: flex;
+	flex-direction: row;
+	gap: 1rem;
+
+
+	margin-top: auto;  
+	align-self: flex-end;
+}
+
+.card:hover {
+	/* état survolé */
+	transform: translateY(-6px);
+	box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+}
