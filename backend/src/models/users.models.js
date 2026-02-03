@@ -13,8 +13,8 @@ export default class UsersModels {
 		return await prisma.users.findUnique({ where: { email } });
 	}
 
-	static async create(username, email, password) {
-		return prisma.users.create({ data: { username, email, password } });
+	static async create(new_user) {
+		return prisma.users.create({ data: new_user});
 	}
 
 	static update(user_id, data) {

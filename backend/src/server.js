@@ -5,6 +5,7 @@ import path from 'path';
 import helmet from 'helmet';
 import errorHandler from './middleware/errorHandler.js';
 import notFound from './middleware/notFound.js';
+import authMiddleware from './middleware/auth.middleware.js';
 
 //Importation des routes
 import ingredientRoutes from './routes/ingredient.routes.js';
@@ -27,13 +28,15 @@ app.use(helmet());
 app.use(express.json());
 
 app.use('/db', dbRoutes);
-app.use('/ingredients', ingredientRoutes);
-app.use('/recipes', recipeRoutes);
-app.use('/stepes', stepesRoutes);
-app.use('/users', usersRoutes);
-app.use('/week', weekRoutes);
-app.use(
-	'/uploads',
+
+app.use('/users', usersRoutes); // login / register
+
+app.use('/ingredients', authMiddleware, ingredientRoutes);
+app.use('/recipes', authMiddleware, recipeRoutes);
+app.use('/stepes', authMiddleware, stepesRoutes);
+app.use('/week', authMiddleware, weekRoutes);
+
+app.use('/uploads',
 	(req, res, next) => {
 		res.setHeader('Cross-Origin-Resource-Policy', 'cross-origin');
 		next();

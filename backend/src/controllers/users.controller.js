@@ -36,17 +36,24 @@ export class UsersController {
 
 	static async register(req, res, next) {
 		try {
-			const { username, email, password } = req.body;
+			const new_user = req.body;
 
-			const result = await UsersService.register(username, email, password);
+			const result = await UsersService.register(new_user);
 
-			const user = {
-				user_id: result.user_id,
-				username: result.username,
-				email: result.email,
-			};
+			return res.status(201).json(result);
+		} catch (error) {
+			return next(error);
+		}
+	}
 
-			return res.status(201).json(user);
+	static async login(req, res, next)
+	{
+		try {
+			const {email , password} = req.body;
+
+			const result = await UsersService.login(email, password);
+		
+			return res.status(201).json(result);
 		} catch (error) {
 			return next(error);
 		}
