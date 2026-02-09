@@ -2,7 +2,7 @@ import style from './textfield.module.css';
 import React from 'react';
 
 
-function TextFieldPrincipal({placeholder, value, icon,onChange})
+function TextFieldPrincipal({placeholder, value, icon,onChange, type = "text"})
 {
     return (
         <div className={style.global}>
@@ -11,7 +11,7 @@ function TextFieldPrincipal({placeholder, value, icon,onChange})
             className={style.textfield} 
             value={value}
             onChange={(e)=>onChange(e.target.value)} 
-            type="text" 
+            type={type} 
             placeholder={`${placeholder}`}></input>
         </div>
     )

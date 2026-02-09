@@ -32,6 +32,7 @@ function RecipePage() {
 				// 3) Mettre à jour le state une seule fois
 				setRecipes(recipesWithIngredients);
 			} catch (err) {
+				
 				console.error(err);
 				setError(err);
 			}
