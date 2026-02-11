@@ -1,6 +1,6 @@
 // src/controllers/WeekController.js
 
-import WeekService from '../services/week.services.js';
+import WeekService from '../services/week.service.js';
 
 export default class WeekController {
 	// GET /api/weeks

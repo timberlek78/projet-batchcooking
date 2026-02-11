@@ -15,7 +15,7 @@ export class UsersService {
 			throw new ApiError("Champs manquants", 400,ErrorCodes.MISSING_FIELD);
 
 		const isValidPassword = validatePassword(new_users.password);
-		if(new_users.password.length < 8 || isValidPassword)
+		if(!isValidPassword)
 			throw new ApiError("Mot de passe faible", 422, ErrorCodes.WEAK_PASSWORD);
 
 		if (containsHTML(new_users.username)) 
@@ -24,7 +24,7 @@ export class UsersService {
 		if (!isValidName(new_users.username)) 
 			throw new ApiError("Caractères non autorisés", 400,ErrorCodes.INVALID_CHARACTERS);
 		
-		const existing = await UsersModels.findByEmail(email);
+		const existing = await UsersModels.findByEmail(new_users.email);
 		if (existing)
 			throw new ApiError("Email déjà utilisé",409, ErrorCodes.EMAIL_ALREADY_EXISTS);
 	
@@ -74,9 +74,7 @@ export class UsersService {
 				"email" : user.email,
 				"username" : user.username
  			}
-		};
-
-		
+		};	
 	}
 
 	static async update(user_id, data) {

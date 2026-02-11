@@ -1,15 +1,14 @@
 
 export function validatePassword(password) {
-	const rules = {
-		uppercase: /[A-Z]/.test(password),
-		lowercase: /[a-z]/.test(password),
-		number: /[0-9]/.test(password),
-		special: /[^A-Za-z0-9]/.test(password),
-		length: password.length >= 8,
-	};
-
-	return rules;
+	return (
+		/[A-Z]/.test(password) &&
+		/[a-z]/.test(password) &&
+		/[0-9]/.test(password) &&
+		/[^A-Za-z0-9]/.test(password) &&
+		password.length >= 8
+	);
 }
+
 
 export function containsHTML(value) {
 	return /<[^>]*>/g.test(value);

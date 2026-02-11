@@ -51,6 +51,16 @@ api.interceptors.response.use(
 			});
 		}
 
+		if(status === 422)
+		{
+			return Promise.reject({
+				message: ERROR.PASSWORD_WEAK,
+				code: 'PASSWORD_WEAK',
+				status,
+				data,
+			});
+		}
+
 		//Accès refusé
 		if (status === 403) {
 			return Promise.reject({

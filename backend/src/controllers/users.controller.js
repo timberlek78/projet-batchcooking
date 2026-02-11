@@ -1,5 +1,5 @@
 import UserModels from '../models/users.models.js';
-import { UsersService } from '../services/users.services.js';
+import { UsersService } from '../services/users.service.js';
 
 export class UsersController {
 	static async getAll(req, res, next) {

@@ -19,6 +19,12 @@ const Users = {
         mdpMissing : "Veuillez renseigner un mot de passe",
         confirm : "Le mot de passe ne correspond pas",
         confirmMissing : "Veuillez confirmer votre mot de passe"
+    },
+
+    message : 
+    {
+        hasAccount : "J'ai déjà un compte",
+        hasNoAccount : "Je n'ai pas de compte"
     }
 };
 

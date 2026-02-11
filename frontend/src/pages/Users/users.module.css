@@ -141,6 +141,24 @@
 
 }
 
+.hasAccount{	
+	border: none;
+	outline: none;
+	background-color: white;
+
+	cursor: pointer;
+}
+
+.hasAccount::hover{	
+	border: none;
+	outline: none;
+	background-color: white;
+
+	cursor: pointer;
+
+	text-decoration: green;
+}
+
 
 .errorSlot:not(:empty) {
 	opacity: 1;
