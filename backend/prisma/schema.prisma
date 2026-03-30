@@ -16,7 +16,7 @@ generator client {
 model Users {
   user_id  Int    @id @default(autoincrement())
   username String @unique @db.VarChar(255)
-  password String @dB
+  password String @db.VarChar(16)
   email    String @unique
 
   created_at DateTime

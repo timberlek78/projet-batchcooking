@@ -9,13 +9,10 @@ function Navbar() {
 				<a className={style.lien} href="/home">
 					{TITLE.Home}
 				</a>
-				<a className={style.lien} href="/test_db">
-					{TITLE.Test_BD}
-				</a>
 				<a className={style.lien} href="/recipes">
 					{TITLE.Recipe}
 				</a>
-				<a className={style.lien} href="/users">
+				<a className={style.lien} href="/profil">
 					{TITLE.Users}
 				</a>
 			</ul>

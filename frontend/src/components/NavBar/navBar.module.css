@@ -1,7 +1,7 @@
 .container {
 	display: flex;
 	flex-direction: row;
-	flex-wrap: nowrap; /* 🔴 clé ici */
+	flex-wrap: nowrap;
 	background-color: white;
 
 	border-radius: 50px;
@@ -21,9 +21,7 @@
 }
 
 .lien:hover {
-	border: thin solid black;
-	padding: 1rem;
-	border-radius: 50px;
+	text-decoration: underline green;
 }
 
 .logo {

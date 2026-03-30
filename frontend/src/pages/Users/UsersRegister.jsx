@@ -13,130 +13,130 @@ import Users from "../../constants/pages/users/Users.js";
 
 function UsersRegister({hasAccount})
 {
-    const [users, setUser] = useState({
-            username : "",
-            email : "",
-            mdp : "",
-            confirm : ""
-        });
-        const [showStrength, setShowStrength] = useState(false);
-        const [renderStrength, setRenderStrength] = useState(false);
-        const [showPassword, setShowPassword] = useState(false);
-        const [showPasswordConfirm, setShowPasswordConfirm] = useState(false);
-        const [level, setLevel] = useState(0);
-    
-        const [errors, setError] = useState({
-            username : "",
-            email : "",
-            mdp : "",
-            confirm : ""
-        });
-    
-        // Regex règles mot de passe
-        const numberRegex = /[0-9]/;
-        const majRegex = /[A-Z]/;
-        const minRegex = /[a-z]/;
-        const specialRegex = /[^a-zA-Z0-9]/;
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
-    
-    
-        useEffect(() => {
-            console.log(users);
-        }, [users]);
-    
-        const onChange = (attribut, valeur) => {
-            setError({
-                username : "",
-                email : "",
-                mdp : "",
-                confirm : ""
-            });
-    
-    
-            setUser(prev => ({
-                ...prev,
-                [attribut]: valeur
-            }));
-        };
-    
-        const onChangeMdp = (attribut, valeur) => {
-            let newLevel = 0;
-    
-            if (numberRegex.test(valeur)) newLevel++;
-            if (majRegex.test(valeur)) newLevel++;
-            if (minRegex.test(valeur)) newLevel++;
-            if (specialRegex.test(valeur)) newLevel++;
-    
-            setLevel(newLevel);
-            onChange(attribut, valeur);
-        };
-    
-        const verifField = () => {
-            const err = {
-                username: "",
-                email: "",
-                mdp: "",
-                confirm: ""
-            };
-            let hasError = false;		
-    
-            if(!users.username){
-                err['username'] = text.error.username;
-                hasError = true;
-            }
-    
-            if(!users.email ||!emailRegex.test(users.email)){
-                err['email'] = text.error.email;
-                hasError = true;
-            }
-    
-            if(!users.mdp){
-                err['mdp'] = text.error.mdpMissing;
-                hasError = true;
-            }
-    
-            if(users.mdp && level <= 1){
-                err['mdp'] = text.error.mdp;
-                hasError = true;
-            }
-    
-            if(!users.confirm){
-                err['confirm'] = text.error.confirmMissing;
-                hasError = true;
-            }
-            console.log(users.confirm === users.mdp)
-            if(users.confirm !== users.mdp){
-                err['confirm'] = text.error.confirm;
-                hasError = true;
-            }
-    
-            setError(err);
-            return !hasError;
-    
-        }
-    
-        const register = async () => {
-            if (!verifField()) return;
-    
-            try {
-                const response = await create({
-                    username: users.username,
-                    email: users.email,
-                    password: users.mdp
-                });
-    
-                if (response) {
-                    alert("Compte créé avec succès 🎉");
-                    hasAccount
-                }
-            } catch (error) {
-                console.error(error);
-            }
-        };
-    
+	const [users, setUser] = useState({
+			username : "",
+			email : "",
+			mdp : "",
+			confirm : ""
+		});
+		const [showStrength, setShowStrength] = useState(false);
+		const [renderStrength, setRenderStrength] = useState(false);
+		const [showPassword, setShowPassword] = useState(false);
+		const [showPasswordConfirm, setShowPasswordConfirm] = useState(false);
+		const [level, setLevel] = useState(0);
+	
+		const [errors, setError] = useState({
+			username : "",
+			email : "",
+			mdp : "",
+			confirm : ""
+		});
+	
+		// Regex règles mot de passe
+		const numberRegex = /[0-9]/;
+		const majRegex = /[A-Z]/;
+		const minRegex = /[a-z]/;
+		const specialRegex = /[^a-zA-Z0-9]/;
+		const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+	
+	
+		useEffect(() => {
+			console.log(users);
+		}, [users]);
+	
+		const onChange = (attribut, valeur) => {
+			setError({
+				username : "",
+				email : "",
+				mdp : "",
+				confirm : ""
+			});
+	
+	
+			setUser(prev => ({
+				...prev,
+				[attribut]: valeur
+			}));
+		};
+	
+		const onChangeMdp = (attribut, valeur) => {
+			let newLevel = 0;
+	
+			if (numberRegex.test(valeur)) newLevel++;
+			if (majRegex.test(valeur)) newLevel++;
+			if (minRegex.test(valeur)) newLevel++;
+			if (specialRegex.test(valeur)) newLevel++;
+	
+			setLevel(newLevel);
+			onChange(attribut, valeur);
+		};
+	
+		const verifField = () => {
+			const err = {
+				username: "",
+				email: "",
+				mdp: "",
+				confirm: ""
+			};
+			let hasError = false;		
+	
+			if(!users.username){
+				err['username'] = text.error.username;
+				hasError = true;
+			}
+	
+			if(!users.email ||!emailRegex.test(users.email)){
+				err['email'] = text.error.email;
+				hasError = true;
+			}
+	
+			if(!users.mdp){
+				err['mdp'] = text.error.mdpMissing;
+				hasError = true;
+			}
 
-    return (
-        <div className={style.content}>
+			if(users.mdp && level <= 2){
+				console.log('je susi la');
+				err['mdp'] = text.error.mdp;
+				hasError = true;
+			}
+	
+			if(!users.confirm){
+				err['confirm'] = text.error.confirmMissing;
+				hasError = true;
+			}
+			console.log(users.confirm === users.mdp)
+			if(users.confirm !== users.mdp){
+				err['confirm'] = text.error.confirm;
+				hasError = true;
+			}
+	
+			setError(err);
+			return !hasError;
+	
+		}
+	
+		const register = async () => {
+			if (!verifField()) return;
+	
+			try {
+				const response = await create({
+					username: users.username,
+					email: users.email,
+					password: users.mdp
+				});
+	
+				if (response) {
+					hasAccount();
+				}
+			} catch (error) {
+				console.error(error);
+			}
+		};
+	
+
+	return (
+		<div className={style.content}>
 				<div className={style.gauche}>
 					<div className={style.haut}>
 						<div className={style.titre}>
@@ -243,12 +243,12 @@ function UsersRegister({hasAccount})
 							icons={<RegisterIcon />}
 							onClick={register}
 						/>
-                        <button className={style.hasAccount} onClick={hasAccount}>{Users.message.hasAccount}</button>
+						<button className={style.hasAccount} onClick={hasAccount}>{Users.message.hasAccount}</button>
 					</div>
 
 				<div className={style.droite} />
 			</div>
-    )
+	)
 }
 
 export default UsersRegister

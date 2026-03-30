@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import style from "./users.module.css";
 import text from "../../constants/pages/users/Users.js";
 import Button from "../../components/Button/Button/Button.jsx";
@@ -40,7 +41,8 @@ function UsersLogin({hasAccount})
 				[attribut]: valeur
 			}));
 		};
-	
+		
+		const navigate = useNavigate();
 		const verifField = () => {
 			const err = {
 				email: "",
@@ -73,12 +75,13 @@ function UsersLogin({hasAccount})
 					email: users.email,
 					password: users.password
 				});
-	
+
+				
 				if (response) {
-					alert("Connected 🎉");
 					console.log(response);
 
 					localStorage.setItem('token', response.data.token);
+					navigate('/recipes');
 				}
 			} catch (error) {
 				console.error(error);

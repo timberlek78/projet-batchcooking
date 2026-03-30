@@ -27,7 +27,7 @@ function IngredientCreatePopUp({show,onClose})
 	{
 		const response = await create(newIngredients);
 		console.log(response);
-		if(response.ok)
+		if(response)
 		{
 			console.log("ok ?");
 			if (onClose) onClose();

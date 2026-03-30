@@ -9,7 +9,8 @@ export default class UsersModels {
 		return await prisma.users.findUnique({ where: { user_id } });
 	}
 
-	static async findByEmail(email) {
+	static async findByEmail(email) 
+	{
 		return await prisma.users.findUnique({ where: { email } });
 	}
 
