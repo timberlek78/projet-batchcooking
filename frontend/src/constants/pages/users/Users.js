@@ -1,6 +1,6 @@
 const Users = {
     Titre : "Bienvenue sur Miaminiou",
-    Description : "Pour vous inscrire, renseignez simplement un nom d'utilisateur, une addresse mail et un mot de passe",
+    Description : "Le site qui gère vos repas de la semaine",
     strength : "Force de votre mot de passe",
 
     placeholder : 
@@ -18,7 +18,8 @@ const Users = {
         mdp : "Votre mot de passe n'est pas assez fort",
         mdpMissing : "Veuillez renseigner un mot de passe",
         confirm : "Le mot de passe ne correspond pas",
-        confirmMissing : "Veuillez confirmer votre mot de passe"
+        confirmMissing : "Veuillez confirmer votre mot de passe",
+        loginFailed : "Email ou mot de passe invalide"
     },
 
     message : 

@@ -14,15 +14,25 @@ generator client {
 }
 
 model Users {
-  user_id  Int    @id @default(autoincrement())
-  username String @unique @db.VarChar(255)
-  password String @db.VarChar(16)
-  email    String @unique
+	user_id  Int    @id @default(autoincrement())
+	username String @unique @db.VarChar(255)
+	password String @db.VarChar(16)
+	email    String @unique
 
-  created_at DateTime
-  updated_at DateTime?
+	created_at DateTime
+	updated_at DateTime?
 
-  weeks Week[]
+	tokens Token[]
+	weeks  Week[]
+}
+
+model Token {
+	token_id     Int      @id @default(autoincrement())
+	token_value  String   @unique @db.VarChar(255)
+	token_expire DateTime
+
+	user_id      Int
+	user         Users     @relation(fields: [user_id], references: [user_id])
 }
 
 model Recipes {

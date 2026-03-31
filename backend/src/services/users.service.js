@@ -3,7 +3,7 @@ import UsersModels from '../models/users.models.js';
 import ApiError from '../errors/ApiError.js';
 import { ErrorCodes } from '../errors/ApiError.js';
 import { validatePassword, containsHTML, isValidName } from '../middleware/validator.js';
-import jwt from 'jsonwebtoken';
+import { TokenService } from './tokenService.js';
 
 export class UsersService {
 
@@ -50,27 +50,16 @@ export class UsersService {
 			throw new ApiError("Email non valide ou inconnu", 401, ErrorCodes.AUTH_FAILED);
 
 		const isValidPassword = await bcrypt.compare(password, user.password);
-		
-		if(isValidPassword)
+
+		if(!isValidPassword)
 			throw new ApiError("Mot de passe incorrect", 401, ErrorCodes.AUTH_FAILED);
 
 
-		console.log(process.env.JWT_SECRET);
-		const generateToken = (user) => {
-			return jwt.sign(
-				{
-					user_id: user.user_id, // ou user.id selon ton modèle
-					email: user.email
-				},
-				process.env.JWT_SECRET,
-				{
-					expiresIn: process.env.JWT_EXPIRES_IN
-				},
+		const token = TokenService.generateToken(user);
 
-			);
-		}
+		if(!token)
+			throw new ApiError("Erreur lors de la connexion", 401, ErrorCodes.CONNECT_FAILD)
 
-		const token = generateToken(user);
 		const result = {
 			"success" : true,
 			token,

@@ -32,7 +32,7 @@ app.use('/db', dbRoutes);
 app.use('/users', usersRoutes); // login / register
 
 app.use('/ingredients', authMiddleware, ingredientRoutes);
-app.use('/recipes', authMiddleware, recipeRoutes);
+app.use('/recipes', recipeRoutes);
 app.use('/stepes', authMiddleware, stepesRoutes);
 app.use('/week', authMiddleware, weekRoutes);
 

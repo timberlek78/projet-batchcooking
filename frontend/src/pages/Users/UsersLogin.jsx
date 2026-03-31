@@ -1,154 +1,99 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import style from "./users.module.css";
 import text from "../../constants/pages/users/Users.js";
 import Button from "../../components/Button/Button/Button.jsx";
-import {login} from '../../services/user.service.js';
+import FieldInput from "../../components/FieldInput/FieldInput.jsx";
+import { login } from "../../services/user.service.js";
 
 import RegisterIcon from "../../assets/icons/login/login.svg?react";
-import PasswordStrength from "../../components/passwordStrength/PasswordStrength.jsx";
-
 import EyeOpenIcon from "../../assets/icons/login/eye-open.svg?react";
 import EyeCloseIcon from "../../assets/icons/login/eye-close.svg?react";
-import Users from "../../constants/pages/users/Users.js";
 
-function UsersLogin({hasAccount})
-{
-	const [users, setUser] = useState({
-			email : "",
-			password : "",
-		});
-		const [showPassword, setShowPassword] = useState(false);
-	
-		const [errors, setError] = useState({
-			email : "",
-			password : "",
-		});
-	
-		useEffect(() => {
-			console.log(users);
-		}, [users]);
-	
-		const onChange = (attribut, valeur) => {
-			setError({
-				email : "",
-				password : ""
-			});
-	
-	
-			setUser(prev => ({
-				...prev,
-				[attribut]: valeur
-			}));
-		};
-		
-		const navigate = useNavigate();
-		const verifField = () => {
-			const err = {
-				email: "",
-				password: ""
-			};
+function UsersLogin({ hasAccount }) {
+    const [users, setUser] = useState({ email: "", password: "" });
+    const [showPassword, setShowPassword] = useState(false);
+    const [errors, setError] = useState({ email: "", password: "", login: "" });
 
-			let hasError = false;		
-	
-			if(!users.email){
-				err['email'] = text.error.email;
-				hasError = true;
-			}
-	
-			if(!users.password){
-				err['password'] = text.error.mdpMissing;
-				hasError = true;
-			}
-			console.log("alooo");
-			setError(err);
-			return !hasError;
-	
-		}
-	
-		const handleLogin = async () => {
-			if (!verifField()) return;
-			console.log("alooo");
+    const navigate = useNavigate();
 
-			try {
-				const response = await login({
-					email: users.email,
-					password: users.password
-				});
+    const resetErrors = () => setError({ email: "", password: "", login: "" });
 
-				
-				if (response) {
-					console.log(response);
+    const onChange = (attribut, valeur) => {
+        resetErrors();
+        setUser(prev => ({ ...prev, [attribut]: valeur }));
+    };
 
-					localStorage.setItem('token', response.data.token);
-					navigate('/recipes');
-				}
-			} catch (error) {
-				console.error(error);
-			}
-		};
-	
+    const verifField = () => {
+        const err = { email: "", password: "" };
+        let hasError = false;
 
-	return (
-		<div className={style.content}>
-				<div className={style.gauche}>
-					<div className={style.haut}>
-						<div className={style.titre}>
-							<b>{text.Titre}</b>
-						</div>
-						<div className={style.desc}>{text.Description}</div>
-					</div>
+        if (!users.email) { err.email = text.error.email; hasError = true; }
+        if (!users.password) { err.password = text.error.mdpMissing; hasError = true; }
 
-					{/* Email */}
-					<div className={style.attribut}>
-						<div className={style.field}>
-							<input
-								type={"email"}
-								placeholder={text.placeholder.email}
-								onChange={e => onChange("email", e.target.value)}
-							/>
-						</div>
-						<div className={style.errorSlot}>
-							{errors.email}
-						</div>
-					</div>
-					{/** Mot de passe */}
-					<div className={style.attribut}>
-						<div className={style.passwordWrap}>
-							<div className={style.field}>
-								<input
-									type={showPassword ? "text" : "password"}
-									onChange={e => onChange("password", e.target.value)}
+        setError(err);
+        return !hasError;
+    };
 
-									placeholder={text.placeholder.mdp}
-								/>
+    const handleLogin = async () => {
+        if (!verifField()) return;
 
-								<button
-									type="button"
-									className={style.rightIcon}
-									onMouseDown={e => e.preventDefault()}
-									onClick={() => setShowPassword(prev => !prev)}
-								>
-									{showPassword ? <EyeOpenIcon /> : <EyeCloseIcon />}
-								</button>
-							</div>
+        try {
+            const response = await login({ email: users.email, password: users.password });
 
-							<div className={style.errorSlot}>
-								{errors.mdp}
-							</div>
-						</div>
-					</div>
-						<Button
-							text="Se connecter"
-							icons={<RegisterIcon />}
-							onClick={handleLogin}
-						/>
-						<button className={style.hasAccount} onClick={hasAccount}>{Users.message.hasNoAccount}</button>
-					</div>
+            if (response) {
+                localStorage.setItem("token", response.data.token);
+                localStorage.setItem("user", response.data.user);
+                navigate("/recipes");
+            }
+        } catch {
+            setError({ login: text.error.loginFailed });
+        }
+    };
 
-				<div className={style.droite} />
-			</div>
-	)
+    const EyeToggle = (
+        <button
+            type="button"
+            className={style.rightIcon}
+            onMouseDown={e => e.preventDefault()}
+            onClick={() => setShowPassword(prev => !prev)}
+        >
+            {showPassword ? <EyeOpenIcon /> : <EyeCloseIcon />}
+        </button>
+    );
+
+    return (
+        <div className={style.content}>
+            <div className={style.haut}>
+                <div className={style.titre}><b>{text.Titre}</b></div>
+                <div className={style.desc}>{text.Description}</div>
+            </div>
+
+            <div className={style.formulaire}>
+                <FieldInput
+                    type="email"
+                    placeholder={text.placeholder.email}
+                    onChange={e => onChange("email", e.target.value)}
+                    error={errors.email}
+                />
+
+                <FieldInput
+                    type={showPassword ? "text" : "password"}
+                    placeholder={text.placeholder.mdp}
+                    onChange={e => onChange("password", e.target.value)}
+                    rightIcon={EyeToggle}
+                    error={errors.password}
+                />
+
+                <div className={style.errorSlot}>{errors.login}</div>
+            </div>
+
+            <Button text="Se connecter" icons={<RegisterIcon />} onClick={handleLogin} />
+            <button className={style.hasAccount} onClick={hasAccount}>
+                {text.message.hasNoAccount}
+            </button>
+        </div>
+    );
 }
 
-export default UsersLogin
+export default UsersLogin;

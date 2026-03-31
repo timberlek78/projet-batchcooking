@@ -17,16 +17,12 @@ function App() {
 				{/* Pages publiques */}
 				<Route path="/home" element={<HomePage />} />
 				<Route path="/users/*" element={<Users />} />
-
-				{/* Pages protégées */}
 				<Route
 					path="/recipes"
-					element={
-						<ProtectedRoute>
-							<RecipePage />
-						</ProtectedRoute>
-					}
-				/>
+					element={<RecipePage />}/>
+
+				{/* Pages protégées */}
+				
 
 				<Route
 					path="/recipes/add"

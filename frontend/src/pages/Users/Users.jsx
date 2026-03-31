@@ -8,12 +8,14 @@ function Users() {
 	const [hasAccount, setHasAccount] = useState(true);
 
 	return (
-		<div className={style.login_wrap}>
-			{
-				hasAccount ? <UsersLogin hasAccount = {() => setHasAccount(!hasAccount)} /> : <UsersRegister hasAccount = {() => setHasAccount(!hasAccount)} />
-			}
-			
+		<div className={style.center}>
+			<div className={style.login_wrap}>
+				{
+					hasAccount ? <UsersLogin hasAccount = {() => setHasAccount(!hasAccount)} /> : <UsersRegister hasAccount = {() => setHasAccount(!hasAccount)} />
+				}	
+			</div>
 		</div>
+	
 	);
 }
 

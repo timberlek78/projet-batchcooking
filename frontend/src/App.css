@@ -1,9 +1,41 @@
+:root{
+	--color-princ : green;
+	--color-sec   : rgba(0, 255, 255, 0.682);
+	--color-bg : rgb(250, 236, 188);
+}
+
+
+
 html {
-	background-color: #E1D5C7;
+	background-color:var(--color-bg);
 	margin: 1rem;
 }
 
 
 html, body, #root {
 	height: 100%;
+}
+
+
+
+
+@font-face {
+	font-family: "Principal";
+	src: url(assets/fonts/Aleo/Aleo-Italic-VariableFont_wght.ttf);
+}
+
+
+@font-face {
+	font-family: "Principal";
+	src: url(assets/fonts/Aleo/Aleo-VariableFont_wght.ttf);
+}
+
+@font-face {
+	font-family: "Secondaire";
+	src: url(assets/fonts/Libre_Franklin/LibreFranklin-VariableFont_wght.ttf);
+}
+
+@font-face {
+	font-family: "Secondaire";
+	src: url(assets/fonts/Libre_Franklin/LibreFranklin-Italic-VariableFont_wght.ttf);
 }
