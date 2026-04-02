@@ -1,0 +1,44 @@
+.container{
+    background-color: white;
+	border-radius: 25px;
+	box-shadow:0px 10px 25px 2px rgba(0, 0, 0,0.50);
+	padding: 2rem;
+
+	height: fit-content;
+}
+
+.row{
+	display: flex;
+	flex-direction: row;
+	gap : 2rem;
+}
+
+.menu{
+	display: flex;
+	flex-direction: column;
+	width: 20%;
+	padding: 2rem;
+	gap: 1rem;	
+}
+
+.menuItem{
+	font-family: "Principal";
+	font-size: 3ch;
+	color : var(--color-sec);
+	width: fit-content;
+}
+
+.menuItem:hover{
+	cursor: pointer;
+	border-bottom: green 3px solid;
+}
+
+
+.info{
+	width: 100%;
+
+	display: flex;
+	flex-direction: column;
+
+	gap: 2rem;
+}

@@ -44,6 +44,7 @@ class RecipesServices {
 				recipe_like_number: Number(body.recipe_like_number),
 				stepes: JSON.parse(body.stepes),
 				ingredients: JSON.parse(body.ingredients),
+				recipe_user_id :  Number(body.user_id)
 			};
 		};
 
@@ -152,10 +153,7 @@ class RecipesServices {
 
 	static async isLike(data)
 	{
-		const res = await RecipesModels.isLike(data.user_id, data.recipe_id)
-		console.log(res);
-
-		return res;
+		return await RecipesModels.isLike(data.user_id, data.recipe_id);
 	}
 
 	static async likeRecipe(like) {

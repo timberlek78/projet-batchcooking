@@ -5,6 +5,7 @@ import Bulle from './bulles/Bulle.jsx';
 
 import PrepTimeIcon from '../../../assets/icons/recipes/add/cook-time.svg?react';
 import CookTimeIcon from '../../../assets/icons/recipes/add/baker.svg?react';
+import LikeIcon from '../../../assets/icons/recipes/like.svg?react';
 
 function RecipeGlobal({ recipe }) {
 	const imageUrl = service.getImage(recipe.recipe_image);
@@ -17,7 +18,9 @@ function RecipeGlobal({ recipe }) {
 				backgroundImage: imageUrl ? `url(${imageUrl})` : 'none'
 			}}
 		>
-		
+		<div className={style.haut}>
+			<Bulle info={recipe.recipe_like_number} icon={<LikeIcon />}/>
+		</div>
 		<div className={style.row}>
 			<div className={`${style.bulle} ${style.name}`}>{recipe.recipe_name}</div>
 

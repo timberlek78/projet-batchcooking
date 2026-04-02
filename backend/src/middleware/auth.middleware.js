@@ -4,7 +4,7 @@ import { ErrorCodes } from "../errors/ApiError.js";
 import { TokenService } from "../services/tokenService.js";
 import tokenModels from "../models/token.models.js";
 
-export default async function authMiddleware(req, res, next) {
+export async function authMiddleware(req, res, next) {
 	const authHeader = req.headers.authorization;
 
 	if (!authHeader || !authHeader.startsWith("Bearer ")) {
@@ -18,7 +18,6 @@ export default async function authMiddleware(req, res, next) {
 	try {
 		decoded = jwt.verify(token, process.env.JWT_SECRET);
 	} catch (err) {
-		console.log("aaa", err);
 		throw new ApiError("Token invalide ou expiré", 401, ErrorCodes.TOKEN_INVALID);
 	}
 
@@ -31,3 +30,25 @@ export default async function authMiddleware(req, res, next) {
 	req.user = decoded;
 	next();
 }
+
+export async function optionalAuthMiddleware(req, res, next) {
+    const authHeader = req.headers.authorization;
+
+    if (!authHeader || !authHeader.startsWith("Bearer ")) {
+        req.user = null;
+        return next(); 
+    }
+
+    const token = authHeader.split(" ")[1];
+
+    try {
+        const decoded = jwt.verify(token, process.env.JWT_SECRET);
+        const tokenInBDD = await tokenModels.findByValue(token);
+        req.user = tokenInBDD ? decoded : null;
+    } catch {
+        req.user = null;
+    }
+
+    next();
+}
+

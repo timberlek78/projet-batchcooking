@@ -93,9 +93,9 @@ class IngredientServices {
 		if (
 			typeof cleanData.ingredient_unit !== 'string' ||
 			cleanData.ingredient_unit.trim().length === 0 ||
-			cleanData.ingredient_unit.length > 5
+			cleanData.ingredient_unit.length > 10
 		) {
-			throw new Error('ingredient_unit doit être une chaîne non vide (max 5).');
+			throw new Error('ingredient_unit doit être une chaîne non vide (max 10).');
 		}
 
 		// Normalisation (recommandé)

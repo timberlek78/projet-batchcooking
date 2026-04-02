@@ -7,6 +7,7 @@ import HomePage from './pages/HomePage.jsx';
 import RecipePage from './pages/Recipes/RecipePage.jsx';
 import AddRecipePage from './pages/Recipes/AddRecipePage.jsx';
 import ViewRecipe from './pages/Recipes/ViewRecipe.jsx';
+import ProfilPage from './pages/Profil/ProfilPage.jsx';
 import ProtectedRoute from './components/ProtectedRoutes.jsx';
 
 function App() {
@@ -21,6 +22,10 @@ function App() {
 					path="/recipes"
 					element={<RecipePage />}/>
 
+				<Route
+					path="/recipes/:recipeId"
+					element={<ViewRecipe />}
+				/>
 				{/* Pages protégées */}
 				
 
@@ -34,14 +39,13 @@ function App() {
 				/>
 
 				<Route
-					path="/recipes/:recipeId"
+					path="/profil"
 					element={
 						<ProtectedRoute>
-							<ViewRecipe />
+							<ProfilPage />
 						</ProtectedRoute>
 					}
 				/>
-
 				{/* (optionnel) */}
 				<Route path="/test_db" element={<Test_BD />} />
 

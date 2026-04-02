@@ -3,12 +3,24 @@ import TITLE from '../../constants/title.js';
 import { DROPDOWN_ITEMS } from '../../constants/title.js';
 import { useLocation, Navigate } from 'react-router-dom';
 import { isConnected } from '../../utils/authUtils.jsx';
+import { useEffect, useState } from "react";
+import {getUserId} from '../../services/user.service.js';
 
 import MenuProfil from '../../features/profils/MenuProfil.jsx';
 
 function Navbar() {
-	const user = JSON.parse(localStorage.getItem('user'));
+	const user_id = JSON.parse(localStorage.getItem('user_id'));
 	const location = useLocation();
+
+	const [user, setUser] = useState(null);
+	
+	useEffect(() => {
+		const load = async () => {
+			const res = await getUserId(user_id);
+			if (res) setUser(res.data);
+		};
+		load();
+	}, []);
 
 	// const tout = Object.fromEntries(
 	// 	Object.keys(localStorage).map(key => [key, localStorage.getItem(key)])
@@ -20,8 +32,7 @@ function Navbar() {
 	// localStorage.removeItem('miaminou_add_recipe_draft');
 	// localStorage.removeItem('connected');
 
-
-
+	if(!user) return <p>Chargement...</p>
 	return (
 		<div className={style.container}>
 			<h1 className={style.logo}>Miaminou</h1>

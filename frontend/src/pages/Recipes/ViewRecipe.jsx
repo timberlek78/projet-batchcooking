@@ -36,7 +36,6 @@ function ViewRecipe() {
 
 			if(response)
 				setStepes(response.data);
-			
 		}
 
 		if (recipeId) {

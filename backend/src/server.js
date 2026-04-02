@@ -5,7 +5,7 @@ import path from 'path';
 import helmet from 'helmet';
 import errorHandler from './middleware/errorHandler.js';
 import notFound from './middleware/notFound.js';
-import authMiddleware from './middleware/auth.middleware.js';
+import {authMiddleware} from './middleware/auth.middleware.js';
 
 //Importation des routes
 import ingredientRoutes from './routes/ingredient.routes.js';
@@ -33,7 +33,7 @@ app.use('/users', usersRoutes); // login / register
 
 app.use('/ingredients', authMiddleware, ingredientRoutes);
 app.use('/recipes', recipeRoutes);
-app.use('/stepes', authMiddleware, stepesRoutes);
+app.use('/stepes', stepesRoutes);
 app.use('/week', authMiddleware, weekRoutes);
 
 app.use('/uploads',

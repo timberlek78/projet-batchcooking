@@ -24,6 +24,7 @@ model Users {
 
 	tokens Token[]
 	weeks  Week[]
+	recipe Recipes[]
 }
 
 model UserLike {
@@ -45,21 +46,22 @@ model Token {
 }
 
 model Recipes {
-	recipe_id               Int    @id @default(autoincrement())
-	recipe_name             String
-	recipe_difficult        Int
-	recipe_like_number      Int
-	recipe_preparation_time Int
-	recipe_cooking_time     Int
-	recipe_nb_personne      Int
-	recipe_image            String 
+    recipe_id               Int    @id @default(autoincrement())
+    recipe_name             String
+    recipe_difficult        Int
+    recipe_like_number      Int
+    recipe_preparation_time Int
+    recipe_cooking_time     Int
+    recipe_nb_personne      Int
+    recipe_image            String 
+    recipe_user_id          Int
 
-	stepes Stepes[]
-	weeks  Week[]
+    stepes            Stepes[]
+    weeks             Week[]
+    RecipesIngredient RecipesIngredient[]
 
-	RecipesIngredient RecipesIngredient[]
+    user Users @relation(fields: [recipe_user_id], references: [user_id])
 }
-
 
 model Stepes {
 	stepes_id     String  @id

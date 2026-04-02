@@ -1,7 +1,7 @@
 :root{
 	--color-princ : green;
-	--color-sec   : rgba(0, 255, 255, 0.682);
-	--color-bg : rgb(250, 236, 188);
+	--color-sec   : #00C2C7;
+	--color-bg : #FFF6ED;
 }
 
 html {
@@ -32,6 +32,6 @@ html, body, #root {
 }
 
 @font-face {
-	font-family: "Secondaire";
+	font-family: "SecondaireItalic";
 	src: url(assets/fonts/Libre_Franklin/LibreFranklin-Italic-VariableFont_wght.ttf);
 }

@@ -1,4 +1,6 @@
 import Test_BD from '../pages/Test_BD';
+import { disconnect } from '../utils/authUtils';
+import { useNavigate } from 'react-router-dom';
 
 const TITLE = {
 	Home: 'Accueil',
@@ -10,11 +12,16 @@ const TITLE = {
 
 export const DROPDOWN_ITEMS = [
 	{
-		id: 'disconnect',
-		text: 'Se déconnecter',
-		route: '/disconnect',
+		id: 'recipe',
+		text: 'Mes recettes',
+		path: '/profil/recipes',
 		icon: null, // optionnel, pour plus tard
 	},
-
+	{
+		id: 'disconnect',
+		text: 'Se déconnecter',
+		action: disconnect,
+		icon: null, // optionnel, pour plus tard
+	}
 ];
 export default TITLE;

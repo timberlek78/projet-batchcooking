@@ -1,17 +1,15 @@
 import express from 'express';
 import RecipeController from '../controllers/recipes.controller.js';
 import { uploadRecipeImage } from '../middleware/uploadRecipeImage.js';
-import authMiddleware from '../middleware/auth.middleware.js';
-
-
+import {authMiddleware, optionalAuthMiddleware} from '../middleware/auth.middleware.js';
 
 const router = express.Router();
 
 //CRUD Recipes
-router.get('/', RecipeController.getAll);
+router.get('/',optionalAuthMiddleware, RecipeController.getAll);
 
-router.get('/:id', RecipeController.getById);
-router.get('/ingredient/:id' , authMiddleware, RecipeController.getIngredients);
+router.get('/:id',optionalAuthMiddleware, RecipeController.getById);
+router.get('/ingredient/:id' , optionalAuthMiddleware, RecipeController.getIngredients);
 router.post(
 	'/',
 	authMiddleware,

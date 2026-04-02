@@ -8,6 +8,7 @@
 	flex-direction: column;
 	justify-content: flex-end;
 
+
 	padding: 1.5rem;
 
 	background-size: cover;
@@ -16,6 +17,7 @@
 	box-shadow: 0 5px 5px 5px rgba(0, 0, 0, 0.25);
 	border-radius: 25px;
 	overflow: hidden;
+	
 }
 
 
@@ -28,8 +30,12 @@
 	width: 100%;
 }
 
-
-
+.haut{
+	display: flex;
+	position: absolute;
+	top: 15px;
+	align-self: flex-end;
+}
 /* =========================
    BULLES (COMMUN)
    ========================= */
@@ -45,6 +51,7 @@
 
 	min-height: 2.5rem;
 	max-width: 100%;
+
 }
 
 
@@ -73,10 +80,13 @@
    TEXTE
    ========================= */
 .text {
-	font-family: Arial, Helvetica, sans-serif;
+	
+	font-family: 'Secondaire';
 	font-size: 1.5rem;
 	color: black;
 	white-space: nowrap;
+
+
 }
 
 
@@ -84,7 +94,7 @@
    NOM RECETTE
    ========================= */
 .name {
-	font-family: Arial, Helvetica, sans-serif;
+	font-family: 'Principal';
 	font-size: 1.5rem;
 	font-weight: bold;
 	padding: 0.8rem 1rem;

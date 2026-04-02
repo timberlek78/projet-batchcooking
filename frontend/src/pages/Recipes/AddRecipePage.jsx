@@ -91,6 +91,7 @@ function AddRecipePage() {
 		return saved ? {...DEFAULT_RECIPE,...JSON.parse(saved)} : DEFAULT_RECIPE;
 	});
 
+	const user_id = localStorage.getItem("user_id");
 
 	// Charge la liste des étapes depuis le localStorage (si présent)
 	const [stepes, setStepes] = useState(() => {
@@ -209,8 +210,6 @@ function AddRecipePage() {
 
 	// Supprime un ingrédient par son id
 	const removeIngredient = (id) => {
-		 ("je suis la");
-		
 		setRecipe((prev) => {
 			const newIngredients = prev.ingredients.filter(
 				(ing) => ing.ingredient_id !== id
@@ -233,6 +232,7 @@ function AddRecipePage() {
 		}));
 	};
 
+	//Enregistrement dans la base de données
 	const createRecipe = async () => {
 		const formData = new FormData();
 
@@ -257,7 +257,7 @@ function AddRecipePage() {
 
 		formData.append("recipe_image", imageFile ?? "");
 
-
+		formData.append("user_id", user_id);
 		await RecipeService.createWithImage(formData);
 	};
 

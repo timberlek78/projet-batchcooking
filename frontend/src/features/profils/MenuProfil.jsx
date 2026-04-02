@@ -12,6 +12,11 @@ function MenuProfil({user, items}) {
     const navigate = useNavigate();
     const connected = isConnected();
 
+    const handleClick = (item) => {
+        if (item.path) navigate(item.path);
+        if (item.action) item.action();
+    };
+
     const content = connected ? user.username : TITLE.Users;
 
     return (
@@ -31,11 +36,7 @@ function MenuProfil({user, items}) {
                         <button
                             key={item.id}
                             className={style.item}
-                            onClick={(e) => {
-                                disconnect();
-								setIsOpen(false);
-                                e.stopPropagation();
-                            }}
+                            onClick={() => handleClick(item)}
                         >
                             {item.text}
                         </button>

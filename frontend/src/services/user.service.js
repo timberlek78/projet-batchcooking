@@ -15,3 +15,9 @@ export async function login(data){
 export async function create(data) {
 	return await api.post(`/users/auth/register`,data)
 }
+
+export async function update(user_id,data)
+{
+	console.log(data);
+	return await api.put(`/users/${user_id}`,data);
+}
