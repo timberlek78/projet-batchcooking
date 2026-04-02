@@ -1,17 +1,26 @@
 import style from './navBar.module.css';
 import TITLE from '../../constants/title.js';
-import { DROPDOWN } from '../../constants/title.js';
-import UsersIcons from '../../assets/icons/home/profil.svg?react';
-
+import { DROPDOWN_ITEMS } from '../../constants/title.js';
 import { useLocation, Navigate } from 'react-router-dom';
+import { isConnected } from '../../utils/authUtils.jsx';
+
+import MenuProfil from '../../features/profils/MenuProfil.jsx';
 
 function Navbar() {
-	const user = localStorage.getItem('user');
+	const user = JSON.parse(localStorage.getItem('user'));
 	const location = useLocation();
 
-	if (!user) {
-		return <Navigate to="/users/login" replace />;
-	}
+	// const tout = Object.fromEntries(
+	// 	Object.keys(localStorage).map(key => [key, localStorage.getItem(key)])
+	// );
+
+
+	// localStorage.removeItem('user');
+	// localStorage.removeItem('token');
+	// localStorage.removeItem('miaminou_add_recipe_draft');
+	// localStorage.removeItem('connected');
+
+
 
 	return (
 		<div className={style.container}>
@@ -25,14 +34,8 @@ function Navbar() {
 					{TITLE.Week}
 				</a>
 			</ul>
-			<div className={style.dropdown}>
-				<div className={`${style.trigger}` }>
-					<UsersIcons />
-					{user.username}
-				</div>
-				<div className={style.menu}>
-					<button className={style.item}>{DROPDOWN.disconnect}</button>
-				</div>
+			<div className={style.droite}>
+				<MenuProfil items = {DROPDOWN_ITEMS} user={ user} isConnected={isConnected()} />
 			</div>
 		</div>
 	);

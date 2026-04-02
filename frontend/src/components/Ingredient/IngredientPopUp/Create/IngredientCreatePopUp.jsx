@@ -26,10 +26,10 @@ function IngredientCreatePopUp({show,onClose})
 	const saveIngredient = async () =>
 	{
 		const response = await create(newIngredients);
-		console.log(response);
+		 (response);
 		if(response)
 		{
-			console.log("ok ?");
+			 ("ok ?");
 			if (onClose) onClose();
 
 		}

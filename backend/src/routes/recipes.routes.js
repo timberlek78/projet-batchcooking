@@ -19,6 +19,14 @@ router.post(
 	RecipeController.create
 );
 
+router.post(
+	'/like',
+	authMiddleware,
+	RecipeController.likeRecipe
+);
+
+
+router.get('/like/:user_id/:recipe_id', authMiddleware, RecipeController.isLike);
 router.put('/:id', authMiddleware,RecipeController.update);
 router.delete('/:id', authMiddleware, RecipeController.delete);
 

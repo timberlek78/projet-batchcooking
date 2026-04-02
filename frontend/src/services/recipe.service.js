@@ -29,6 +29,17 @@ export class RecipeService {
 		});
 	}
 
+	static async setLike(data)
+	{
+		return api.post(`/recipes/like/`,data)
+	}
+
+	
+	static async isLike(users_id, recipe_id)
+	{
+		return api.get(`/recipes/like/${users_id}/${recipe_id}`)
+	}
+
 	static getImage(filename) {
 		if (!filename) return null;
 		return `${api.defaults.baseURL}/uploads/recipes/${filename}`;

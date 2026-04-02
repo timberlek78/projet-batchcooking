@@ -19,7 +19,7 @@ function IngredientPopUp({show,onClose,addIng,selectedIngredients = []}) {
 				if (!cancelled) setIngredients(response.data);
 			} catch (err) {
 				if (!cancelled) setError(err);
-				console.log(err);
+				 (err);
 			}
 		};
 

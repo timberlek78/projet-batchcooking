@@ -18,6 +18,7 @@ export default async function authMiddleware(req, res, next) {
 	try {
 		decoded = jwt.verify(token, process.env.JWT_SECRET);
 	} catch (err) {
+		console.log("aaa", err);
 		throw new ApiError("Token invalide ou expiré", 401, ErrorCodes.TOKEN_INVALID);
 	}
 

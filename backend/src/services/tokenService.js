@@ -11,16 +11,17 @@ export class TokenService
 			{ expiresIn: process.env.JWT_EXPIRES_IN }
 		);
 
+		// Décoder le token pour récupérer l'expiration
 		const decoded = jwt.decode(token);
 
-		console.log(token);
-		// On stocke le token en BDD rattaché à l'utilisateur
 		const result = await TokenModel.create({
 			token_value:  token,
 			token_expire: new Date(decoded.exp * 1000),
 			user_id:      user.user_id,
 		});
 
-		return (!result ? token : null);
+		if (!result) return null;
+
+		return token;
 	}
 }

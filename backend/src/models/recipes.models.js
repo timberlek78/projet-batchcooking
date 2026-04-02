@@ -38,6 +38,40 @@ class RecipesModels {
 	static async delete(recipe_id) {
 		return prisma.recipes.delete({ where: { recipe_id } });
 	}
+
+	static async isLike(user_id, recipe_id) {
+		return prisma.userLike.findUnique({
+			where: {
+				user_id_recipe_id: {
+					user_id: Number(user_id),
+					recipe_id: Number(recipe_id)
+				}
+			}
+		})
+	}
+
+	static async createLike(user_id, recipe_id)
+	{
+		 return prisma.userLike.create({
+			data: {
+				user_id: Number(user_id),
+				recipe_id: Number(recipe_id),
+				created_at: new Date()
+			}
+		})
+	}
+
+	static async deleteLike(user_id, recipe_id)
+	{
+		return prisma.userLike.delete({
+			where: {
+				user_id_recipe_id: {
+					user_id: parseInt(user_id),
+					recipe_id: parseInt(recipe_id)
+				}
+			}
+		})
+	}
 }
 
 export default RecipesModels;

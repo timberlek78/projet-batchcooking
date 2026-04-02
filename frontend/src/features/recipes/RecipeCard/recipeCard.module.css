@@ -142,6 +142,11 @@
 	transition: transform 0.2s ease, fill 0.2s ease;
 }
 
+.isLike svg {
+	fill: #D6006D;
+	color : #D6006D;
+}
+
 .title {
 	display: flex;
 	flex-direction: row;

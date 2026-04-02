@@ -123,7 +123,7 @@ function AddRecipePage() {
 
 	
 	useEffect(() => {
-		console.log({ ...newRecipe, stepes });
+		 ({ ...newRecipe, stepes });
 	}, [newRecipe, stepes]);
 
 	
@@ -209,7 +209,7 @@ function AddRecipePage() {
 
 	// Supprime un ingrédient par son id
 	const removeIngredient = (id) => {
-		console.log("je suis la");
+		 ("je suis la");
 		
 		setRecipe((prev) => {
 			const newIngredients = prev.ingredients.filter(
@@ -253,7 +253,7 @@ function AddRecipePage() {
 		});
 
 		// Image
-		console.log(imageFile)
+		 (imageFile)
 
 		formData.append("recipe_image", imageFile ?? "");
 
@@ -282,7 +282,7 @@ function AddRecipePage() {
 			setWaitMessage(Recipe.message.succes);
 
 		} catch (e) {
-			console.log(e);
+			 (e);
 			setWaitStatus("error");
 			setWaitMessage("Une erreur est survenue");
 		}

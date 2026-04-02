@@ -1,0 +1,76 @@
+.profil
+{
+	display: flex;
+	align-items: center;
+	font-size: 2ch;
+	border: green solid 2px;
+    border-radius: 999px;
+    
+	box-sizing: border-box;
+    position: relative;
+
+
+	transition: background-color 0.2s ease;
+}
+
+.profilOpenConnected {
+    border-bottom-color: transparent;
+    border-radius: 25px 25px 0 0;
+}
+
+.profilOpenGuest {
+    border-radius: 999px;
+}
+.profil:hover
+{
+	cursor: pointer;
+	transform: translateY(-2px);
+	padding-right: 1rem;
+	transition: transform 0.2s ease;
+	min-width: 10rem;
+}
+
+.menu {
+    position: absolute;
+    top: 100%;
+    left: -1px;
+    right: -2px;
+
+    background: white;
+
+    border: 2px solid var(--color-princ);
+    border-top: none;
+
+    border-radius: 0 0 25px 25px;
+
+    box-sizing: border-box;
+
+	/* Animation ouverture */
+	overflow: hidden;
+	max-height: 0;
+	opacity: 0;
+	transition: max-height 0.3s ease, opacity 0.2s ease;
+}
+
+.menuOpen {
+	max-height: 300px;
+	opacity: 1;
+}
+
+.item {
+	background: none;
+	border: none;
+	padding: 10px 16px;
+	cursor: pointer;
+	text-align: left;
+	width: 100%;
+
+	font-family: "Secondaire";
+	font-size: medium;
+
+	transition: background-color 0.15s ease;
+}
+
+.item:hover {
+	background-color: var(--color-bg);
+}

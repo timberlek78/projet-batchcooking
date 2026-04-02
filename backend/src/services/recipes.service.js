@@ -53,10 +53,8 @@ class RecipesServices {
 
 		return await prisma.$transaction(async (tx) => {
 
-			// 1️⃣ Création de la recette via ta classe
 			const recipe = await RecipesModels.create(recipeData, tx);
 
-			// 2️⃣ Liaison ingrédients
 			await Promise.all(
 				ingredients.map((ing) =>
 					RecipesModels.linkIngredientRecipe(
@@ -69,7 +67,6 @@ class RecipesServices {
 			);
 
 
-			// 3️⃣ Création des étapes
 			await Promise.all(
 				stepes.map((stepe) =>{
 					console.log("je suis la")
@@ -83,13 +80,9 @@ class RecipesServices {
 				)
 			);
 
-			// ✅ Si on arrive ici → commit automatique
 			return recipe;
 		});
 	};
-
-
-	
 
 
 	static async update(recipe_id, data) {
@@ -155,6 +148,31 @@ class RecipesServices {
 		}
 
 		return RecipesModels.update(recipe_id, cleanData);
+	}
+
+	static async isLike(data)
+	{
+		const res = await RecipesModels.isLike(data.user_id, data.recipe_id)
+		console.log(res);
+
+		return res;
+	}
+
+	static async likeRecipe(like) {
+		const res = await RecipesModels.isLike(like.users_id, like.recipe_id);
+
+		if (!res) {
+			await RecipesModels.createLike(like.users_id, like.recipe_id);
+			await RecipesModels.update(like.recipe_id, { recipe_like_number: { increment: 1 } });
+		} else {
+			const recipe = await RecipesModels.getById(like.recipe_id);
+    
+			await RecipesModels.deleteLike(like.users_id, like.recipe_id);
+			
+			if (recipe.recipe_like_number > 0) {
+				await RecipesModels.update(like.recipe_id, { recipe_like_number: { decrement: 1 } });
+			}
+		}
 	}
 }
 

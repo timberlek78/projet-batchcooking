@@ -4,8 +4,6 @@
 	--color-bg : rgb(250, 236, 188);
 }
 
-
-
 html {
 	background-color:var(--color-bg);
 	margin: 1rem;
@@ -15,8 +13,6 @@ html {
 html, body, #root {
 	height: 100%;
 }
-
-
 
 
 @font-face {

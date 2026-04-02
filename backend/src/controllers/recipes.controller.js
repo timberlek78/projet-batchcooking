@@ -59,6 +59,39 @@ class RecipeController {
 		}
 	}
 
+	static async likeRecipe(req,res,next)
+	{
+		try
+		{
+			const data = req.body;
+			const result = await RecipesServices.likeRecipe(data);
+
+			res.status(201).json(result);
+		}
+		catch(error)
+		{
+			return next(error);
+		}
+	}
+
+	
+	static async isLike(req,res,next)
+	{
+		try
+		{
+			const { user_id, recipe_id } = req.params;
+			console.log('user_id:', user_id, 'recipe_id:', recipe_id); // ← ajoute ça
+
+			const result = await RecipesServices.isLike({ user_id, recipe_id } );
+
+			res.status(201).json(result);
+		}
+		catch(error)
+		{
+			return next(error);
+		}
+	}
+
 
 	static async update(req, res, next) {
 		try {

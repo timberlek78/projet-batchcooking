@@ -49,14 +49,17 @@ export class UsersService {
 		if(!user)
 			throw new ApiError("Email non valide ou inconnu", 401, ErrorCodes.AUTH_FAILED);
 
+		console.log(password,user.password);
 		const isValidPassword = await bcrypt.compare(password, user.password);
 
+		console.log(isValidPassword);
 		if(!isValidPassword)
 			throw new ApiError("Mot de passe incorrect", 401, ErrorCodes.AUTH_FAILED);
 
 
-		const token = TokenService.generateToken(user);
+		const token = await TokenService.generateToken(user);
 
+		console.log(token);
 		if(!token)
 			throw new ApiError("Erreur lors de la connexion", 401, ErrorCodes.CONNECT_FAILD)
 
@@ -70,6 +73,8 @@ export class UsersService {
 				"username" : user.username
  			}
 		};			
+
+
 		return result; 
 	}
 

@@ -27,7 +27,7 @@ function IngredientCreatePopUp({show,onClose})
 	{
 		try
 		{
-			console.log("aaalloo");
+			 ("aaalloo");
 			await create(newIngredients);
 
 			// Si aucune erreur, c’est que ça a marché

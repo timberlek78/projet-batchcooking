@@ -11,8 +11,8 @@ const api = axios.create({
 
 api.interceptors.request.use(
 	(config) => {
-		const token = localStorage.getItem('token');
-		console.log(token);
+		const token = JSON.parse(localStorage.getItem('token'));
+		 (token);
 		if (token) {
 			config.headers.Authorization = `Bearer ${token}`;
 		}
@@ -25,10 +25,10 @@ api.interceptors.request.use(
 api.interceptors.response.use(
 	(response) => response,
 	(error) => {
-		console.log(error);
+		 (error);
 
 		if (!error.response) {
-			console.log('Erreur reseau / serveur injoignable / timeout', error);
+			 ('Erreur reseau / serveur injoignable / timeout', error);
 			return Promise.reject({
 				message: ERROR.NETWORK,
 				code: 'NETWORK_ERROR',

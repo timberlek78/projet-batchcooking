@@ -1,9 +1,11 @@
 import { useState, useEffect } from 'react';
 import { RecipeService as services } from '../../services/recipe.service.js';
+import { Recipe } from '../../constants/pages/recipes/Recipe.js';
 import RecipeCard from '../../features/recipes/RecipeCard/RecipeCard.jsx';
 import style from './style/recipePage.module.css';
 import RechercheField from '../../features/recherche/components/RechercheField.jsx';
 import AddButton from '../../components/Button/AddButton/AddButton.jsx';
+import NoRecipeIcons from '../../assets/icons/recipes/no-recipe.svg?react';
 
 function RecipePage() {
 	const [recipes, setRecipes] = useState([]);
@@ -57,10 +59,18 @@ function RecipePage() {
 
 			{error && <p>Erreur : {error.message}</p>}
 
-			<div className={style.container}>
-				{filteredRecipes.length > 0 ? filteredRecipes.map((recipe) => (
-					<RecipeCard key={recipe.recipe_id} recipe={recipe} />
-				)) : <p>Aucune recette trouvée</p>}
+			<div className={filteredRecipes.length > 0 ? style.container : style.containerVide}>
+				{
+					filteredRecipes.length > 0 ? filteredRecipes.map((recipe) => 
+					(
+						<RecipeCard key={recipe.recipe_id} recipe={recipe} />
+					)) 
+					: 
+					<div className={style.noRecipe}>
+						<NoRecipeIcons />
+						<div>{Recipe.message.NoRecipe}</div>
+					</div>
+				}
 			</div>
 		</div>
 	);
