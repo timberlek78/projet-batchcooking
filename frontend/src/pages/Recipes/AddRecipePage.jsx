@@ -2,7 +2,7 @@
  * Librairies
  * ====================== */
 import { useEffect, useState } from 'react';
-import { useNavigate } from "react-router-dom";
+import { useNavigate,useParams } from "react-router-dom";
 
 
 /* ======================
@@ -78,6 +78,7 @@ const NUMBER_FIELDS = [
 ];
 
 function AddRecipePage() {
+	const { recipeId } = useParams();
 
 	// Charge le brouillon de recette depuis le localStorage (si présent)
 	const [imagePreviewUrl, setImagePreviewUrl] = useState("");
@@ -163,6 +164,38 @@ function AddRecipePage() {
 		loadImage();
 	}, []);
 
+	useEffect(() => {
+		if (!recipeId){
+			console.log("MODE CREATION", recipeId)
+			return; 
+		}// mode création, on skip
+
+		const load = async () => {
+			const res = await RecipeService.getRecipeId(recipeId);
+			if (res) {
+				setRecipe({ ...DEFAULT_RECIPE, ...res.data });
+
+				// Image
+				if (res.data.recipe_image) {
+					const imageUrl = RecipeService.getImage(res.data.recipe_image);
+					setImagePreviewUrl(imageUrl);
+
+					// Convertir l'URL en File pour pouvoir la renvoyer au backend
+					const response = await fetch(imageUrl);
+					const blob = await response.blob();
+					const file = new File([blob], res.data.recipe_image, { type: blob.type });
+					setImageFile(file);
+				}
+			}
+
+			const ings = await RecipeService.getIngredients(recipeId);
+			if (ings) setRecipe(prev => ({ ...prev, ingredients: ings.data }));
+
+			const stps = await RecipeService.getStepe(recipeId);
+			if (stps) setStepes(stps.data);
+		};
+		load();
+	}, [recipeId]);
 
 	/**
 	 * =========================
@@ -258,7 +291,11 @@ function AddRecipePage() {
 		formData.append("recipe_image", imageFile ?? "");
 
 		formData.append("user_id", user_id);
-		await RecipeService.createWithImage(formData);
+		if (recipeId) {
+			await RecipeService.update(recipeId, formData); // PUT
+		} else {
+			await RecipeService.createWithImage(formData);  // POST
+		}
 	};
 
 	
@@ -331,7 +368,7 @@ function AddRecipePage() {
 
 	/**
 	 * =========================
-	 * (Optionnel) Reset brouillon
+	 *  Reset brouillon
 	 * =========================
 	 * Décommente si tu veux un bouton "vider"
 	 */

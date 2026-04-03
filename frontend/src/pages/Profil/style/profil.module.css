@@ -26,6 +26,9 @@
 	font-size: 3ch;
 	color : var(--color-sec);
 	width: fit-content;
+
+	background-color: transparent;
+	border: none;
 }
 
 .menuItem:hover{
@@ -33,6 +36,9 @@
 	border-bottom: green 3px solid;
 }
 
+.actif{
+	border-bottom: green 3px solid;
+}
 
 .info{
 	width: 100%;
@@ -41,4 +47,11 @@
 	flex-direction: column;
 
 	gap: 2rem;
+}
+
+.showRecipe
+{
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+
 }

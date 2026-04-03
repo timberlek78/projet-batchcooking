@@ -32,4 +32,10 @@ export default class StepesModels {
 			where: { stepes_id },
 		});
 	}
+
+	static deleteByRecipeId(recipe_id) {
+		return prisma.stepes.deleteMany({
+			where: { recipe_id },
+		});
+	}
 }

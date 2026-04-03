@@ -9,6 +9,10 @@ class RecipesModels {
 		return prisma.recipes.findUnique({ where: { recipe_id } });
 	}
 
+	static async getByUserId(user_id) {
+		return prisma.recipes.findMany({ where: { recipe_user_id : user_id } });
+	}
+
 	static async getIngredients(recipe_id) {
 		return prisma.recipesIngredient.findMany(
 		{
@@ -30,7 +34,13 @@ class RecipesModels {
 			},
 		});
 	}
-	
+
+	static deleteIngredientsByRecipeId(recipe_id, tx = prisma) {
+		return tx.recipesIngredient.deleteMany({
+			where: { recipe_id },
+		});
+	}
+		
 	static async update(recipe_id, data) {
 		return prisma.recipes.update({ where: { recipe_id }, data });
 	}

@@ -9,6 +9,10 @@ export class RecipeService {
 		return api.get(`/recipes/${id}`);
 	}
 
+	static async getRecipeUserId(id) {
+		return api.get(`/recipes/users/${id}`);
+	}
+
 	static async getIngredients(recipe_id) {
 		return api.get(`/recipes/ingredient/${recipe_id}`);
 	}
@@ -29,6 +33,16 @@ export class RecipeService {
 		});
 	}
 
+	static async update(recipe_id, data)
+	{
+		return api.put(`/recipes/${recipe_id}`, data);
+	}
+
+
+	static async delete(recipe_id)
+	{
+		return api.delete(`/recipes/${recipe_id}`)
+	}
 	static async setLike(data)
 	{
 		return api.post(`/recipes/like/`,data)

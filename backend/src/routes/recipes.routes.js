@@ -9,6 +9,7 @@ const router = express.Router();
 router.get('/',optionalAuthMiddleware, RecipeController.getAll);
 
 router.get('/:id',optionalAuthMiddleware, RecipeController.getById);
+router.get('/users/:id',optionalAuthMiddleware, RecipeController.getByUserId);
 router.get('/ingredient/:id' , optionalAuthMiddleware, RecipeController.getIngredients);
 router.post(
 	'/',

@@ -39,6 +39,15 @@ function App() {
 				/>
 
 				<Route
+					path="/recipes/update/:recipeId"
+					element={
+						<ProtectedRoute>
+							<AddRecipePage />
+						</ProtectedRoute>
+					}
+				/>
+
+				<Route
 					path="/profil"
 					element={
 						<ProtectedRoute>

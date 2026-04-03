@@ -27,6 +27,23 @@ class RecipeController {
 		}
 	}
 
+	static async getByUserId(req, res, next)
+	{
+		try {
+			const id = Number(req.params.id);
+
+			if (!id) {
+				throw new Error('Id invalide');
+			}
+
+			const response = await RecipesModels.getByUserId(id);
+			if (response) res.status(200).json(response);
+			else throw new Error('ID introuvable');
+		} catch (error) {
+			return next(error);
+		}
+	}
+
 	static async getIngredients(req, res, next) {
 		try {
 			const id = Number(req.params.id);
@@ -114,7 +131,7 @@ class RecipeController {
 				throw new Error('Id invalide');
 			}
 
-			const isDeleting = RecipesModels.delete(id);
+			const isDeleting = RecipesServices.delete(id);
 			res.status(200).json(isDeleting);
 		} catch (error) {
 			return next(error);

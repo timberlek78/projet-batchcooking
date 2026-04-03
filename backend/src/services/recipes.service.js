@@ -172,6 +172,20 @@ class RecipesServices {
 			}
 		}
 	}
+
+	static async delete(id)
+	{
+		const deleteStepes = await StepesModels.deleteByRecipeId(id);
+
+		if(deleteStepes)
+		{
+			const delinkIngredient = await RecipesModels.deleteIngredientsByRecipeId(id);
+			if(delinkIngredient)
+			{
+				return await RecipesModels.delete(id);
+			}
+		}
+	}
 }
 
 export default RecipesServices;

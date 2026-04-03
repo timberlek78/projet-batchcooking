@@ -63,7 +63,7 @@ function RecipePage() {
 				{
 					filteredRecipes.length > 0 ? filteredRecipes.map((recipe) => 
 					(
-						<RecipeCard key={recipe.recipe_id} recipe={recipe} />
+						<RecipeCard key={recipe.recipe_id} recipe={recipe} modif={false} />
 					)) 
 					: 
 					<div className={style.noRecipe}>
