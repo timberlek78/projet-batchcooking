@@ -14,7 +14,7 @@ export const DROPDOWN_ITEMS = [
 	{
 		id: 'recipe',
 		text: 'Mes recettes',
-		path: '/profil/recipes',
+		path: '/profil/2',
 		icon: null, // optionnel, pour plus tard
 	},
 	{

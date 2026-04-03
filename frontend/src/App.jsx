@@ -48,7 +48,7 @@ function App() {
 				/>
 
 				<Route
-					path="/profil"
+					path="/profil/:ongletDefault"
 					element={
 						<ProtectedRoute>
 							<ProfilPage />

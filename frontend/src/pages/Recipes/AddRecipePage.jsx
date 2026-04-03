@@ -44,6 +44,7 @@ import PeopleIcon from '../../assets/icons/recipes/add/people.svg?react';
 import TrashIcon from '../../assets/icons/recipes/add/trash.svg?react';
 import PublishIcon from '../../assets/icons/recipes/add/publish.svg?react';
 import SaveIcon from '../../assets/icons/recipes/add/save.svg?react';
+import PersonneIcon from '../../assets/icons/recipes/add/people.svg?react';
 
 /* ======================
  * Constants
@@ -55,6 +56,7 @@ import RecipeService from '../../services/recipe.service.js';
  * Styles
  * ====================== */
 import style from './style/add.module.css';
+import SelectDifficult from '../../features/recipes/RecipeView/bulles/SelectDifficult.jsx';
 
 
 const STORAGE_KEY = 'miaminou_add_recipe_draft';
@@ -168,8 +170,9 @@ function AddRecipePage() {
 		if (!recipeId){
 			console.log("MODE CREATION", recipeId)
 			return; 
-		}// mode création, on skip
-
+		}
+		
+		console.log("UPDATE");
 		const load = async () => {
 			const res = await RecipeService.getRecipeId(recipeId);
 			if (res) {
@@ -190,7 +193,7 @@ function AddRecipePage() {
 
 			const ings = await RecipeService.getIngredients(recipeId);
 			if (ings) setRecipe(prev => ({ ...prev, ingredients: ings.data }));
-
+			
 			const stps = await RecipeService.getStepe(recipeId);
 			if (stps) setStepes(stps.data);
 		};
@@ -229,12 +232,12 @@ function AddRecipePage() {
 		});
 	};
 
-	const qteChange = (id, qte) => {
+	const qteChange = (id, quantity) => {
 		setRecipe(prev => ({
 			...prev,
 			ingredients: prev.ingredients.map(ing =>
 				ing.ingredient_id === id
-					? { ...ing, qte }
+					? { ...ing, quantity }
 					: ing
 			)
 		}));
@@ -269,14 +272,15 @@ function AddRecipePage() {
 	const createRecipe = async () => {
 		const formData = new FormData();
 
+		const { recipe_id, ...recipeData } = newRecipe;
+
 		const payload = {
-			...newRecipe,
+			...recipeData,
 			stepes: stepes ?? [],
 		};
 
 		Object.entries(payload).forEach(([key, value]) => {
 			if (value !== null && value !== undefined) {
-				// Si c'est un objet ou tableau, on stringify
 				if (typeof value === "object") {
 					formData.append(key, JSON.stringify(value));
 				} else {
@@ -285,16 +289,13 @@ function AddRecipePage() {
 			}
 		});
 
-		// Image
-		 (imageFile)
-
 		formData.append("recipe_image", imageFile ?? "");
-
 		formData.append("user_id", user_id);
+
 		if (recipeId) {
-			await RecipeService.update(recipeId, formData); // PUT
+			await RecipeService.update(recipeId, formData);
 		} else {
-			await RecipeService.createWithImage(formData);  // POST
+			await RecipeService.createWithImage(formData);
 		}
 	};
 
@@ -308,10 +309,10 @@ function AddRecipePage() {
 			return;
 		}
 
-		if (newRecipe.recipe_difficult !== 0 &&(newRecipe.recipe_difficult < 1 || newRecipe.recipe_difficult > 5)) {
-			setWaitMessage(Recipe.error.difficultInvalid);
-			return;
-		}
+		// if (newRecipe.recipe_difficult !== 0 &&(newRecipe.recipe_difficult < 1 || newRecipe.recipe_difficult > 5)) {
+		// 	setWaitMessage(Recipe.error.difficultInvalid);
+		// 	return;
+		// }
 
 		try {
 			await createRecipe();
@@ -388,6 +389,8 @@ function AddRecipePage() {
 	};
 
 	const containerRef = useUniformBulleWidth([newRecipe.ingredients]);
+
+	console.log(newRecipe);
 	return (
 		<div className={style.page}>
 			{/* POPUP SELECTION INGREDIENTS */}
@@ -473,23 +476,18 @@ function AddRecipePage() {
 								placeholder={Recipe.placeholder.tmpCooking}
 								value={newRecipe.recipe_cooking_time ?? ""}
 								icon={<CookingTimeIcon />}
-								onChange={(value) => saveRecipe('recipe_cooking_time', value)}
+								onChange={(value) => {saveRecipe('recipe_cooking_time', value); console.log(value)}}
 							/>
 
 							<div className={style.row}>
-								<TextFieldSecondaire
-									placeholder={Recipe.placeholder.difficult}
-									value={newRecipe.recipe_difficult ?? ""}
-									icon={<DifficultIcon />}
-									onChange={(value) => saveRecipe('recipe_difficult', value)}
-								/>
+								<SelectDifficult difficult = {newRecipe.recipe_difficult} onDifficultChange={(value) => saveRecipe('recipe_difficult',value)} />
 
-								<TextFieldSecondaire
-									placeholder={newRecipe.recipe_nb_personne == 0 ? Recipe.placeholder.nbPersonne : newRecipe.recipe_nb_personne}
-									value={newRecipe.recipe_nb_personne == 0 ? "" : newRecipe.recipe_nb_personne}
-									icon={<PeopleIcon />}
-									onChange={(value) => saveRecipe('recipe_nb_personne', value)}
-								/>
+								<div className={style.personne} >
+									<PersonneIcon />
+									<button className={style.btn} onClick={() => saveRecipe('recipe_nb_personne', newRecipe.recipe_nb_personne - 1)}> - </button>
+										<div className={style.nbPersonne}>{newRecipe.recipe_nb_personne}</div>
+									<button className={style.btn} onClick={() => saveRecipe('recipe_nb_personne', newRecipe.recipe_nb_personne + 1)}> + </button>
+								</div>
 							</div>
 							<div className={style.btnBarre}>
 								<button className={style.btn} onClick={clearDraft}><TrashIcon /></button>

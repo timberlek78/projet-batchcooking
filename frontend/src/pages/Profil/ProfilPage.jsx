@@ -4,9 +4,11 @@ import {getUserId,update} from '../../services/user.service.js';
 
 import OngletInfo from "./onglet/OngletInfo.jsx";
 import OngletRecipe from "./onglet/OngletRecipe.jsx";
+import { useParams } from "react-router-dom";
 
 function ProfilPage()
 {
+	const { ongletDefault } = useParams();
 	const user_id = localStorage.getItem('user_id');
 	const [user, setUser] = useState(null);
 	const [onglet, setOnglet] = useState(1);
@@ -23,6 +25,11 @@ function ProfilPage()
 		const res = update( user_id, {[key]: value });
 	};
 
+	useEffect(() => {
+		if (ongletDefault) setOnglet(Number(ongletDefault));
+	}, [ongletDefault]);
+
+	console.log("aaa" ,ongletDefault);
 	if (!user) return <p>Chargement...</p>;
 	return (
 		<>
@@ -34,7 +41,7 @@ function ProfilPage()
 
 				<div className={`${style.container} ${style.info}`}>
 					{onglet === 1 && (
-						<OngletInfo user={user}/>
+						<OngletInfo user={user} onValid={onValid}/>
 					)}
 
 					{onglet === 2 && (

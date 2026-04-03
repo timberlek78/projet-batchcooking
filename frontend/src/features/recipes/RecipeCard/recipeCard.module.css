@@ -142,6 +142,33 @@
 	transition: transform 0.2s ease, fill 0.2s ease;
 }
 
+.trash
+{
+	display: flex;
+	align-items: center;
+	justify-items: center;
+	padding: 1rem;
+	border: none;
+	border-radius: 25px;
+}
+
+
+.trash svg
+{
+	width: 32px;
+	height: 32px;
+	fill: none;
+	cursor: pointer;
+
+	transition: transform 0.2s ease, fill 0.2s ease;
+}
+
+.trash:hover svg  {
+	transform: scale(1.2);
+
+}
+
+
 .isLike svg {
 	fill: #D6006D;
 	color : #D6006D;

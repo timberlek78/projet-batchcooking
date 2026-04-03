@@ -105,7 +105,9 @@ export class UsersService {
 		// Hash si password présent
 		if (cleanData.password) {
 			cleanData.password = await bcrypt.hash(cleanData.password, 10);
-		}
+		}	
+
+		cleanData.update_at = Date.now();
 
 		return UsersModels.update(user_id, cleanData);
 	}

@@ -61,7 +61,7 @@ class RecipesServices {
 					RecipesModels.linkIngredientRecipe(
 						recipe.recipe_id,
 						ing.ingredient_id,
-						Number(ing.qte) ?? 0,
+						Number(ing.quantity) ?? 0,
 						tx
 					)
 				)
@@ -70,7 +70,6 @@ class RecipesServices {
 
 			await Promise.all(
 				stepes.map((stepe) =>{
-					console.log("je suis la")
 					const data = {
 						...stepe,
 						recipe: { connect: { recipe_id: recipe.recipe_id } },
@@ -91,64 +90,57 @@ class RecipesServices {
 			throw new Error('Body invalide.');
 		}
 
-		// Interdit de modifier recipe_id
 		if ('recipe_id' in data) {
 			throw new Error("Impossible de modifier 'recipe_id'.");
 		}
 
-		// Whitelist : champs modifiables
-		const allowed = [
-			'recipe_name',
-			'recipe_difficult',
-			'recipe_preparation_time',
-			'recipe_cooking_time',
-			'recipe_like_number',
-		];
+		const parseRecipeBody = (body) => {
+			return {
+				recipe_name: body.recipe_name,
+				recipe_image: body.recipe_image[0],
+				recipe_preparation_time: Number(body.recipe_preparation_time),
+				recipe_cooking_time: Number(body.recipe_cooking_time),
+				recipe_difficult: Number(body.recipe_difficult),
+				recipe_nb_personne: Number(body.recipe_nb_personne),
+				recipe_like_number: Number(body.recipe_like_number),
+				stepes: JSON.parse(body.stepes),
+				ingredients: JSON.parse(body.ingredients),
+			};
+		};
 
-		const cleanData = {};
-		for (const key of allowed) {
-			if (data[key] !== undefined) {
-				cleanData[key] = data[key];
-			}
-		}
+		data = parseRecipeBody(data);
 
-		if (Object.keys(cleanData).length === 0) {
-			throw new Error('Aucun champ valide à mettre à jour.');
-		}
+		console.log("dataaa",data);
+		let { ingredients = [], stepes = [], ...recipeData } = data;
 
-		// Validations simples (optionnel mais recommandé)
-		if (
-			cleanData.recipe_difficult !== undefined &&
-			(!Number.isInteger(cleanData.recipe_difficult) ||
-				cleanData.recipe_difficult < 1 ||
-				cleanData.recipe_difficult > 5)
-		) {
-			throw new Error('recipe_difficult doit être un entier entre 1 et 5.');
-		}
+		return await prisma.$transaction(async (tx) => {
+			const recipe = await RecipesModels.update(recipe_id, recipeData, tx);
 
-		if (
-			cleanData.recipe_preparation_time !== undefined &&
-			(!Number.isInteger(cleanData.recipe_preparation_time) ||
-				cleanData.recipe_preparation_time < 0)
-		) {
-			throw new Error('recipe_preparation_time doit être un entier >= 0.');
-		}
+			await RecipesModels.deleteIngredientsByRecipeId(recipe_id, tx);
+			await Promise.all(
+				ingredients.map((ing) =>
+					RecipesModels.linkIngredientRecipe(
+						recipe_id,
+						ing.ingredient_id,
+						Number(ing.quantity) ?? 0,
+						tx
+					)
+				)
+			);
 
-		if (
-			cleanData.recipe_cooking_time !== undefined &&
-			(!Number.isInteger(cleanData.recipe_cooking_time) || cleanData.recipe_cooking_time < 0)
-		) {
-			throw new Error('recipe_cooking_time doit être un entier >= 0.');
-		}
+			await StepesModels.deleteByRecipeId(recipe_id, tx);
+			await Promise.all(
+				stepes.map((stepe) => {
+					const { stepes_id, ...stepeData } = stepe;
+					return StepesModels.create({
+						...stepe,
+						recipe_id: recipe_id,
+					}, tx);
+				})
+			);
 
-		if (
-			cleanData.recipe_like_number !== undefined &&
-			(!Number.isInteger(cleanData.recipe_like_number) || cleanData.recipe_like_number < 0)
-		) {
-			throw new Error('recipe_like_number doit être un entier >= 0.');
-		}
-
-		return RecipesModels.update(recipe_id, cleanData);
+			return recipe;
+		});
 	}
 
 	static async isLike(data)

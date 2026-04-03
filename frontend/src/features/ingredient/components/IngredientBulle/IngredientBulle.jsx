@@ -3,13 +3,15 @@ import root from './bulle.module.css';
 import DeleteIcon from '../../../../assets/icons/recipes/add/close.svg?react';
 
 function IngredientBulle({ ingredient, onClick, onChange }) {
+
+	console.log(ingredient);
 	return (
 		<div id="bulle"className={`${root.bulle} ${style.bulleText}`}>
 			<input
 				type="number"
 				className={style.qte}
 				placeholder="Qte"
-				value={ingredient.qte ?? ""}
+				value={ingredient.quantity ?? ""}
 				onChange={(e) =>
 					onChange(ingredient.ingredient_id, e.target.value)
 				}

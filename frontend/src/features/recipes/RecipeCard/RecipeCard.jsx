@@ -34,8 +34,9 @@ function RecipeCard({ recipe, modif, like, onDelete}) {
 		: Object.values(recipe.ingredients ?? {});
 
 	const imageUrl = service.getImage(recipe.recipe_image);
-		
-
+	
+	console.log(recipe);
+	console.log(ingredients);
 	const onRecipeClick = () => 
 	{
 		if(!modif)
@@ -62,7 +63,6 @@ function RecipeCard({ recipe, modif, like, onDelete}) {
 		onDelete(recipe.recipe_id);
 	}
 
-	 (isLike);
 	return (
 		<div
 			className={style.card}
@@ -75,7 +75,7 @@ function RecipeCard({ recipe, modif, like, onDelete}) {
 		>
 			<div className={style.overlay}>
 				<div className={style.haut}>
-					<button onClick={modif ? onRemove : onLike} className={`${style.like} ${isLike ? style.isLike : ''}`}>
+					<button onClick={modif ? onRemove : onLike} className={`${isLike ? style.like : style.trash} ${isLike ? style.isLike : ''}`}>
 						{modif ? <TrashIcon /> : <LikeIcon />}
 					</button>
 				

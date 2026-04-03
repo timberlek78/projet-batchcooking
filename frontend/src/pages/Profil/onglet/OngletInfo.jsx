@@ -4,7 +4,7 @@ import UsersIcons from '../../../assets/icons/home/profil.svg?react';
 import EmailIcons from '../../../assets/icons/profil/email.svg?react';
 import LockIcons from '../../../assets/icons/profil/lock.svg?react';
 
-function OngletInfo({user})
+function OngletInfo({user,onValid})
 {
     return(
         <>

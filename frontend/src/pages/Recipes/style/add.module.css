@@ -24,8 +24,6 @@
 	cursor: pointer;
 
 	/* Effet relief */
-
-
 	transition:
 		transform 0.1s ease,
 		box-shadow 0.1s ease;
@@ -116,7 +114,7 @@
 .title
 {
 	font: 1.2rem sans-serif;
-	font-family: Arial, Helvetica, sans-serif;
+	font-family: "Principal";
 	color: green;
 	
 }
@@ -201,6 +199,15 @@
 	height: 100%;
 }
 
+
+.personne {
+	display: flex;
+	align-items: center;
+	gap: 0.4rem;
+
+	font-family: "Secondaire";
+	font-size: 0.95rem;
+}
 
 @media (max-width: 900px) {
 	.haut {
