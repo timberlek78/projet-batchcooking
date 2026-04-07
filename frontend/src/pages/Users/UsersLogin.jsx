@@ -43,14 +43,13 @@ function UsersLogin({ hasAccount }) {
 		try {
 			const response = await login({ email: users.email, password: users.password });
 
-			 (response.data);
 			if (response) {
 				connecte(response.data.user, response.data.token);
 				navigate('/recipes');
 			}
 		} catch(err) 
 		{
-			 (err);
+			console.log(err);
 			setError({ login: text.error.loginFailed });
 		}
 	};

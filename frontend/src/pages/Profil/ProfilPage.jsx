@@ -5,6 +5,7 @@ import {getUserId,update} from '../../services/user.service.js';
 import OngletInfo from "./onglet/OngletInfo.jsx";
 import OngletRecipe from "./onglet/OngletRecipe.jsx";
 import { useParams } from "react-router-dom";
+import { updateLocal } from "../../utils/authUtils.jsx";
 
 function ProfilPage()
 {
@@ -16,7 +17,10 @@ function ProfilPage()
 	useEffect(() => {
 		const load = async () => {
 			const res = await getUserId(user_id);
-			if (res) setUser(res.data);
+			if (res) {
+				setUser(res.data);
+				updateLocal(res.data);
+			}
 		};
 		load();
 	}, []);
@@ -29,7 +33,6 @@ function ProfilPage()
 		if (ongletDefault) setOnglet(Number(ongletDefault));
 	}, [ongletDefault]);
 
-	console.log("aaa" ,ongletDefault);
 	if (!user) return <p>Chargement...</p>;
 	return (
 		<>

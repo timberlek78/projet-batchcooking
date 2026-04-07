@@ -25,7 +25,7 @@ api.interceptors.request.use(
 api.interceptors.response.use(
 	(response) => response,
 	(error) => {
-		 (error);
+		console.log(error);
 
 		if (!error.response) {
 			 ('Erreur reseau / serveur injoignable / timeout', error);

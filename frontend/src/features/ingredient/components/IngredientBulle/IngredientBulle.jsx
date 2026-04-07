@@ -4,7 +4,6 @@ import DeleteIcon from '../../../../assets/icons/recipes/add/close.svg?react';
 
 function IngredientBulle({ ingredient, onClick, onChange }) {
 
-	console.log(ingredient);
 	return (
 		<div id="bulle"className={`${root.bulle} ${style.bulleText}`}>
 			<input

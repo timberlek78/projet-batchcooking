@@ -107,7 +107,9 @@ export class UsersService {
 			cleanData.password = await bcrypt.hash(cleanData.password, 10);
 		}	
 
-		cleanData.update_at = Date.now();
+		cleanData.updated_at = new Date();
+
+		console.log(cleanData);
 
 		return UsersModels.update(user_id, cleanData);
 	}

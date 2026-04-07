@@ -18,8 +18,6 @@ function MenuProfil({user, items}) {
 		if (item.action) item.action();
 	};
 
-	console.log(user);
-
 	const content = connected ? user.username : TITLE.Users;
 
 	return (
@@ -39,7 +37,7 @@ function MenuProfil({user, items}) {
 						<button
 							key={item.id}
 							className={style.item}
-							onClick={() => handleClick(item)}
+							onClick={(e) => handleClick(e,item)}
 						>
 							{item.text}
 						</button>

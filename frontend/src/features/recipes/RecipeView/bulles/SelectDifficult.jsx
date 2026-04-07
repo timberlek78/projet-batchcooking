@@ -6,8 +6,6 @@ import { use, useState } from 'react';
 
 function SelectDifficult({ difficult, onDifficultChange }) {
 	const [hovered, setHovered] = useState(null);
-
-	console.log("diff", difficult);
 	return (
 		<div className={`${style.row}`}>
 			<DifficultIcon />

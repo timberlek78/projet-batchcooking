@@ -34,9 +34,7 @@ function RecipeCard({ recipe, modif, like, onDelete}) {
 		: Object.values(recipe.ingredients ?? {});
 
 	const imageUrl = service.getImage(recipe.recipe_image);
-	
-	console.log(recipe);
-	console.log(ingredients);
+
 	const onRecipeClick = () => 
 	{
 		if(!modif)

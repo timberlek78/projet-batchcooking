@@ -16,23 +16,22 @@ function Navbar() {
 	
 	useEffect(() => {
 		const load = async () => {
-			const res = await getUserId(user_id);
-			if (res) setUser(res.data);
+			const user = localStorage.getItem("user");
+			if (user) setUser(user);
 		};
 		load();
 	}, []);
 
-	// const tout = Object.fromEntries(
-	// 	Object.keys(localStorage).map(key => [key, localStorage.getItem(key)])
-	// );
+	const tout = Object.fromEntries(
+		Object.keys(localStorage).map(key => [key, localStorage.getItem(key)])
+	);
 
-
+	console.log(tout);
 	// localStorage.removeItem('user');
 	// localStorage.removeItem('token');
 	// localStorage.removeItem('miaminou_add_recipe_draft');
-	// localStorage.removeItem('connected');
+	// localStorage.removeItem('user_id');
 
-	if(!user) return <p>Chargement...</p>
 	return (
 		<div className={style.container}>
 			<h1 className={style.logo}>Miaminou</h1>

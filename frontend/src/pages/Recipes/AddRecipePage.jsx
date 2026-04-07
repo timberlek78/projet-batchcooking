@@ -168,11 +168,9 @@ function AddRecipePage() {
 
 	useEffect(() => {
 		if (!recipeId){
-			console.log("MODE CREATION", recipeId)
 			return; 
 		}
 		
-		console.log("UPDATE");
 		const load = async () => {
 			const res = await RecipeService.getRecipeId(recipeId);
 			if (res) {
@@ -390,7 +388,6 @@ function AddRecipePage() {
 
 	const containerRef = useUniformBulleWidth([newRecipe.ingredients]);
 
-	console.log(newRecipe);
 	return (
 		<div className={style.page}>
 			{/* POPUP SELECTION INGREDIENTS */}
@@ -476,7 +473,7 @@ function AddRecipePage() {
 								placeholder={Recipe.placeholder.tmpCooking}
 								value={newRecipe.recipe_cooking_time ?? ""}
 								icon={<CookingTimeIcon />}
-								onChange={(value) => {saveRecipe('recipe_cooking_time', value); console.log(value)}}
+								onChange={(value) => {saveRecipe('recipe_cooking_time', value); }}
 							/>
 
 							<div className={style.row}>
